@@ -1,0 +1,38 @@
+//
+//  PrefixHeader.pch
+//  SRClimate
+//
+//  Created by 郭伟林 on 16/9/18.
+//  Copyright © 2016年 SR. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+    #import "ConstDefine.h"
+    #import "UIAssistDefine.h"
+    #import "UIView+Frame.h"
+    #import "NSString+Extension.h"
+    #import "UIApplication+Extension.h"
+    #import "UILabel+Font.h"
+    #import "MBProgressHUD+SR.h"
+#endif
+
+#ifdef DEBUG
+    #define HSLog(FORMAT, ...) {\
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];\
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];\
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];\
+    [dateFormatter setDateFormat:@"HH:mm:ss:SSSS"];\
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];\
+    fprintf(stderr,"[%s:%d %s] %s\n", [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [dateString UTF8String], [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);\
+}
+#else
+    #define HSLog(FORMAT, ...) nil
+#endif
+
+#endif /* PrefixHeader_pch */
