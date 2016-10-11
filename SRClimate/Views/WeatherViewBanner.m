@@ -17,6 +17,7 @@
 @property (nonatomic, weak) UIImageView *animationImageView;
 
 @property (nonatomic, strong) CALayer   *backgroundLayer;
+
 @end
 
 @implementation WeatherViewBanner
