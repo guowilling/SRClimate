@@ -60,3 +60,5 @@ fastlane/screenshots
 iOSInjectionProject/
 
 *.mov
+
+.DS_Store
