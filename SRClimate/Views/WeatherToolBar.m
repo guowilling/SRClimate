@@ -11,8 +11,8 @@
 
 @interface WeatherToolBar () <UIScrollViewDelegate>
 
-@property (nonatomic, strong) NSString       *locationCity;
-@property (nonatomic, strong) NSArray        *commonCities;
+@property (nonatomic, strong) NSString  *locationCity;
+@property (nonatomic, strong) NSArray   *commonCities;
 
 @property (nonatomic, strong) NSMutableArray *cityLabels;
 
@@ -157,8 +157,8 @@
             pageControl.numberOfPages = _commonCities.count;
         }
     }
-    pageControl.currentPageIndicatorTintColor = [[UIColor colorWithRed:0.54 green:0.72 blue:0.89 alpha:1.00] colorWithAlphaComponent:0.5];
-    pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+    pageControl.pageIndicatorTintColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
     pageControl.hidesForSinglePage = YES;
     [self addSubview:pageControl];
     _cityPageControl = pageControl;

@@ -10,7 +10,19 @@
 #import "SRNavigationController.h"
 #import "SRMainViewController.h"
 
+/**
+ * If you have any question, please issue or contact me.
+ * QQ: 396658379
+ * Email: guowilling@qq.com
+ *
+ * If you like it, please star it, thanks a lot.
+ * Github: https://github.com/guowilling/SRClimate
+ *
+ * Have Fun.
+ */
+
 @interface AppDelegate ()
+
 @end
 
 @implementation AppDelegate

@@ -170,6 +170,7 @@
 - (void)locationToolLocationFailed {
     
     [MBProgressHUD sr_showErrorWithMessage:@"定位失败" onView:self.view];
+    
     if (_weatherMainController) {
         [_weatherMainController showLocationFailedTips];
     }
