@@ -183,6 +183,9 @@
         self.PMIcon.hidden = YES;
         self.PMLabel.hidden = YES;
     }
+    
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 @end
