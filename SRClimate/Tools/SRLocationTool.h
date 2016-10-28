@@ -13,6 +13,7 @@
 
 @optional
 - (void)locationToolLocationServicesDisabled;
+- (void)locationToolLocationServicesAuthorizationStatusDidChange;
 - (void)locationToolLocationServicesAuthorizationStatusDenied;
 - (void)locationToolLocationServicesAuthorizationStatusAuthorized;
 - (void)locationToolLocationServicesLocating;
@@ -29,13 +30,13 @@
 
 @property (nonatomic, assign, getter=isAutoLocation) BOOL autoLocation;
 
-@property (nonatomic, copy  ) NSString *currentLocationCity;
-@property (nonatomic, copy  ) NSString *currentLocationState;
-
 @property (nonatomic, strong) NSNumber *currentLocationLongitude;
 @property (nonatomic, strong) NSNumber *currentLocationLatitude;
 
-- (void)resetLocation;
+@property (nonatomic, copy  ) NSString *currentLocationCity;
+@property (nonatomic, copy  ) NSString *currentLocationState;
+
+- (void)requestAuthorization;
 
 - (void)beginLocation;
 

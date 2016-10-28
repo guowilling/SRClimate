@@ -7,12 +7,11 @@
 //
 
 #import "CommonCityController.h"
-#import "SearchCityController.h"
 #import "SRUserDefaults.h"
 #import "SRLocationTool.h"
 #import "SRWeatherDataTool.h"
 
-@interface CommonCityController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, SearchCityControllerDelegate>
+@interface CommonCityController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *commonCities;
 
@@ -85,12 +84,22 @@
 
 - (void)setupNavBar {
 
-    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editAction)];
-    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchAction)];
-    self.navigationItem.rightBarButtonItems = @[editItem, searchItem];
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    
+    self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                           target:self
+                                                                                           action:@selector(dismissAction)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                                                                           target:self
+                                                                                           action:@selector(editAction)];
 }
 
 #pragma mark - Monitor method
+
+- (void)dismissAction {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)editAction {
     
@@ -99,33 +108,26 @@
     }
     self.tableView.editing = !self.tableView.editing;
     if (self.tableView.editing) {
-        UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editAction)];
-        UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchAction)];
-        self.navigationItem.rightBarButtonItems = @[editItem, searchItem];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                                                               target:self
+                                                                                               action:@selector(editAction)];
     } else {
         [self setupNavBar];
     }
 }
 
-- (void)popAction {
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)searchAction {
-    
-    SearchCityController *searchCityController = [[SearchCityController alloc] init];
-    searchCityController.delegate = self;
-    [self.navigationController pushViewController:searchCityController animated:YES];
-}
-
 - (void)switchViewAction:(UISwitch *)sender {
     
     if (sender.isOn) {
+        [SRLocationTool sharedInstance].autoLocation = YES;
+        
         if ([self.delegate respondsToSelector:@selector(commonCityControllerDidOpenAutoLocation)]) {
             [self.delegate commonCityControllerDidOpenAutoLocation];
         }
     } else {
+        [SRLocationTool sharedInstance].autoLocation = NO;
+        [SRLocationTool sharedInstance].currentLocationCity = nil;
+    
         if ([self.delegate respondsToSelector:@selector(commonCityControllerDidCloseAutoLocation)]) {
             [self.delegate commonCityControllerDidCloseAutoLocation];
         }
@@ -283,7 +285,7 @@
         if ([self.delegate respondsToSelector:@selector(commonCityControllerDidSelectCity:isLocationCity:)]) {
             [self.delegate commonCityControllerDidSelectCity:[[SRLocationTool sharedInstance] currentLocationCity] isLocationCity:YES];
         }
-        [self popAction];
+        [self dismissAction];
         return;
     }
     
@@ -292,7 +294,7 @@
     if ([self.delegate respondsToSelector:@selector(commonCityControllerDidSelectCity:isLocationCity:)]) {
         [self.delegate commonCityControllerDidSelectCity:city isLocationCity:NO];
     }
-    [self popAction];
+    [self dismissAction];
 }
 
 #pragma mark - Public method
@@ -317,23 +319,24 @@
     [self showAlertController:@"请允许APP使用定位功能\n设置->隐私->定位服务->幻视"];
 }
 
-#pragma mark - SearchCityControllerDelegate
-
-- (void)searchCityControllerDidAddCity {
+- (void)reloadTableView {
     
-    if ([self.delegate respondsToSelector:@selector(commonCityControllerDidAddCity)]) {
-        [self.delegate commonCityControllerDidAddCity];
+    [self.tableView reloadData];
+}
+
+- (void)insertTableViewRow {
+    
+    NSInteger rows = [self.tableView numberOfRowsInSection:0];
+    if (rows == 1) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
-- (void)searchCityControllerCityHasAdded {
+- (void)deleteTableViewRow {
     
-    [MBProgressHUD sr_showInfoWithMessage:@"该城市已添加" onView:self.view];
-}
-
-- (void)searchCityControllerDidAddMoreThan12Cities {
-    
-    [MBProgressHUD sr_showInfoWithMessage:@"最多只能添加12个常用城市" onView:self.view];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

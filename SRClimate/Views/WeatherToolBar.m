@@ -18,8 +18,8 @@
 
 @property (nonatomic, assign) NSInteger      currentIndex;
 
-@property (nonatomic, weak) UIButton *dismissBtn;
-@property (nonatomic, weak) UIButton *moreCityBtn;
+@property (nonatomic, weak) UIButton *commonCityBtn;
+@property (nonatomic, weak) UIButton *searchCityBtn;
 
 @property (nonatomic, weak) UIButton *cityBtn;
 @property (nonatomic, weak) UILabel  *cityLabel;
@@ -41,42 +41,28 @@
     if (self = [super init]) {
         _locationCity = locationCity;
         _commonCities = commonCities;
-        [self setupContent];
+        [self setupSubviews];
     }
     return self;
 }
 
-- (void)setupContent {
+- (void)setupSubviews {
     
-    [self addDismissBtn];
+    [self addSubview:({
+        UIButton *commonCityBtn = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        [commonCityBtn addTarget:self action:@selector(commonCityBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        _commonCityBtn = commonCityBtn;
+    })];
     
-    [self addMoreCityBtn];
+    [self addSubview:({
+        UIButton *searchCityBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        [searchCityBtn addTarget:self action:@selector(searchCityBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        _searchCityBtn = searchCityBtn;
+    })];
     
     [self addCityScrollView];
     
     [self addCityPageControl];
-}
-
-- (void)addDismissBtn {
-    
-    UIButton *dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [dismissBtn setImage:[UIImage imageNamed:@"new_guanbi_normal"] forState:UIControlStateNormal];
-    [dismissBtn setImage:[UIImage imageNamed:@"new_guanbi_highlighted"] forState:UIControlStateHighlighted];
-    [dismissBtn addTarget:self action:@selector(dismissBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:dismissBtn];
-    _dismissBtn = dismissBtn;
-    //_dismissBtn.backgroundColor = COLOR_RANDOM;
-}
-
-- (void)addMoreCityBtn {
-    
-    UIButton *moreCityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [moreCityBtn setImage:[UIImage imageNamed:@"new_location_light_normal"] forState:UIControlStateNormal];
-    [moreCityBtn setImage:[UIImage imageNamed:@"new_location_light_highlighted"] forState:UIControlStateHighlighted];
-    [moreCityBtn addTarget:self action:@selector(moreCityBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:moreCityBtn];
-    _moreCityBtn = moreCityBtn;
-    //_moreCityBtn.backgroundColor = COLOR_RANDOM;
 }
 
 - (void)addCityScrollView {
@@ -171,8 +157,8 @@
     
     CGFloat margin = 20;
     
-    self.dismissBtn.frame = CGRectMake(0, 0, kButtomItemWH, kButtomItemWH);
-    self.moreCityBtn.frame = CGRectMake(SCREEN_WIDTH - kButtomItemWH, 0, kButtomItemWH, kButtomItemWH);
+    self.commonCityBtn.frame = CGRectMake(0, 0, kButtomItemWH, kButtomItemWH);
+    self.searchCityBtn.frame = CGRectMake(SCREEN_WIDTH - kButtomItemWH, 0, kButtomItemWH, kButtomItemWH);
     self.cityScrollView.frame = CGRectMake(kButtomItemWH, 0, SCREEN_WIDTH - kButtomItemWH * 2, self.sr_height);
     
     if (self.locationCity) {
@@ -197,17 +183,17 @@
     }
 }
 
-- (void)dismissBtnAction {
+- (void)commonCityBtnAction {
     
-    if ([self.delegate respondsToSelector:@selector(weatherToolBarDidClickDismissBtn)]) {
-        [self.delegate weatherToolBarDidClickDismissBtn];
+    if ([self.delegate respondsToSelector:@selector(weatherToolBarDidClickCommonCityBtnAction)]) {
+        [self.delegate weatherToolBarDidClickCommonCityBtnAction];
     }
 }
 
-- (void)moreCityBtnAction {
+- (void)searchCityBtnAction {
     
-    if ([self.delegate respondsToSelector:@selector(weatherToolBarDidClickMoreCityBtn)]) {
-        [self.delegate weatherToolBarDidClickMoreCityBtn];
+    if ([self.delegate respondsToSelector:@selector(weatherToolBarDidClickSearchCityBtnAction)]) {
+        [self.delegate weatherToolBarDidClickSearchCityBtnAction];
     }
 }
 

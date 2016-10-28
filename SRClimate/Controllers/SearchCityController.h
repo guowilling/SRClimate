@@ -10,9 +10,7 @@
 
 @protocol SearchCityControllerDelegate <NSObject>
 
-- (void)searchCityControllerDidAddCity;
-- (void)searchCityControllerDidAddMoreThan12Cities;
-- (void)searchCityControllerCityHasAdded;
+- (void)searchCityControllerDidAddCity:(NSString *)city;
 
 @end
 

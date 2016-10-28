@@ -13,8 +13,8 @@
 
 @protocol WeatherToolBarDelegate <NSObject>
 
-- (void)weatherToolBarDidClickDismissBtn;
-- (void)weatherToolBarDidClickMoreCityBtn;
+- (void)weatherToolBarDidClickCommonCityBtnAction;
+- (void)weatherToolBarDidClickSearchCityBtnAction;
 - (void)weatherToolBarDidScrollToIndex:(NSInteger)index;
 
 @end

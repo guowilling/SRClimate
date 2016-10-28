@@ -51,7 +51,7 @@
     } else {
         params[@"city"] = cityname;
     }
-    [SRHttpSessionManager GET:@"http://apis.baidu.com/heweather/weather/free" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [SRHTTPSessionManager GET:@"http://apis.baidu.com/heweather/weather/free" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         // NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
         // response.statusCode
         NSString *status = responseObject[@"HeWeather data service 3.0"][0][@"status"];

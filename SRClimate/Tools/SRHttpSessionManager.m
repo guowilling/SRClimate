@@ -5,16 +5,16 @@
 //  Copyright (c) 2015年 zwm. All rights reserved.
 //
 
-#import "SRHttpSessionManager.h"
+#import "SRHTTPSessionManager.h"
 
-@implementation SRHttpSessionManager
+@implementation SRHTTPSessionManager
 
-+ (SRHttpSessionManager *)sharedManager {
++ (SRHTTPSessionManager *)sharedManager {
     
-    static SRHttpSessionManager *sharedInstance = nil;
+    static SRHTTPSessionManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[SRHttpSessionManager alloc] initWithBaseURL:nil];
+        sharedInstance = [[SRHTTPSessionManager alloc] initWithBaseURL:nil];
     });
     return sharedInstance;
 }

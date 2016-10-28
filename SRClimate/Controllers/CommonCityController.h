@@ -14,13 +14,16 @@
 - (void)commonCityControllerDidCloseAutoLocation;
 
 - (void)commonCityControllerDidSelectCity:(NSString *)cityname isLocationCity:(BOOL)isLocationCity;
-- (void)commonCityControllerDidAddCity;
 - (void)commonCityControllerDidDeleteCity;
 - (void)commonCityControllerDidReorderCity;
 
 @end
 
 @interface CommonCityController : UIViewController
+
+- (void)reloadTableView;
+- (void)insertTableViewRow;
+- (void)deleteTableViewRow;
 
 @property (nonatomic, weak) id<CommonCityControllerDelegate> delegate;
 

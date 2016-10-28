@@ -54,6 +54,18 @@ static SRLocationTool *instance;
     return self;
 }
 
+- (void)requestAuthorization {
+    
+    if ([CLLocationManager locationServicesEnabled]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesDisabled)]) {
+            [self.delegate locationToolLocationServicesDisabled];
+        }
+    }
+}
+
+
 - (void)beginLocation {
     
     if (![CLLocationManager locationServicesEnabled]) {
@@ -62,9 +74,7 @@ static SRLocationTool *instance;
             [self.delegate locationToolLocationServicesDisabled];
         }
         return;
-    }
-    
-    if (IS_iOS8) {
+    } else {
         switch ([CLLocationManager authorizationStatus]) {
             case kCLAuthorizationStatusNotDetermined:
                 [self.locationManager requestWhenInUseAuthorization];
@@ -84,16 +94,10 @@ static SRLocationTool *instance;
                     [self.delegate locationToolLocationServicesAuthorizationStatusAuthorized];
                 }
                 if ([SRLocationTool sharedInstance].isAutoLocation) {
+                    [[SRLocationTool sharedInstance] resetLocation];
                     [self.locationManager startUpdatingLocation];
                 }
                 break;
-        }
-    } else {
-        if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesAuthorizationStatusAuthorized)]) {
-            [self.delegate locationToolLocationServicesAuthorizationStatusAuthorized];
-        }
-        if ([[SRLocationTool sharedInstance] isAutoLocation]) {
-            [self.locationManager startUpdatingLocation];
         }
     }
 }
@@ -103,31 +107,38 @@ static SRLocationTool *instance;
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
     HSLog(@"LocationManager didChangeAuthorizationStatus %zd", status);
-    switch (status) {
-        case kCLAuthorizationStatusNotDetermined:
-        case kCLAuthorizationStatusRestricted:
-        {
-            break;
-        }
-        case kCLAuthorizationStatusDenied: {
-            [SRLocationTool sharedInstance].autoLocation = NO;
-            [SRLocationTool sharedInstance].currentLocationCity = nil;
-            if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesAuthorizationStatusDenied)]) {
-                [self.delegate locationToolLocationServicesAuthorizationStatusDenied];
+    
+    if ([CLLocationManager locationServicesEnabled]) {
+        switch (status) {
+            case kCLAuthorizationStatusNotDetermined:
+            case kCLAuthorizationStatusRestricted:
+            {
+                break;
             }
-            break;
-        }
-        case kCLAuthorizationStatusAuthorizedAlways: {
-            
-            break;
-        }
-        case kCLAuthorizationStatusAuthorizedWhenInUse: {
-            [SRLocationTool sharedInstance].autoLocation = YES;
-            [self.locationManager startUpdatingLocation];
-            if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesLocating)]) {
-                [self.delegate locationToolLocationServicesLocating];
+            case kCLAuthorizationStatusDenied: {
+                [SRLocationTool sharedInstance].autoLocation = NO;
+                [SRLocationTool sharedInstance].currentLocationCity = nil;
+                if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesAuthorizationStatusDenied)]) {
+                    [self.delegate locationToolLocationServicesAuthorizationStatusDenied];
+                }
+                break;
             }
-            break;
+            case kCLAuthorizationStatusAuthorizedAlways: {
+                
+                break;
+            }
+            case kCLAuthorizationStatusAuthorizedWhenInUse: {
+                [SRLocationTool sharedInstance].autoLocation = YES;
+                [self.locationManager startUpdatingLocation];
+                if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesLocating)]) {
+                    [self.delegate locationToolLocationServicesLocating];
+                }
+                break;
+            }
+        }
+    }  else {
+        if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesDisabled)]) {
+            [self.delegate locationToolLocationServicesDisabled];
         }
     }
 }
@@ -145,46 +156,45 @@ static SRLocationTool *instance;
 - (void)getAddress {
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:_location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (error) {
-            HSLog(@"error: %@", error);
-            if ([self.delegate respondsToSelector:@selector(locationToolLocationFailed)]) {
-                [self.delegate locationToolLocationFailed];
-            }
-            return;
-        }
-        CLPlacemark *placemark = [placemarks firstObject];
-        CLLocation *location = placemark.location;
-        NSDictionary *addressDic = placemark.addressDictionary;
-        self.currentLocationLongitude = @(location.coordinate.longitude);
-        self.currentLocationLatitude  = @(location.coordinate.latitude);
-        NSString *state = placemark.administrativeArea;
-        NSString *cityname = placemark.locality;
-        NSString *cityid = nil;
-        BOOL isChinese = NO;
-        for (int i = 0; i < cityname.length; i++) {
-            unichar character = [cityname characterAtIndex:i];
-            if (0x4e00 < character && character < 0x9fff) {
-                isChinese = YES;
-            }
-        }
-        if (isChinese) {
-            state = [state substringToIndex:state.length -1];
-            cityname = [cityname substringToIndex:cityname.length -1];
-            cityid = [SRWeatherDataTool cityidOfCityname:cityname];
-        }
-        HSLog(@"addressDic: %@", addressDic);
-        HSLog(@"cityid: %@", cityid);
-        HSLog(@"cityname: %@", cityname);
-        HSLog(@"state: %@", state);
-        if (![cityname isEqualToString:[SRLocationTool sharedInstance].currentLocationCity]) {
-            [SRLocationTool sharedInstance].currentLocationCity = cityname;
-            [SRLocationTool sharedInstance].currentLocationState = state;
-            if ([self.delegate respondsToSelector:@selector(locationToolLocationSuccess)]) {
-                [self.delegate locationToolLocationSuccess];
-            }
-        }
-    }];
+    [geocoder reverseGeocodeLocation:_location
+                   completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+                       if (error) {
+                           HSLog(@"error: %@", error);
+                           if ([self.delegate respondsToSelector:@selector(locationToolLocationFailed)]) {
+                               [self.delegate locationToolLocationFailed];
+                           }
+                           return;
+                       }
+                       CLPlacemark *placemark = [placemarks firstObject];
+                       CLLocation *location = placemark.location;
+                       NSDictionary *addressDic = placemark.addressDictionary;
+                       self.currentLocationLongitude = @(location.coordinate.longitude);
+                       self.currentLocationLatitude  = @(location.coordinate.latitude);
+                       NSString *state = placemark.administrativeArea;
+                       NSString *cityname = placemark.locality;
+                       NSString *cityid = nil;
+                       BOOL isChinese = NO;
+                       for (int i = 0; i < cityname.length; i++) {
+                           unichar character = [cityname characterAtIndex:i];
+                           if (0x4e00 < character && character < 0x9fff) {
+                               isChinese = YES;
+                           }
+                       }
+                       if (isChinese) {
+                           state = [state substringToIndex:state.length -1];
+                           cityname = [cityname substringToIndex:cityname.length -1];
+                           cityid = [SRWeatherDataTool cityidOfCityname:cityname];
+                       }
+                       HSLog(@"addressDic: %@", addressDic);
+                       HSLog(@"cityid: %@", cityid);
+                       HSLog(@"cityname: %@", cityname);
+                       HSLog(@"state: %@", state);
+                       [SRLocationTool sharedInstance].currentLocationCity  = cityname;
+                       [SRLocationTool sharedInstance].currentLocationState = state;
+                       if ([self.delegate respondsToSelector:@selector(locationToolLocationSuccess)]) {
+                           [self.delegate locationToolLocationSuccess];
+                       }
+                   }];
 }
 
 - (void)resetLocation {

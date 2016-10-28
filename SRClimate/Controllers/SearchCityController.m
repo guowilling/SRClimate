@@ -63,10 +63,21 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
 
 - (void)setupNavBar {
     
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                          target:self
+                                                                                          action:@selector(dismissAction)];
+    
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.placeholder = @"请输入城市名";
     searchBar.delegate = self;
     self.navigationItem.titleView = searchBar;
+}
+
+- (void)dismissAction {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)setupHotCitiesContanier {
@@ -116,25 +127,12 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
 - (void)hotCityBtnAction:(UIButton *)sender {
     
     NSString *city = self.hotCities[sender.tag];
-    if (![self.commonCities containsObject:city]) {
-        if (self.commonCities.count == 12) {
-            if ([self.delegate respondsToSelector:@selector(searchCityControllerDidAddMoreThan12Cities)]) {
-                [self.delegate searchCityControllerDidAddMoreThan12Cities];
-            }
-        } else {
-            [self.commonCities addObject:city];
-            [SRWeatherDataTool saveCommonCities:[self.commonCities copy]];
-            if ([self.delegate respondsToSelector:@selector(searchCityControllerDidAddCity)]) {
-                [self.delegate searchCityControllerDidAddCity];
-            }
-        }
-    } else {
-        if ([self.delegate respondsToSelector:@selector(searchCityControllerCityHasAdded)]) {
-            [self.delegate searchCityControllerCityHasAdded];
-        }
+    if ([self.delegate respondsToSelector:@selector(searchCityControllerDidAddCity:)]) {
+        [self.delegate searchCityControllerDidAddCity:city];
     }
+
     [self.navigationItem.titleView resignFirstResponder];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissAction];
 }
 
 - (void)setupTableView {
@@ -182,25 +180,12 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *city = self.searchCities[indexPath.row];
-    if (![self.commonCities containsObject:city]) {
-        if (self.commonCities.count == 12) {
-            if ([self.delegate respondsToSelector:@selector(searchCityControllerDidAddMoreThan12Cities)]) {
-                [self.delegate searchCityControllerDidAddMoreThan12Cities];
-            }
-        } else {
-            [self.commonCities addObject:city];
-            [SRWeatherDataTool saveCommonCities:[self.commonCities copy]];
-            if ([self.delegate respondsToSelector:@selector(searchCityControllerDidAddCity)]) {
-                [self.delegate searchCityControllerDidAddCity];
-            }
-        }
-    } else {
-        if ([self.delegate respondsToSelector:@selector(searchCityControllerCityHasAdded)]) {
-            [self.delegate searchCityControllerCityHasAdded];
-        }
+    if ([self.delegate respondsToSelector:@selector(searchCityControllerDidAddCity:)]) {
+        [self.delegate searchCityControllerDidAddCity:city];
     }
+    
     [self.navigationItem.titleView resignFirstResponder];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissAction];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -225,7 +210,9 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
         _hotCitiesContanier.hidden = YES;
         _searchCitiesTableView.hidden = NO;
         [_searchCities removeAllObjects];
-        [_searchCities addObjectsFromArray:[ZYPinYinSearch searchWithOriginalArray:_allCities searchText:searchText searchByPropertyName:@"name"]];
+        [_searchCities addObjectsFromArray:[ZYPinYinSearch searchWithOriginalArray:_allCities
+                                                                        searchText:searchText
+                                                              searchByPropertyName:@"name"]];
     } else {
         _hotCitiesContanier.hidden = NO;
         _searchCitiesTableView.hidden = YES;

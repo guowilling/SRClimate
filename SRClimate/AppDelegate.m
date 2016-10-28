@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "SRNavigationController.h"
-#import "SRMainViewController.h"
+#import "MainViewController.h"
 
 /**
  * If you have any question, please issue or contact me.
@@ -31,11 +30,12 @@
     // Override point for customization after application launch.
     application.statusBarHidden = NO;
     application.statusBarStyle = UIStatusBarStyleLightContent;
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    SRMainViewController *mainVC = [[SRMainViewController alloc] init];
-    SRNavigationController *navC = [[SRNavigationController alloc] initWithRootViewController:mainVC];
-    self.window.rootViewController = navC;
+    MainViewController *mainVC = [[MainViewController alloc] init];
+    self.window.rootViewController = mainVC;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
