@@ -348,8 +348,8 @@
         conditionLabel.frame = CGRectMake(0, kWeatherDetailItemWH * 2, itemWidth, kWeatherDetailItemWH);
     }
     _dailyScrollView.contentSize = CGSizeMake(itemWidth * self.dailyForecastDics.count, 0);
-    _chartMax.frame = CGRectMake(0, 3 * kWeatherDetailItemWH + 10, self.dailyWeatherDetailContainer.sr_width * 1.5, 75);
-    _chartMin.frame = CGRectMake(0, 3 * kWeatherDetailItemWH + 75, self.dailyWeatherDetailContainer.sr_width * 1.5, 75);
+    _chartMax.frame = CGRectMake(0, 3 * kWeatherDetailItemWH + 10, self.dailyWeatherDetailContainer.sr_width * 1.5, KWeatherLineChartHeight);
+    _chartMin.frame = CGRectMake(0, 3 * kWeatherDetailItemWH + KWeatherLineChartHeight, self.dailyWeatherDetailContainer.sr_width * 1.5, KWeatherLineChartHeight);
 }
 
 - (NSString *)weatherIconName:(NSInteger)weatherCode {

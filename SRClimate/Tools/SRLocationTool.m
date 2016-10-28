@@ -18,7 +18,6 @@
 
 static SRLocationTool *instance;
 
-
 @interface SRLocationTool () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocation *location;

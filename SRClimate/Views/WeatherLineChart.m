@@ -46,7 +46,11 @@
     
     if (_averageHeight == 0) {
         if (self.maxValue != self.minValue) {
-            _averageHeight = (self.frame.size.height - kMargin) / (self.maxValue - self.minValue);
+            if (self.valuePosition == ValuePositionUP) {
+                _averageHeight = (self.frame.size.height - kMargin) / (self.maxValue - self.minValue);
+            } else {
+                _averageHeight = (self.frame.size.height - kMargin) / (self.maxValue - self.minValue);
+            }
         }
     }
     return _averageHeight;
@@ -135,13 +139,13 @@
 - (CGPoint)pointOfValue:(NSInteger)value index:(NSInteger)index {
     
     CGFloat pointHeight;
+    pointHeight = self.frame.size.height - (value - self.minValue) * self.averageHeight;
     if (value == self.minValue) {
-        pointHeight = self.frame.size.height * 0.5;
-    } else {
-        pointHeight = self.frame.size.height - (value - self.minValue) * self.averageHeight;
+        pointHeight = self.frame.size.height - 7.5;
     }
+    
     if (self.valuePosition == ValuePositionUP) {
-        return CGPointMake([self.drawXPoints[index] floatValue], pointHeight - 5);
+        return CGPointMake([self.drawXPoints[index] floatValue], pointHeight - 7.5);
     } else {
         return CGPointMake([self.drawXPoints[index] floatValue], pointHeight - kMargin + 5);
     }

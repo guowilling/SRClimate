@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#define kWeatherDetailItemWH 39
+#define kWeatherDetailItemWH      39
+#define KWeatherLineChartHeight   75
 #define kHourlyWeatherInfoViewH kWeatherDetailItemWH * 4
-#define kDailyWeatherInfoViewH  kWeatherDetailItemWH * 4 + 150
+#define kDailyWeatherInfoViewH  kWeatherDetailItemWH * 4 + KWeatherLineChartHeight * 2
 
 @interface WeatherDetailInfoView : UIScrollView
 

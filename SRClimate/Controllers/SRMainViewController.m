@@ -80,20 +80,20 @@
 - (void)loadWeatherDataOfCommonCity {
     
     [SRWeatherDataTool loadWeatherDataCityname:[SRWeatherDataTool defaultCityname]
-                                      cityid:[SRWeatherDataTool defaultCityid]
-                                     success:^(NSDictionary *weatherData) {
-                                         [self updateBannerWeatherViewWithCityname:[SRWeatherDataTool defaultCityname]
-                                                                       weatherData:weatherData];
-                                     }
-                                     failure:^(NSError *error) {
-                                         if (error) {
-                                             self.bannerWeatherView.loadingWeatherLabel.text = @"获取天气信息失败";
-                                             self.bannerWeatherView.userInteractionEnabled = YES;
-                                         } else {
-                                             [MBProgressHUD sr_showErrorWithMessage:@"更新天气信息失败" onView: self.view];
-                                             self.bannerWeatherView.userInteractionEnabled = YES;
-                                         }
-                                     }];
+                                        cityid:[SRWeatherDataTool defaultCityid]
+                                       success:^(NSDictionary *weatherData) {
+                                           [self updateBannerWeatherViewWithCityname:[SRWeatherDataTool defaultCityname]
+                                                                         weatherData:weatherData];
+                                       }
+                                       failure:^(NSError *error) {
+                                           if (error) {
+                                               self.bannerWeatherView.loadingWeatherLabel.text = @"获取天气信息失败";
+                                               self.bannerWeatherView.userInteractionEnabled = YES;
+                                           } else {
+                                               [MBProgressHUD sr_showErrorWithMessage:@"更新天气信息失败" onView: self.view];
+                                               self.bannerWeatherView.userInteractionEnabled = YES;
+                                           }
+                                       }];
 }
 
 - (void)loadWeatherDataOfCityname:(NSString *)cityname cityid:(NSString *)cityid {
