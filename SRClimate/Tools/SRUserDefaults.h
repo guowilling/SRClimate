@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kHasRequestLocationAuthorization @"hasRequestLocationAuthorization"
+
 @interface SRUserDefaults : NSObject
 
 + (void)setObject:(id)obj forKey:(NSString *)key;

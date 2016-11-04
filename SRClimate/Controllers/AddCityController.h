@@ -14,7 +14,7 @@
 
 @end
 
-@interface SearchCityController : UIViewController
+@interface AddCityController : UIViewController
 
 @property (nonatomic, weak) id<SearchCityControllerDelegate> delegate;
 

@@ -23,7 +23,7 @@
 #endif
 
 #ifdef DEBUG
-    #define HSLog(FORMAT, ...) {\
+    #define SRLog(FORMAT, ...) {\
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];\
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];\
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];\
@@ -32,7 +32,7 @@
     fprintf(stderr,"[%s:%d %s] %s\n", [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [dateString UTF8String], [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);\
 }
 #else
-    #define HSLog(FORMAT, ...) nil
+    #define SRLog(FORMAT, ...) nil
 #endif
 
 #endif /* PrefixHeader_pch */

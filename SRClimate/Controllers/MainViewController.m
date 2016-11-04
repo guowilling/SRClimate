@@ -7,8 +7,8 @@
 //
 
 #import "MainViewController.h"
-#import "CommonCityController.h"
-#import "SearchCityController.h"
+#import "SettingCityController.h"
+#import "AddCityController.h"
 #import "WeatherLineChart.h"
 #import "WeatherToolBar.h"
 #import "WeatherGeneralInfoView.h"
@@ -16,6 +16,7 @@
 #import "SRUserDefaults.h"
 #import "SRLocationTool.h"
 #import "SRWeatherDataTool.h"
+#import "SRWeatherCityTool.h"
 
 #define kWeatherGeneralH    135.0f
 #define kWeatherGeneralW    SCREEN_WIDTH - 2 * SCREEN_ADJUST(15)
@@ -28,7 +29,6 @@
 @property (nonatomic, weak) WeatherToolBar *weatherToolBar;
 
 @property (nonatomic, strong) NSMutableArray       *commonCities;
-@property (nonatomic, strong) NSArray              *weatherList;
 @property (nonatomic, strong) NSMutableDictionary  *cachedWeatherDatas;
 
 @property (nonatomic, strong) WeatherGeneralInfoView *weatherGeneralInfoView;
@@ -42,21 +42,21 @@
 
 @property (nonatomic, strong) UIView *errorTipsView;
 
-@property (nonatomic, strong) CommonCityController *commonCityController;
+@property (nonatomic, strong) SettingCityController *settingCityC;
 
 @end
 
 @implementation MainViewController
 
+#pragma mark - Lazy load
+
 - (NSArray *)commonCities {
     
     if (!_commonCities) {
-        _commonCities = [NSMutableArray arrayWithArray:[SRWeatherDataTool commonCities]];
+        _commonCities = [NSMutableArray arrayWithArray:[SRWeatherCityTool commonCities]];
     }
     return _commonCities;
 }
-
-#pragma mark - Lazy load
 
 - (NSMutableDictionary *)cachedWeatherDatas {
     
@@ -122,28 +122,40 @@
     
     [self setupWeatherDetailInfoView];
     
+    [self setupLocation];
+}
+
+- (void)setupLocation {
+    
     [SRLocationTool sharedInstance].delegate = self;
     
-    if ([SRUserDefaults boolForKey:@"hasRequestLocationAuthorization"]) {
+    if ([SRUserDefaults boolForKey:kHasRequestLocationAuthorization]) {
         if ([SRLocationTool sharedInstance].isAutoLocation) {
-            NSString *cityname = [SRLocationTool sharedInstance].currentLocationCity;
-            if (cityname) {
-                NSString *cityid = [SRWeatherDataTool cityidOfCityname:cityname];
-                [self loadWeatherDataOfCityname:cityname cityid:cityid];
+            NSString *city = [SRLocationTool sharedInstance].currentLocationCity;
+            NSString *cityid = [SRWeatherCityTool cityidOfCityname:city];
+            if (cityid) {
+                [self loadWeatherDataOfCity:city cityid:cityid];
+            } else {
+                [self loadWeatherDataOfCommonCity];
             }
+        } else {
+            [self loadWeatherDataOfCommonCity];
         }
     } else {
-        [SRUserDefaults setBool:YES forKey:@"hasRequestLocationAuthorization"];
+        [SRUserDefaults setBool:YES forKey:kHasRequestLocationAuthorization];
         [[SRLocationTool sharedInstance] requestAuthorization];
     }
 }
 
+#pragma mark - Setup UI
+
 - (void)setupBackgroundImageView {
     
-    UIImageView *imageView   = [[UIImageView alloc] init];
-    imageView.frame          = self.view.bounds;
-    [self.view addSubview:imageView];
-    _backgroundImageView = imageView;
+    [self.view addSubview:({
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.frame = self.view.bounds;
+        _backgroundImageView = imageView;
+    })];
 }
 
 - (void)setupErrorTipsView {
@@ -177,43 +189,46 @@
     _errorTipsView.hidden = YES;
 }
 
-#pragma mark - Setup UI
-
 - (void)setupWeatherToolBar {
     
-    WeatherToolBar *weatherToolBar = [[WeatherToolBar alloc] initWithLocationCity:[[SRLocationTool sharedInstance] currentLocationCity]
-                                                                     commonCities:self.commonCities];
-    weatherToolBar.frame           = CGRectMake(0, SCREEN_HEIGHT - 49 - 20, SCREEN_WIDTH, 49);
-    weatherToolBar.delegate        = self;
-    [self.view addSubview:weatherToolBar];
-    _weatherToolBar = weatherToolBar;
+    [self.view addSubview:({
+        WeatherToolBar *weatherToolBar = [[WeatherToolBar alloc] initWithLocationCity:[SRLocationTool sharedInstance].currentLocationCity
+                                                                         commonCities:self.commonCities];
+        weatherToolBar.frame           = CGRectMake(0, SCREEN_HEIGHT - 49 - 20, SCREEN_WIDTH, 49);
+        weatherToolBar.delegate        = self;
+        _weatherToolBar = weatherToolBar;
+    })];
 }
 
 - (void)setupWeatherGeneralInfoView {
     
-    WeatherGeneralInfoView *weatherGeneralInfoView = [[WeatherGeneralInfoView alloc] init];
-    weatherGeneralInfoView.frame = CGRectMake(SCREEN_ADJUST(15), SCREEN_HEIGHT - kWeatherGeneralH - 175, kWeatherGeneralW, kWeatherGeneralH);
-    [self.view addSubview:weatherGeneralInfoView];
-    _weatherGeneralInfoView = weatherGeneralInfoView;
-    [_weatherGeneralInfoView addGestureRecognizer:self.swipeUP];
-    [_weatherGeneralInfoView addGestureRecognizer:self.swipeLeft];
-    [_weatherGeneralInfoView addGestureRecognizer:self.swipeRight];
-    _weatherGeneralInfoView.hidden = YES;
+    [self.view addSubview:({
+        WeatherGeneralInfoView *weatherGeneralInfoView = [[WeatherGeneralInfoView alloc] init];
+        weatherGeneralInfoView.frame = CGRectMake(SCREEN_ADJUST(15), SCREEN_HEIGHT - kWeatherGeneralH - 175, kWeatherGeneralW, kWeatherGeneralH);
+        _weatherGeneralInfoView = weatherGeneralInfoView;
+        [_weatherGeneralInfoView addGestureRecognizer:self.swipeUP];
+        [_weatherGeneralInfoView addGestureRecognizer:self.swipeLeft];
+        [_weatherGeneralInfoView addGestureRecognizer:self.swipeRight];
+        _weatherGeneralInfoView.hidden = YES;
+        _weatherGeneralInfoView;
+    })];
 }
 
 - (void)setupWeatherDetailInfoView {
     
-    CGFloat weatherDetailInfoViewY     = 20 + kWeatherGeneralH;
-    CGFloat weatherDetailInfoViewH     = SCREEN_HEIGHT - weatherDetailInfoViewY - kButtomContainerH;
-    _weatherDetailInfoView             = [[WeatherDetailInfoView alloc] init];
-    _weatherDetailInfoView.frame       = CGRectMake(0, weatherDetailInfoViewY, SCREEN_WIDTH, weatherDetailInfoViewH);
-    _weatherDetailInfoView.delegate    = self;
-    _weatherDetailInfoView.transform   = CGAffineTransformMakeScale(0, 0);
-    _weatherDetailInfoView.contentSize = CGSizeMake(0, kHourlyWeatherInfoViewH + kDailyWeatherInfoViewH);
-    _weatherDetailInfoView.alwaysBounceVertical = YES;
-    _weatherDetailInfoView.showsVerticalScrollIndicator = NO;
-    _weatherDetailInfoView.alpha       = 0;
-    [self.view addSubview:_weatherDetailInfoView];
+    [self.view addSubview:({
+        CGFloat weatherDetailInfoViewY     = 20 + kWeatherGeneralH;
+        CGFloat weatherDetailInfoViewH     = SCREEN_HEIGHT - weatherDetailInfoViewY - kButtomContainerH;
+        _weatherDetailInfoView             = [[WeatherDetailInfoView alloc] init];
+        _weatherDetailInfoView.frame       = CGRectMake(0, weatherDetailInfoViewY, SCREEN_WIDTH, weatherDetailInfoViewH);
+        _weatherDetailInfoView.delegate    = self;
+        _weatherDetailInfoView.transform   = CGAffineTransformMakeScale(0, 0);
+        _weatherDetailInfoView.contentSize = CGSizeMake(0, kHourlyWeatherInfoViewH + kDailyWeatherInfoViewH);
+        _weatherDetailInfoView.alwaysBounceVertical = YES;
+        _weatherDetailInfoView.showsVerticalScrollIndicator = NO;
+        _weatherDetailInfoView.alpha       = 0;
+        _weatherDetailInfoView;
+    })];
 }
 
 #pragma mark - Monitor method
@@ -418,32 +433,32 @@
     NSString *locationCity = [SRLocationTool sharedInstance].currentLocationCity;
     [self.weatherToolBar updateWithCityname:locationCity commonCities:self.commonCities];
     
-    NSString *cityname = locationCity;
-    if (!cityname) {
+    NSString *city = locationCity;
+    if (!city) {
         if (self.commonCities && self.commonCities.count > 0) {
-            cityname = self.commonCities[0];
+            city = self.commonCities[0];
         } else {
-            cityname = @"北京";
+            city = @"北京";
         }
     }
     
-    [self loadWeatherDataOfCityname:cityname cityid:[SRWeatherDataTool cityidOfCityname:cityname]];
+    [self loadWeatherDataOfCity:city cityid:[SRWeatherCityTool cityidOfCityname:city]];
 }
 
 - (void)prepareForLoadWeatherDataOfCity:(NSInteger)index {
     
-    NSString *cityname;
+    NSString *city;
     if ([[SRLocationTool sharedInstance] currentLocationCity]) {
         if (index == 0) {
-            cityname = [[SRLocationTool sharedInstance] currentLocationCity];
+            city = [[SRLocationTool sharedInstance] currentLocationCity];
         } else {
-            cityname = self.commonCities[index - 1];
+            city = self.commonCities[index - 1];
         }
     } else {
-        cityname = self.commonCities[index];
+        city = self.commonCities[index];
     }
     
-    [self loadWeatherDataOfCityname:cityname cityid:[SRWeatherDataTool cityidOfCityname:cityname]];
+    [self loadWeatherDataOfCity:city cityid:[SRWeatherCityTool cityidOfCityname:city]];
 }
 
 #pragma mark - CommonCityControllerDelegate
@@ -455,8 +470,8 @@
 
 - (void)commonCityControllerDidCloseAutoLocation {
     
-    if (_commonCityController) {
-        [self.commonCityController deleteTableViewRow];
+    if (_settingCityC) {
+        [_settingCityC deleteTableViewRow];
     }
     
     [self reloadWeatherData];
@@ -472,7 +487,7 @@
     [self reloadWeatherData];
 }
 
-- (void)commonCityControllerDidSelectCity:(NSString *)cityname isLocationCity:(BOOL)isLocationCity {
+- (void)commonCityControllerDidSelectCity:(NSString *)city isLocationCity:(BOOL)isLocationCity {
     
     if (self.isShowDetailWeather) {
         [self swipeGeneralInfoViewDown];
@@ -484,9 +499,9 @@
         }
         self.weatherToolBar.cityPageControl.currentPage = 0;
         [self.weatherToolBar.cityScrollView setContentOffset:CGPointMake(0, 0) animated:NO];
-        [self loadWeatherDataOfCityname:cityname cityid:[SRWeatherDataTool cityidOfCityname:cityname]];
+        [self loadWeatherDataOfCity:city cityid:[SRWeatherCityTool cityidOfCityname:city]];
     } else {
-        NSInteger currentIndex = [self.commonCities indexOfObject:cityname];
+        NSInteger currentIndex = [self.commonCities indexOfObject:city];
         if ([SRLocationTool sharedInstance].currentLocationCity) {
             currentIndex += 1;
         }
@@ -495,7 +510,7 @@
         }
         [self.weatherToolBar.cityPageControl setCurrentPage:currentIndex];
         [self.weatherToolBar.cityScrollView setContentOffset:CGPointMake(self.weatherToolBar.cityScrollView.sr_width * currentIndex, 0) animated:NO];
-        [self loadWeatherDataOfCityname:cityname cityid:[SRWeatherDataTool cityidOfCityname:cityname]];
+        [self loadWeatherDataOfCity:city cityid:[SRWeatherCityTool cityidOfCityname:city]];
     }
 }
 
@@ -508,7 +523,7 @@
             [MBProgressHUD sr_showInfoWithMessage:@"最多只能添加12个常用城市" onView:self.view];
         } else {
             [self.commonCities addObject:city];
-            [SRWeatherDataTool saveCommonCities:[self.commonCities copy]];
+            [SRWeatherCityTool saveCommonCities:[self.commonCities copy]];
             [self reloadWeatherData];
         }
     } else {
@@ -520,19 +535,18 @@
 
 - (void)weatherToolBarDidClickCommonCityBtnAction {
     
-    CommonCityController *commonCityC = [[CommonCityController alloc] init];
-    commonCityC.delegate = self;
-    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:commonCityC];
+    _settingCityC = [[SettingCityController alloc] init];
+    _settingCityC.delegate = self;
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:_settingCityC];
     [self presentViewController:navC animated:YES completion:nil];
-    _commonCityController = commonCityC;
 }
 
 - (void)weatherToolBarDidClickSearchCityBtnAction {
     
     
-    SearchCityController *searchCityC = [[SearchCityController alloc] init];
-    searchCityC.delegate = self;
-    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:searchCityC];
+    AddCityController *addCityC = [[AddCityController alloc] init];
+    addCityC.delegate = self;
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:addCityC];
     [self presentViewController:navC animated:YES completion:nil];
 }
 
@@ -571,8 +585,8 @@
     
     [MBProgressHUD sr_showInfoWithMessage:@"请打开系统定位服务" onView:self.view];
     
-    if (self.commonCityController) {
-        [self.commonCityController reloadTableView];
+    if (_settingCityC) {
+        [_settingCityC reloadTableView];
     }
 }
 
@@ -582,8 +596,8 @@
     
     [self loadWeatherDataOfCommonCity];
     
-    if (self.commonCityController) {
-        [self.commonCityController reloadTableView];
+    if (_settingCityC) {
+        [_settingCityC reloadTableView];
     }
 }
 
@@ -591,8 +605,9 @@
     
     if ([SRLocationTool sharedInstance].isAutoLocation) {
         NSString *locationCity = [SRLocationTool sharedInstance].currentLocationCity;
-        if (locationCity) {
-            [self loadWeatherDataOfCityname:locationCity cityid:[SRWeatherDataTool cityidOfCityname:locationCity]];
+        NSString *cityid = [SRWeatherCityTool cityidOfCityname:locationCity];
+        if (cityid) {
+            [self loadWeatherDataOfCity:locationCity cityid:cityid];
         } else {
             [self loadWeatherDataOfCommonCity];
         }
@@ -609,15 +624,15 @@
 - (void)locationToolLocationSuccess {
     
     [MBProgressHUD sr_hideHUDForView:nil];
-    NSString *cityname = [SRLocationTool sharedInstance].currentLocationCity;
-    NSString *cityid   = [SRWeatherDataTool cityidOfCityname:cityname];
+    NSString *city = [SRLocationTool sharedInstance].currentLocationCity;
+    NSString *cityid = [SRWeatherCityTool cityidOfCityname:city];
     
-    [self loadWeatherDataOfCityname:cityname cityid:cityid];
-    [self.weatherToolBar updateWithCityname:cityname commonCities:self.commonCities];
+    [self loadWeatherDataOfCity:city cityid:cityid];
+    [self.weatherToolBar updateWithCityname:city commonCities:self.commonCities];
     [MBProgressHUD sr_hideHUDForView:self.view];
     
-    if (self.commonCityController) {
-        [self.commonCityController insertTableViewRow];
+    if (_settingCityC) {
+        [_settingCityC insertTableViewRow];
     }
 }
 
@@ -626,8 +641,8 @@
     [MBProgressHUD sr_hideHUDForView:nil];
     [MBProgressHUD sr_showInfoWithMessage:@"定位失败已显示默认城市天气信息" onView:self.view];
     
-    if (self.commonCityController) {
-        [self.commonCityController reloadTableView];
+    if (_settingCityC) {
+        [_settingCityC reloadTableView];
     }
 }
 
@@ -635,42 +650,42 @@
 
 - (void)loadWeatherDataOfCommonCity {
     
-    [SRWeatherDataTool loadWeatherDataCityname:[SRWeatherDataTool defaultCityname]
-                                        cityid:[SRWeatherDataTool defaultCityid]
-                                       success:^(NSDictionary *weatherData) {
-                                           [self setWeatherData:weatherData];
-                                           [self updateContent:self.weatherData];
+    [SRWeatherDataTool loadWeatherDataCity:[SRWeatherCityTool defaultCity]
+                                    cityid:[SRWeatherCityTool defaultCityid]
+                                   success:^(NSDictionary *weatherData) {
+                                       [self setWeatherData:weatherData];
+                                       [self updateContent:self.weatherData];
+                                   }
+                                   failure:^(NSError *error) {
+                                       if (error) {
+                                           _errorTipsView.hidden          = NO;
+                                           _weatherGeneralInfoView.hidden = YES;
+                                           _weatherDetailInfoView.hidden  = YES;
+                                       } else {
+                                           [MBProgressHUD sr_showErrorWithMessage:@"网络错误更新天气信息失败"
+                                                                           onView:self.view];
                                        }
-                                       failure:^(NSError *error) {
-                                           if (error) {
-                                               _errorTipsView.hidden          = NO;
-                                               _weatherGeneralInfoView.hidden = YES;
-                                               _weatherDetailInfoView.hidden  = YES;
-                                           } else {
-                                               [MBProgressHUD sr_showErrorWithMessage:@"网络错误更新天气信息失败"
-                                                                               onView:self.view];
-                                           }
-                                       }];
+                                   }];
 }
 
-- (void)loadWeatherDataOfCityname:(NSString *)cityname cityid:(NSString *)cityid {
+- (void)loadWeatherDataOfCity:(NSString *)city cityid:(NSString *)cityid {
     
-    [SRWeatherDataTool loadWeatherDataCityname:cityid
-                                        cityid:cityid
-                                       success:^(NSDictionary *weatherData) {
-                                           [self setWeatherData:weatherData];
-                                           [self updateContent:self.weatherData];
+    [SRWeatherDataTool loadWeatherDataCity:city
+                                    cityid:cityid
+                                   success:^(NSDictionary *weatherData) {
+                                       [self setWeatherData:weatherData];
+                                       [self updateContent:self.weatherData];
+                                   }
+                                   failure:^(NSError *error) {
+                                       if (error) {
+                                           _errorTipsView.hidden          = NO;
+                                           _weatherGeneralInfoView.hidden = YES;
+                                           _weatherDetailInfoView.hidden  = YES;
+                                       } else {
+                                           [MBProgressHUD sr_showErrorWithMessage:@"网络错误更新天气信息失败"
+                                                                           onView:self.view];
                                        }
-                                       failure:^(NSError *error) {
-                                           if (error) {
-                                               _errorTipsView.hidden          = NO;
-                                               _weatherGeneralInfoView.hidden = YES;
-                                               _weatherDetailInfoView.hidden  = YES;
-                                           } else {
-                                               [MBProgressHUD sr_showErrorWithMessage:@"网络错误更新天气信息失败"
-                                                                               onView:self.view];
-                                           }
-                                       }];
+                                   }];
 }
 
 @end

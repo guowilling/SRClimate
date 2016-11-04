@@ -6,12 +6,13 @@
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
-#import "CommonCityController.h"
+#import "SettingCityController.h"
 #import "SRUserDefaults.h"
 #import "SRLocationTool.h"
 #import "SRWeatherDataTool.h"
+#import "SRWeatherCityTool.h"
 
-@interface CommonCityController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface SettingCityController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *commonCities;
 
@@ -21,14 +22,14 @@
 
 @end
 
-@implementation CommonCityController
+@implementation SettingCityController
 
 #pragma mark - Lazy load
 
 - (NSMutableArray *)commonCities {
     
     if (!_commonCities) {
-        _commonCities = [NSMutableArray arrayWithArray:[SRWeatherDataTool commonCities]];
+        _commonCities = [NSMutableArray arrayWithArray:[SRWeatherCityTool commonCities]];
     }
     return _commonCities;
 }
@@ -63,7 +64,7 @@
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
-    NSMutableArray *commonCities = [NSMutableArray arrayWithArray:[SRWeatherDataTool commonCities]];
+    NSMutableArray *commonCities = [NSMutableArray arrayWithArray:[SRWeatherCityTool commonCities]];
     if (_commonCities.count != commonCities.count) {
         _commonCities = commonCities;
         [self.tableView reloadData];
@@ -223,7 +224,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.commonCities removeObjectAtIndex:indexPath.row - 1];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [SRWeatherDataTool saveCommonCities:[self.commonCities copy]];
+        [SRWeatherCityTool saveCommonCities:[self.commonCities copy]];
         if ([self.delegate respondsToSelector:@selector(commonCityControllerDidDeleteCity)]) {
             [self.delegate commonCityControllerDidDeleteCity];
         }
@@ -250,11 +251,11 @@
     
     if (toIndexPath.section == 0 || toIndexPath.row == 0) {
         [self.commonCities insertObject:city atIndex:0];
-        [SRWeatherDataTool saveCommonCities:[self.commonCities copy]];
+        [SRWeatherCityTool saveCommonCities:[self.commonCities copy]];
         [self.tableView reloadData];
     } else {
         [self.commonCities insertObject:city atIndex:toIndexPath.row - 1];
-        [SRWeatherDataTool saveCommonCities:[self.commonCities copy]];
+        [SRWeatherCityTool saveCommonCities:[self.commonCities copy]];
     }
     if ([self.delegate respondsToSelector:@selector(commonCityControllerDidReorderCity)]) {
         [self.delegate commonCityControllerDidReorderCity];

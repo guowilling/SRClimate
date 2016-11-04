@@ -9,6 +9,7 @@
 #import "SRLocationTool.h"
 #import "SRUserDefaults.h"
 #import "SRWeatherDataTool.h"
+#import "SRWeatherCityTool.h"
 
 #define YXWeatherAutoLocation              @"weatherAutoLocation"
 #define YXWeatherCurrentLocationCity       @"weatherCurrentLocationCity"
@@ -65,7 +66,6 @@ static SRLocationTool *instance;
     }
 }
 
-
 - (void)beginLocation {
     
     if (![CLLocationManager locationServicesEnabled]) {
@@ -106,7 +106,7 @@ static SRLocationTool *instance;
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
-    HSLog(@"LocationManager didChangeAuthorizationStatus %zd", status);
+    SRLog(@"LocationManager didChangeAuthorizationStatus %zd", status);
     
     if ([CLLocationManager locationServicesEnabled]) {
         switch (status) {
@@ -159,7 +159,7 @@ static SRLocationTool *instance;
     [geocoder reverseGeocodeLocation:_location
                    completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
                        if (error) {
-                           HSLog(@"error: %@", error);
+                           SRLog(@"error: %@", error);
                            if ([self.delegate respondsToSelector:@selector(locationToolLocationFailed)]) {
                                [self.delegate locationToolLocationFailed];
                            }
@@ -183,12 +183,12 @@ static SRLocationTool *instance;
                        if (isChinese) {
                            state = [state substringToIndex:state.length -1];
                            cityname = [cityname substringToIndex:cityname.length -1];
-                           cityid = [SRWeatherDataTool cityidOfCityname:cityname];
+                           cityid = [SRWeatherCityTool cityidOfCityname:cityname];
                        }
-                       HSLog(@"addressDic: %@", addressDic);
-                       HSLog(@"cityid: %@", cityid);
-                       HSLog(@"cityname: %@", cityname);
-                       HSLog(@"state: %@", state);
+                       SRLog(@"addressDic: %@", addressDic);
+                       SRLog(@"cityid: %@", cityid);
+                       SRLog(@"cityname: %@", cityname);
+                       SRLog(@"state: %@", state);
                        [SRLocationTool sharedInstance].currentLocationCity  = cityname;
                        [SRLocationTool sharedInstance].currentLocationState = state;
                        if ([self.delegate respondsToSelector:@selector(locationToolLocationSuccess)]) {

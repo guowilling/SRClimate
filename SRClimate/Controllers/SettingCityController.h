@@ -19,7 +19,7 @@
 
 @end
 
-@interface CommonCityController : UIViewController
+@interface SettingCityController : UIViewController
 
 - (void)reloadTableView;
 - (void)insertTableViewRow;

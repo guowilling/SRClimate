@@ -6,11 +6,12 @@
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
-#import "SearchCityController.h"
+#import "AddCityController.h"
 #import "ZYPinYinSearch.h"
 #import "ChineseStringTool.h"
 #import "SRUserDefaults.h"
 #import "SRWeatherDataTool.h"
+#import "SRWeatherCityTool.h"
 
 static const CGFloat    hotCitiesHeaderLabelH  = 44;
 static const CGFloat    HotCitiesViewInset     = 20;
@@ -18,7 +19,7 @@ static const CGFloat    HotCityItemHMargin     = 10;
 static const CGFloat    HotCityItemVMargin     = 20;
 static const NSInteger  HotCitiesViewMaxColumn = 4;
 
-@interface SearchCityController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface AddCityController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *hotCities;
 @property (nonatomic, strong) NSArray *allCities;
@@ -30,7 +31,7 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
 
 @end
 
-@implementation SearchCityController
+@implementation AddCityController
 
 #pragma mark - Life circle
 
@@ -55,10 +56,10 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
 
 - (void)initData {
     
-    _hotCities    = [SRWeatherDataTool hotCities];
-    _allCities    = [SRWeatherDataTool allCities];
+    _hotCities    = [SRWeatherCityTool hotCities];
+    _allCities    = [SRWeatherCityTool allCities];
     _searchCities = [NSMutableArray array];
-    _commonCities = [NSMutableArray arrayWithArray:[SRWeatherDataTool commonCities]];
+    _commonCities = [NSMutableArray arrayWithArray:[SRWeatherCityTool commonCities]];
 }
 
 - (void)setupNavBar {
