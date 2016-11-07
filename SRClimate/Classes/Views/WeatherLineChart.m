@@ -131,8 +131,14 @@
         } else {
             valuePoint = CGPointMake(roundPoint.x - valueframe.size.width * 0.5, roundPoint.y);
         }
+        
+        NSShadow *shadow = [[NSShadow alloc] init];
+        shadow.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.75];
+        shadow.shadowBlurRadius = 1;
+        shadow.shadowOffset = CGSizeMake(1, -1);
         [self.data[i] drawAtPoint:valuePoint withAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15],
-                                                              NSForegroundColorAttributeName: [UIColor whiteColor]}];
+                                                              NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                              NSShadowAttributeName: shadow}];
     }
 }
 

@@ -115,7 +115,7 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
                                   hotCityItemW, hotCityItemH);
         hotCityItem.titleLabel.font = [UIFont systemFontOfSize:SCREEN_ADJUST(15)];
         hotCityItem.tag = i;
-        hotCityItem.layer.cornerRadius = 20;
+        hotCityItem.layer.cornerRadius = hotCityItem.sr_height * 0.5;
         hotCityItem.layer.masksToBounds = YES;
         hotCityItem.layer.borderColor = COLOR_RGBA(220, 220, 220, 1.0).CGColor;
         hotCityItem.layer.borderWidth = 1;
@@ -128,8 +128,8 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
 - (void)hotCityBtnAction:(UIButton *)sender {
     
     NSString *city = self.hotCities[sender.tag];
-    if ([self.delegate respondsToSelector:@selector(searchCityControllerDidAddCity:)]) {
-        [self.delegate searchCityControllerDidAddCity:city];
+    if ([self.delegate respondsToSelector:@selector(addCityControllerDidAddCity:)]) {
+        [self.delegate addCityControllerDidAddCity:city];
     }
 
     [self.navigationItem.titleView resignFirstResponder];
@@ -138,7 +138,7 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
 
 - (void)setupTableView {
     
-    UITableView *tableView   = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStyleGrouped];
+    UITableView *tableView   = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStyleGrouped];
     tableView.dataSource     = self;
     tableView.delegate       = self;
     tableView.contentInset   = UIEdgeInsetsMake(10, 0, 0, 0);
@@ -181,8 +181,8 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *city = self.searchCities[indexPath.row];
-    if ([self.delegate respondsToSelector:@selector(searchCityControllerDidAddCity:)]) {
-        [self.delegate searchCityControllerDidAddCity:city];
+    if ([self.delegate respondsToSelector:@selector(addCityControllerDidAddCity:)]) {
+        [self.delegate addCityControllerDidAddCity:city];
     }
     
     [self.navigationItem.titleView resignFirstResponder];
@@ -211,9 +211,7 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
         _hotCitiesContanier.hidden = YES;
         _searchCitiesTableView.hidden = NO;
         [_searchCities removeAllObjects];
-        [_searchCities addObjectsFromArray:[ZYPinYinSearch searchWithOriginalArray:_allCities
-                                                                        searchText:searchText
-                                                              searchByPropertyName:@"name"]];
+        [_searchCities addObjectsFromArray:[ZYPinYinSearch searchWithOriginalArray:_allCities searchText:searchText searchByPropertyName:@"name"]];
     } else {
         _hotCitiesContanier.hidden = NO;
         _searchCitiesTableView.hidden = YES;
@@ -231,6 +229,7 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar setText:nil];
+    
     _hotCitiesContanier.hidden = NO;
     _searchCitiesTableView.hidden = YES;
     [self.searchCitiesTableView reloadData];

@@ -9,6 +9,12 @@
 #import "WeatherDetailInfoView.h"
 #import "WeatherLineChart.h"
 #import "NSAttributedString+Extension.h"
+#import "NowWeatherData.h"
+#import "HourlyWeatherData.h"
+#import "DailyWeatherData.h"
+#import "MJExtension.h"
+#import "NSDate+Extension.h"
+#import "SRWeatherAssist.h"
 
 #define kMargin 20
 
@@ -61,19 +67,19 @@
 
 - (NSArray *)hourlyForecastDics {
     
-    return _weatherData[@"HeWeather data service 3.0"][0][@"hourly_forecast"];
+    return [HourlyWeatherData mj_objectArrayWithKeyValuesArray:_weatherData[@"HeWeather data service 3.0"][0][@"hourly_forecast"]];
 }
 
 - (NSArray *)dailyForecastDics {
     
-    return _weatherData[@"HeWeather data service 3.0"][0][@"daily_forecast"];
+    return [DailyWeatherData mj_objectArrayWithKeyValuesArray:_weatherData[@"HeWeather data service 3.0"][0][@"daily_forecast"]];
 }
 
 - (NSArray *)maxTemperatures {
     
     NSMutableArray *tempArrayM = [NSMutableArray array];
     for (NSInteger i = 0; i < self.dailyForecastDics.count; i++) {
-        NSString *tmp = [NSString stringWithFormat:@"%@˚",self.dailyForecastDics[i][@"tmp"][@"max"]];
+        NSString *tmp = [NSString stringWithFormat:@"%@˚",[self.dailyForecastDics[i] tmpMax]];
         [tempArrayM addObject:tmp];
     }
     _maxTemperatures = tempArrayM;
@@ -84,7 +90,7 @@
     
     NSMutableArray *tempArrayM = [NSMutableArray array];
     for (NSInteger i = 0; i < self.dailyForecastDics.count; i++) {
-        NSString *tmp = [NSString stringWithFormat:@"%@˚",self.dailyForecastDics[i][@"tmp"][@"min"]];
+        NSString *tmp = [NSString stringWithFormat:@"%@˚",[self.dailyForecastDics[i] tmpMin]];
         [tempArrayM addObject:tmp];
     }
     _minTemperatures = tempArrayM;
@@ -113,7 +119,7 @@
 
 - (void)setupHourlyWeatherInfoView {
     
-    if (_hourlyWeatherDetailContainer == nil) {
+    if (!_hourlyWeatherDetailContainer) {
         UIView *hourlyWeatherDetailContainer = [[UIView alloc] init];
         [self addSubview:hourlyWeatherDetailContainer];
         self.hourlyWeatherDetailContainer = hourlyWeatherDetailContainer;
@@ -183,7 +189,8 @@
         timeLabel.textColor = [UIColor whiteColor];
         timeLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:17];
         timeLabel.textAlignment = NSTextAlignmentCenter;
-        NSString *date = self.hourlyForecastDics[i][@"date"];
+        HourlyWeatherData *hourlyData = self.hourlyForecastDics[i];
+        NSString *date = hourlyData.date;
         NSArray *parts = [date componentsSeparatedByString:@" "];
         timeLabel.attributedText = [NSAttributedString attributedStringWithString:parts[1]];
         [itemContainer addSubview:timeLabel];
@@ -257,12 +264,13 @@
         dateLabel.numberOfLines = 0;
         //dateLabel.backgroundColor = COLOR_RANDOM;
 
-        NSString *dateString = self.dailyForecastDics[i][@"date"];
+        DailyWeatherData *dailyData = self.dailyForecastDics[i];
+        NSString *dateString = dailyData.date;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         NSDate *date = [dateFormatter dateFromString:dateString];
         date = [date dateByAddingTimeInterval:[[NSTimeZone systemTimeZone] secondsFromGMT]];
-        NSString *weekday = [self weekdayFromDate:date];
+        NSString *weekday = [NSDate weekdayFromDate:date];
         NSString *text;
         if (i == 0) {
             text = @"今天";
@@ -352,97 +360,39 @@
     _chartMin.frame = CGRectMake(0, 3 * kWeatherDetailItemWH + KWeatherLineChartHeight, self.dailyWeatherDetailContainer.sr_width * 1.5, KWeatherLineChartHeight);
 }
 
-- (NSString *)weatherIconName:(NSInteger)weatherCode {
-    
-    NSString *weatherIconName;
-    switch (weatherCode) {
-        case 100:
-        case 102:
-            weatherIconName = @"new_weather_sunny";
-            break;
-        case 101:
-        case 103:
-            weatherIconName = @"new_weather_cloudy";
-            break;
-        case 104:
-            weatherIconName = @"new_weather_overcast";
-            break;
-        case 300:
-        case 301:
-        case 307:
-        case 308:
-        case 310:
-        case 311:
-        case 312:
-        case 313:
-            weatherIconName = @"new_weather_heavyrain";
-            break;
-        case 302:
-        case 303:
-            weatherIconName = @"new_weather_thundershower";
-            break;
-        case 305:
-        case 309:
-            weatherIconName = @"new_weather_lightrain";
-            break;
-        case 306:
-            weatherIconName = @"new_weather_mediumrain";
-            break;
-        case 400:
-        case 401:
-            weatherIconName = @"new_weather_lightsnow";
-            break;
-        case 403:
-            weatherIconName = @"new_weather_heavysnow";
-            break;
-        case 304:
-        case 404:
-            weatherIconName = @"new_weather_hailstone";
-            break;
-        case 405:
-        case 406:
-        case 407:
-            weatherIconName = @"new_weather_rainandsnow";
-            break;
-        case 500:
-        case 501:
-            weatherIconName = @"new_weahter_fog";
-            break;
-        default:
-            weatherIconName = @"new_weather_NA";
-            break;
-    }
-    return weatherIconName;
-}
-
 - (void)updateWeatherInfo {
+    
+    NowWeatherData *nowData = [NowWeatherData mj_objectWithKeyValues:_weatherData[@"HeWeather data service 3.0"][0][@"now"]];
     
     for (NSInteger i = 0; i < self.hourlyTemperatureLabels.count; i++) {
         UILabel *label = self.hourlyTemperatureLabels[i];
         if (i == 0) {
-            NSString *text = [NSString stringWithFormat:@" %@˚", _weatherData[@"HeWeather data service 3.0"][0][@"now"][@"tmp"]];
+            NSString *text = [NSString stringWithFormat:@" %@˚", nowData.tmp];
             label.attributedText = [NSAttributedString attributedStringWithString:text];
         } else {
-            NSString *text = [NSString stringWithFormat:@" %@˚", self.hourlyForecastDics[i - 1][@"tmp"]];
+            NSString *text = [NSString stringWithFormat:@" %@˚", [self.hourlyForecastDics[i - 1] tmp]];
             label.attributedText = [NSAttributedString attributedStringWithString:text];
         }
     }
     
     for (NSInteger i = 0; i < self.hourlyConditionIcons.count; i++) {
         UIImageView *imageView = self.hourlyConditionIcons[i];
-        NSInteger weatherCode = [_weatherData[@"HeWeather data service 3.0"][0][@"now"][@"cond"][@"code"] integerValue];
-        imageView.image = [UIImage imageNamed:[self weatherIconName:weatherCode]];
+        NSInteger weatherCode = [nowData.code integerValue];
+        
+        imageView.image = [UIImage imageNamed:[SRWeatherAssist getWeatherIconNameWithWeatherCode:weatherCode]];
     }
     
     for (NSInteger i = 0; i < self.dailyConditionIcons.count; i++) {
         UIImageView *imageView = self.dailyConditionIcons[i];
-        NSInteger weatherCode = [self.dailyForecastDics[i][@"cond"][@"code_d"] integerValue];
-        imageView.image = [UIImage imageNamed:[self weatherIconName:weatherCode]];
+        DailyWeatherData *dailyData = self.dailyForecastDics[i];
+        NSInteger weatherCode = [dailyData.code integerValue];
+        imageView.image = [UIImage imageNamed:[SRWeatherAssist getWeatherIconNameWithWeatherCode:weatherCode]];
     }
     
     for (NSInteger i = 0; i < self.dailyConditionLabels.count; i++) {
         UILabel *label = self.dailyConditionLabels[i];
-        label.attributedText = [NSAttributedString attributedStringWithString:self.dailyForecastDics[i][@"cond"][@"txt_d"]];
+        DailyWeatherData *dailyData = self.dailyForecastDics[i];
+        label.attributedText = [NSAttributedString attributedStringWithString:dailyData.txt];
     }
     
     [self setupWeatherLineChart];
@@ -474,17 +424,6 @@
     
     [self setNeedsLayout];
     [self layoutIfNeeded];
-}
-
-#pragma mark - Tool method
-
-- (NSString *)weekdayFromDate:(NSDate *)date {
-    
-    NSArray *weekdays = @[[NSNull null], @"星期日", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六"];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    [calendar setTimeZone:[[NSTimeZone alloc] initWithName:@"Asia/Beijing"]];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitWeekday fromDate:date];
-    return [weekdays objectAtIndex:dateComponents.weekday];
 }
 
 @end

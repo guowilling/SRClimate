@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol SearchCityControllerDelegate <NSObject>
+@protocol AddCityControllerDelegate <NSObject>
 
-- (void)searchCityControllerDidAddCity:(NSString *)city;
+- (void)addCityControllerDidAddCity:(NSString *)city;
 
 @end
 
 @interface AddCityController : UIViewController
 
-@property (nonatomic, weak) id<SearchCityControllerDelegate> delegate;
+@property (nonatomic, weak) id<AddCityControllerDelegate> delegate;
 
 @end

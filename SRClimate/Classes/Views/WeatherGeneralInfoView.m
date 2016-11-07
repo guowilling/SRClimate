@@ -8,6 +8,9 @@
 
 #import "WeatherGeneralInfoView.h"
 #import "NSAttributedString+Extension.h"
+#import "NowWeatherData.h"
+#import "CityWeatherData.h"
+#import "SRWeatherAssist.h"
 
 @implementation WeatherGeneralInfoView
 
@@ -86,9 +89,9 @@
     self.indicatorIcon.frame    = CGRectMake(_temperatureLabel.sr_x, CGRectGetMaxY(_PMIcon.frame), kWeatherGeneralItemWH, 39);
 }
 
-- (void)updateWeatherInfoWithNowWeatherInfo:(NSDictionary *)nowWeatherInfo cityWeatherInfo:(NSDictionary *)cityWeatherInfo {
+- (void)updateWeatherInfoWithNowWeatherInfo:(NowWeatherData *)nowWeatherInfo cityWeatherInfo:(CityWeatherData *)cityWeatherInfo {
     
-    NSString *temperatureText = [NSString stringWithFormat:@"%@℃", nowWeatherInfo[@"tmp"]];
+    NSString *temperatureText = [NSString stringWithFormat:@"%@℃", nowWeatherInfo.tmp];
     NSAttributedString *attributedString = [NSAttributedString attributedStringWithString:temperatureText];
     NSMutableAttributedString *attributedStringM = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
     [attributedStringM addAttribute:NSFontAttributeName
@@ -99,86 +102,17 @@
                               range:NSMakeRange(attributedStringM.length - 1, 1)];
     self.temperatureLabel.attributedText = attributedStringM;
     
-    NSString *weatherIconName = nil;
-    NSInteger weatherCode = [nowWeatherInfo[@"cond"][@"code"] integerValue];
-    switch (weatherCode) {
-        case 100:
-        case 102:
-            weatherIconName = @"new_weather_sunny";
-            break;
-        case 101:
-        case 103:
-            weatherIconName = @"new_weather_cloudy";
-            break;
-        case 104:
-            weatherIconName = @"new_weather_overcast";
-            break;
-        case 300:
-        case 301:
-        case 307:
-        case 308:
-        case 310:
-        case 311:
-        case 312:
-        case 313:
-            weatherIconName = @"new_weather_heavyrain";
-            break;
-        case 302:
-        case 303:
-            weatherIconName = @"new_weather_thundershower";
-            break;
-        case 305:
-        case 309:
-            weatherIconName = @"new_weather_lightrain";
-            break;
-        case 306:
-            weatherIconName = @"new_weather_mediumrain";
-            break;
-        case 400:
-        case 401:
-            weatherIconName = @"new_weather_lightsnow";
-            break;
-        case 403:
-            weatherIconName = @"new_weather_heavysnow";
-            break;
-        case 304:
-        case 404:
-            weatherIconName = @"new_weather_hailstone";
-            break;
-        case 405:
-        case 406:
-        case 407:
-            weatherIconName = @"new_weather_rainandsnow";
-            break;
-        case 500:
-        case 501:
-            weatherIconName = @"new_weahter_fog";
-            break;
-        default:
-            weatherIconName = @"new_weather_NA";
-            break;
-    }
-    self.conditionIcon.image = [UIImage imageNamed:weatherIconName];
+    NSInteger weatherCode = [nowWeatherInfo.code integerValue];
+    self.conditionIcon.image = [UIImage imageNamed:[SRWeatherAssist getWeatherIconNameWithWeatherCode:weatherCode]];
 
-    self.conditionLabel.attributedText = [NSAttributedString attributedStringWithString:nowWeatherInfo[@"cond"][@"txt"]];
+    self.conditionLabel.attributedText = [NSAttributedString attributedStringWithString:nowWeatherInfo.txt];
     
-    if (cityWeatherInfo[@"aqi"]) {
+    if (cityWeatherInfo.pm25) {
         self.PMIcon.hidden = NO;
         self.PMLabel.hidden = NO;
-        NSString *qlty = cityWeatherInfo[@"qlty"];
-        NSInteger aqi = [cityWeatherInfo[@"aqi"] integerValue];
-        if (aqi <= 50) {
-            qlty = @"优";
-        } else if (aqi <= 100) {
-            qlty = @"良";
-        } else if (aqi <= 150) {
-            qlty = @"轻度污染";
-        } else if (aqi <= 200) {
-            qlty = @"中度污染";
-        } else {
-            qlty = @"严重污染";
-        }
-        self.PMLabel.attributedText = [NSAttributedString attributedStringWithString:[NSString stringWithFormat:@"%zd %@", aqi, qlty]];
+        NSString *qlty = cityWeatherInfo.qlty;
+        NSInteger pm25 = [cityWeatherInfo.pm25 integerValue];
+        self.PMLabel.attributedText = [NSAttributedString attributedStringWithString:[NSString stringWithFormat:@"%zd %@", pm25, qlty]];
     } else {
         self.PMIcon.hidden = YES;
         self.PMLabel.hidden = YES;

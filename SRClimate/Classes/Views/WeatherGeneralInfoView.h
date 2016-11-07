@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class NowWeatherData, CityWeatherData;
+
 #define kWeatherGeneralItemWH 49
 
 @interface WeatherGeneralInfoView : UIView
@@ -19,6 +21,6 @@
 @property (nonatomic, weak) UIImageView  *PMIcon;
 @property (nonatomic, weak) UILabel      *PMLabel;
 
-- (void)updateWeatherInfoWithNowWeatherInfo:(NSDictionary *)nowWeatherInfo cityWeatherInfo:(NSDictionary *)cityWeatherInfo;
+- (void)updateWeatherInfoWithNowWeatherInfo:(NowWeatherData *)nowWeatherInfo cityWeatherInfo:(CityWeatherData *)cityWeatherInfo;
     
 @end

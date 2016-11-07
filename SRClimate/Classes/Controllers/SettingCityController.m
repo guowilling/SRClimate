@@ -56,21 +56,6 @@
                                                object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBar.hidden = NO;
-    
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    
-    NSMutableArray *commonCities = [NSMutableArray arrayWithArray:[SRWeatherCityTool commonCities]];
-    if (_commonCities.count != commonCities.count) {
-        _commonCities = commonCities;
-        [self.tableView reloadData];
-    }
-}
-
 #pragma mark - Init setting
 
 - (void)setupTableView {
@@ -122,15 +107,15 @@
     if (sender.isOn) {
         [SRLocationTool sharedInstance].autoLocation = YES;
         
-        if ([self.delegate respondsToSelector:@selector(commonCityControllerDidOpenAutoLocation)]) {
-            [self.delegate commonCityControllerDidOpenAutoLocation];
+        if ([self.delegate respondsToSelector:@selector(settingCityControllerDidOpenAutoLocation)]) {
+            [self.delegate settingCityControllerDidOpenAutoLocation];
         }
     } else {
         [SRLocationTool sharedInstance].autoLocation = NO;
         [SRLocationTool sharedInstance].currentLocationCity = nil;
     
-        if ([self.delegate respondsToSelector:@selector(commonCityControllerDidCloseAutoLocation)]) {
-            [self.delegate commonCityControllerDidCloseAutoLocation];
+        if ([self.delegate respondsToSelector:@selector(settingCityControllerDidCloseAutoLocation)]) {
+            [self.delegate settingCityControllerDidCloseAutoLocation];
         }
     }
 }
@@ -222,11 +207,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString *city = self.commonCities[indexPath.row - 1];
         [self.commonCities removeObjectAtIndex:indexPath.row - 1];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [SRWeatherCityTool saveCommonCities:[self.commonCities copy]];
-        if ([self.delegate respondsToSelector:@selector(commonCityControllerDidDeleteCity)]) {
-            [self.delegate commonCityControllerDidDeleteCity];
+
+        if ([self.delegate respondsToSelector:@selector(settingCityControllerDidDeleteCommonCity:)]) {
+            [self.delegate settingCityControllerDidDeleteCommonCity:city];
         }
         
         if (self.commonCities.count == 0) {
@@ -257,8 +243,8 @@
         [self.commonCities insertObject:city atIndex:toIndexPath.row - 1];
         [SRWeatherCityTool saveCommonCities:[self.commonCities copy]];
     }
-    if ([self.delegate respondsToSelector:@selector(commonCityControllerDidReorderCity)]) {
-        [self.delegate commonCityControllerDidReorderCity];
+    if ([self.delegate respondsToSelector:@selector(settingCityControllerDidReorderCommonCity)]) {
+        [self.delegate settingCityControllerDidReorderCommonCity];
     }
 }
 
@@ -283,8 +269,8 @@
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 1) {
-        if ([self.delegate respondsToSelector:@selector(commonCityControllerDidSelectCity:isLocationCity:)]) {
-            [self.delegate commonCityControllerDidSelectCity:[[SRLocationTool sharedInstance] currentLocationCity] isLocationCity:YES];
+        if ([self.delegate respondsToSelector:@selector(settingCityControllerDidSelectCity:isLocationCity:)]) {
+            [self.delegate settingCityControllerDidSelectCity:[SRLocationTool sharedInstance].currentLocationCity isLocationCity:YES];
         }
         [self dismissAction];
         return;
@@ -292,8 +278,8 @@
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString *city = cell.textLabel.text;
-    if ([self.delegate respondsToSelector:@selector(commonCityControllerDidSelectCity:isLocationCity:)]) {
-        [self.delegate commonCityControllerDidSelectCity:city isLocationCity:NO];
+    if ([self.delegate respondsToSelector:@selector(settingCityControllerDidSelectCity:isLocationCity:)]) {
+        [self.delegate settingCityControllerDidSelectCity:city isLocationCity:NO];
     }
     [self dismissAction];
 }
@@ -320,12 +306,16 @@
     [self showAlertController:@"请允许APP使用定位功能\n设置->隐私->定位服务->幻视"];
 }
 
-- (void)reloadTableView {
+- (void)reloadCommonCityTableViewIsInsert:(BOOL)isInsert {
     
-    [self.tableView reloadData];
+    if (isInsert) {
+        [self insertTableViewRowForLocationCity];
+    } else {
+        [self deleteTableViewRowForLocationCity];
+    }
 }
 
-- (void)insertTableViewRow {
+- (void)insertTableViewRowForLocationCity {
     
     NSInteger rows = [self.tableView numberOfRowsInSection:0];
     if (rows == 1) {
@@ -334,10 +324,13 @@
     }
 }
 
-- (void)deleteTableViewRow {
+- (void)deleteTableViewRowForLocationCity {
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    NSInteger rows = [self.tableView numberOfRowsInSection:0];
+    if (rows == 2) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 @end

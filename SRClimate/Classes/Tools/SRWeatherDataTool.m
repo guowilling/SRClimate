@@ -11,6 +11,8 @@
 #import "SRUserDefaults.h"
 #import "SRHttpSessionManager.h"
 
+#define kDataCacheInterval 3600
+
 @implementation SRWeatherDataTool
 
 #pragma mark - Load weatehr data
@@ -29,7 +31,7 @@
         NSTimeInterval lastTime = [weatherData[@"time"] doubleValue];
         NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
         NSTimeInterval interval = now - lastTime;
-        if (interval < 3600) {
+        if (interval < kDataCacheInterval) {
             return;
         }
     }

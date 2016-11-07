@@ -10,18 +10,14 @@
 
 @interface SRWeatherCityTool : NSObject
 
-+ (NSString *)defaultCity;
-+ (NSString *)defaultCityid;
-
 + (NSArray *)commonCities;
++ (NSArray *)hotCities;
++ (NSArray *)allCities;
++ (NSArray *)allCitiesDics;
 + (void)saveCommonCities:(NSArray *)commonCities;
 
-+ (NSArray *)hotCities;
-
-+ (NSArray *)allCities;
-
-+ (NSArray *)allCitiesDics;
-
++ (NSString *)defaultCity;
++ (NSString *)defaultCityid;
 + (NSString *)cityidOfCityname:(NSString *)cityname;
 
 @end

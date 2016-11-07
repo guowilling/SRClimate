@@ -7,27 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		680A5B221D916D4F00C141E7 /* WeatherDetailInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B171D916D4F00C141E7 /* WeatherDetailInfoView.m */; };
-		680A5B231D916D4F00C141E7 /* WeatherGeneralInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B191D916D4F00C141E7 /* WeatherGeneralInfoView.m */; };
-		680A5B241D916D4F00C141E7 /* WeatherLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B1B1D916D4F00C141E7 /* WeatherLineChart.m */; };
-		680A5B251D916D4F00C141E7 /* WeatherToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B1D1D916D4F00C141E7 /* WeatherToolBar.m */; };
-		680A5B311D916D7300C141E7 /* SettingCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B281D916D7300C141E7 /* SettingCityController.m */; };
-		680A5B321D916D7300C141E7 /* AddCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B2A1D916D7300C141E7 /* AddCityController.m */; };
-		680A5B351D916D7300C141E7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B301D916D7300C141E7 /* MainViewController.m */; };
-		680A5B521D916D9600C141E7 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B391D916D9600C141E7 /* Foundation+Log.m */; };
-		680A5B531D916D9600C141E7 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B3B1D916D9600C141E7 /* NSAttributedString+Extension.m */; };
-		680A5B541D916D9600C141E7 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B3D1D916D9600C141E7 /* NSString+Extension.m */; };
-		680A5B551D916D9600C141E7 /* UIApplication+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B3F1D916D9600C141E7 /* UIApplication+Extension.m */; };
-		680A5B561D916D9600C141E7 /* UILabel+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B411D916D9600C141E7 /* UILabel+Font.m */; };
-		680A5B571D916D9600C141E7 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B431D916D9600C141E7 /* UIView+Frame.m */; };
-		680A5B581D916D9600C141E7 /* ConstDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B461D916D9600C141E7 /* ConstDefine.m */; };
-		680A5B591D916D9600C141E7 /* SRHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B4A1D916D9600C141E7 /* SRHTTPSessionManager.m */; };
-		680A5B5A1D916D9600C141E7 /* SRLocationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B4C1D916D9600C141E7 /* SRLocationTool.m */; };
-		680A5B5B1D916D9600C141E7 /* SRUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B4E1D916D9600C141E7 /* SRUserDefaults.m */; };
-		680A5B5C1D916D9600C141E7 /* SRWeatherDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 680A5B501D916D9600C141E7 /* SRWeatherDataTool.m */; };
 		680A5B641D916DC900C141E7 /* allCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A5B5E1D916DC900C141E7 /* allCities.plist */; };
 		680A5B651D916DC900C141E7 /* allCitiesDics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A5B5F1D916DC900C141E7 /* allCitiesDics.plist */; };
 		680A5B691D916DC900C141E7 /* hotCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A5B631D916DC900C141E7 /* hotCities.plist */; };
+		6825E45D1DD06CD300DA2092 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4491DD06CD300DA2092 /* MJExtensionConst.m */; };
+		6825E45E1DD06CD300DA2092 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E44B1DD06CD300DA2092 /* MJFoundation.m */; };
+		6825E45F1DD06CD300DA2092 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E44D1DD06CD300DA2092 /* MJProperty.m */; };
+		6825E4601DD06CD300DA2092 /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E44F1DD06CD300DA2092 /* MJPropertyKey.m */; };
+		6825E4611DD06CD300DA2092 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4511DD06CD300DA2092 /* MJPropertyType.m */; };
+		6825E4621DD06CD300DA2092 /* NSObject+MJClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4531DD06CD300DA2092 /* NSObject+MJClass.m */; };
+		6825E4631DD06CD300DA2092 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4551DD06CD300DA2092 /* NSObject+MJCoding.m */; };
+		6825E4641DD06CD300DA2092 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4571DD06CD300DA2092 /* NSObject+MJKeyValue.m */; };
+		6825E4651DD06CD300DA2092 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4591DD06CD300DA2092 /* NSObject+MJProperty.m */; };
+		6825E4661DD06CD300DA2092 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E45B1DD06CD300DA2092 /* NSString+MJExtension.m */; };
+		6825E4C01DD085A300DA2092 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4891DD085A300DA2092 /* Foundation+Log.m */; };
+		6825E4C11DD085A300DA2092 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E48B1DD085A300DA2092 /* NSAttributedString+Extension.m */; };
+		6825E4C21DD085A300DA2092 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E48D1DD085A300DA2092 /* NSDate+Extension.m */; };
+		6825E4C31DD085A300DA2092 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E48F1DD085A300DA2092 /* NSString+Extension.m */; };
+		6825E4C41DD085A300DA2092 /* UIApplication+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4911DD085A300DA2092 /* UIApplication+Extension.m */; };
+		6825E4C51DD085A300DA2092 /* UILabel+Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4931DD085A300DA2092 /* UILabel+Font.m */; };
+		6825E4C61DD085A300DA2092 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4951DD085A300DA2092 /* UIView+Frame.m */; };
+		6825E4C71DD085A300DA2092 /* AddCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4981DD085A300DA2092 /* AddCityController.m */; };
+		6825E4C81DD085A300DA2092 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E49A1DD085A300DA2092 /* MainViewController.m */; };
+		6825E4C91DD085A300DA2092 /* SettingCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E49C1DD085A300DA2092 /* SettingCityController.m */; };
+		6825E4CA1DD085A300DA2092 /* ConstDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E49F1DD085A300DA2092 /* ConstDefine.m */; };
+		6825E4CB1DD085A300DA2092 /* CityWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4A31DD085A300DA2092 /* CityWeatherData.m */; };
+		6825E4CC1DD085A300DA2092 /* DailyWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4A51DD085A300DA2092 /* DailyWeatherData.m */; };
+		6825E4CD1DD085A300DA2092 /* HourlyWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4A71DD085A300DA2092 /* HourlyWeatherData.m */; };
+		6825E4CE1DD085A300DA2092 /* NowWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4A91DD085A300DA2092 /* NowWeatherData.m */; };
+		6825E4CF1DD085A300DA2092 /* SRHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4AC1DD085A300DA2092 /* SRHTTPSessionManager.m */; };
+		6825E4D01DD085A300DA2092 /* SRLocationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4AE1DD085A300DA2092 /* SRLocationTool.m */; };
+		6825E4D11DD085A300DA2092 /* SRUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4B01DD085A300DA2092 /* SRUserDefaults.m */; };
+		6825E4D21DD085A300DA2092 /* SRWeatherAssist.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4B21DD085A300DA2092 /* SRWeatherAssist.m */; };
+		6825E4D31DD085A300DA2092 /* SRWeatherCityTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4B41DD085A300DA2092 /* SRWeatherCityTool.m */; };
+		6825E4D41DD085A300DA2092 /* SRWeatherDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4B61DD085A300DA2092 /* SRWeatherDataTool.m */; };
+		6825E4D51DD085A300DA2092 /* WeatherDetailInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4B91DD085A300DA2092 /* WeatherDetailInfoView.m */; };
+		6825E4D61DD085A300DA2092 /* WeatherGeneralInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4BB1DD085A300DA2092 /* WeatherGeneralInfoView.m */; };
+		6825E4D71DD085A300DA2092 /* WeatherLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4BD1DD085A300DA2092 /* WeatherLineChart.m */; };
+		6825E4D81DD085A300DA2092 /* WeatherToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E4BF1DD085A300DA2092 /* WeatherToolBar.m */; };
 		68C19B381DBE2DFF0004EBFE /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C19B091DBE2DFF0004EBFE /* AFHTTPRequestOperation.m */; };
 		68C19B391DBE2DFF0004EBFE /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C19B0B1DBE2DFF0004EBFE /* AFHTTPRequestOperationManager.m */; };
 		68C19B3A1DBE2DFF0004EBFE /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C19B0D1DBE2DFF0004EBFE /* AFHTTPSessionManager.m */; };
@@ -57,7 +74,6 @@
 		68D95E2D1D8EAF670099F5C8 /* SRClimateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D95E2C1D8EAF670099F5C8 /* SRClimateTests.m */; };
 		68D95E381D8EAF670099F5C8 /* SRClimateUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D95E371D8EAF670099F5C8 /* SRClimateUITests.m */; };
 		68D95FCA1D8EB67E0099F5C8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68D95FC91D8EB67E0099F5C8 /* Launch Screen.storyboard */; };
-		68DD114A1DCCAD2000706435 /* SRWeatherCityTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DD11491DCCAD2000706435 /* SRWeatherCityTool.m */; };
 		6E373ABF1D91989D00B44177 /* background_cloudy.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6E373ABB1D91989D00B44177 /* background_cloudy.jpeg */; };
 		6E373AC01D91989D00B44177 /* background_rainy.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6E373ABC1D91989D00B44177 /* background_rainy.jpeg */; };
 		6E373AC11D91989D00B44177 /* background_snowy.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6E373ABD1D91989D00B44177 /* background_snowy.jpeg */; };
@@ -82,45 +98,80 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		680A5B161D916D4F00C141E7 /* WeatherDetailInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDetailInfoView.h; sourceTree = "<group>"; };
-		680A5B171D916D4F00C141E7 /* WeatherDetailInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDetailInfoView.m; sourceTree = "<group>"; };
-		680A5B181D916D4F00C141E7 /* WeatherGeneralInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherGeneralInfoView.h; sourceTree = "<group>"; };
-		680A5B191D916D4F00C141E7 /* WeatherGeneralInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherGeneralInfoView.m; sourceTree = "<group>"; };
-		680A5B1A1D916D4F00C141E7 /* WeatherLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherLineChart.h; sourceTree = "<group>"; };
-		680A5B1B1D916D4F00C141E7 /* WeatherLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherLineChart.m; sourceTree = "<group>"; };
-		680A5B1C1D916D4F00C141E7 /* WeatherToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherToolBar.h; sourceTree = "<group>"; };
-		680A5B1D1D916D4F00C141E7 /* WeatherToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherToolBar.m; sourceTree = "<group>"; };
-		680A5B271D916D7300C141E7 /* SettingCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCityController.h; sourceTree = "<group>"; };
-		680A5B281D916D7300C141E7 /* SettingCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCityController.m; sourceTree = "<group>"; };
-		680A5B291D916D7300C141E7 /* AddCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityController.h; sourceTree = "<group>"; };
-		680A5B2A1D916D7300C141E7 /* AddCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCityController.m; sourceTree = "<group>"; };
-		680A5B2F1D916D7300C141E7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		680A5B301D916D7300C141E7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		680A5B391D916D9600C141E7 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
-		680A5B3A1D916D9600C141E7 /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
-		680A5B3B1D916D9600C141E7 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
-		680A5B3C1D916D9600C141E7 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
-		680A5B3D1D916D9600C141E7 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
-		680A5B3E1D916D9600C141E7 /* UIApplication+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Extension.h"; sourceTree = "<group>"; };
-		680A5B3F1D916D9600C141E7 /* UIApplication+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Extension.m"; sourceTree = "<group>"; };
-		680A5B401D916D9600C141E7 /* UILabel+Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Font.h"; sourceTree = "<group>"; };
-		680A5B411D916D9600C141E7 /* UILabel+Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Font.m"; sourceTree = "<group>"; };
-		680A5B421D916D9600C141E7 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		680A5B431D916D9600C141E7 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		680A5B451D916D9600C141E7 /* ConstDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstDefine.h; sourceTree = "<group>"; };
-		680A5B461D916D9600C141E7 /* ConstDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstDefine.m; sourceTree = "<group>"; };
-		680A5B471D916D9600C141E7 /* UIAssistDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAssistDefine.h; sourceTree = "<group>"; };
-		680A5B491D916D9600C141E7 /* SRHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRHTTPSessionManager.h; sourceTree = "<group>"; };
-		680A5B4A1D916D9600C141E7 /* SRHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRHTTPSessionManager.m; sourceTree = "<group>"; };
-		680A5B4B1D916D9600C141E7 /* SRLocationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRLocationTool.h; sourceTree = "<group>"; };
-		680A5B4C1D916D9600C141E7 /* SRLocationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRLocationTool.m; sourceTree = "<group>"; };
-		680A5B4D1D916D9600C141E7 /* SRUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRUserDefaults.h; sourceTree = "<group>"; };
-		680A5B4E1D916D9600C141E7 /* SRUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRUserDefaults.m; sourceTree = "<group>"; };
-		680A5B4F1D916D9600C141E7 /* SRWeatherDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWeatherDataTool.h; sourceTree = "<group>"; };
-		680A5B501D916D9600C141E7 /* SRWeatherDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWeatherDataTool.m; sourceTree = "<group>"; };
 		680A5B5E1D916DC900C141E7 /* allCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = allCities.plist; sourceTree = "<group>"; };
 		680A5B5F1D916DC900C141E7 /* allCitiesDics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = allCitiesDics.plist; sourceTree = "<group>"; };
 		680A5B631D916DC900C141E7 /* hotCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hotCities.plist; sourceTree = "<group>"; };
+		6825E4471DD06CD300DA2092 /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
+		6825E4481DD06CD300DA2092 /* MJExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtensionConst.h; sourceTree = "<group>"; };
+		6825E4491DD06CD300DA2092 /* MJExtensionConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJExtensionConst.m; sourceTree = "<group>"; };
+		6825E44A1DD06CD300DA2092 /* MJFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFoundation.h; sourceTree = "<group>"; };
+		6825E44B1DD06CD300DA2092 /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
+		6825E44C1DD06CD300DA2092 /* MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJProperty.h; sourceTree = "<group>"; };
+		6825E44D1DD06CD300DA2092 /* MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJProperty.m; sourceTree = "<group>"; };
+		6825E44E1DD06CD300DA2092 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
+		6825E44F1DD06CD300DA2092 /* MJPropertyKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyKey.m; sourceTree = "<group>"; };
+		6825E4501DD06CD300DA2092 /* MJPropertyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyType.h; sourceTree = "<group>"; };
+		6825E4511DD06CD300DA2092 /* MJPropertyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyType.m; sourceTree = "<group>"; };
+		6825E4521DD06CD300DA2092 /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
+		6825E4531DD06CD300DA2092 /* NSObject+MJClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJClass.m"; sourceTree = "<group>"; };
+		6825E4541DD06CD300DA2092 /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
+		6825E4551DD06CD300DA2092 /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
+		6825E4561DD06CD300DA2092 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
+		6825E4571DD06CD300DA2092 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		6825E4581DD06CD300DA2092 /* NSObject+MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJProperty.h"; sourceTree = "<group>"; };
+		6825E4591DD06CD300DA2092 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
+		6825E45A1DD06CD300DA2092 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
+		6825E45B1DD06CD300DA2092 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		6825E4891DD085A300DA2092 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
+		6825E48A1DD085A300DA2092 /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
+		6825E48B1DD085A300DA2092 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
+		6825E48C1DD085A300DA2092 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		6825E48D1DD085A300DA2092 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		6825E48E1DD085A300DA2092 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		6825E48F1DD085A300DA2092 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		6825E4901DD085A300DA2092 /* UIApplication+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Extension.h"; sourceTree = "<group>"; };
+		6825E4911DD085A300DA2092 /* UIApplication+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Extension.m"; sourceTree = "<group>"; };
+		6825E4921DD085A300DA2092 /* UILabel+Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Font.h"; sourceTree = "<group>"; };
+		6825E4931DD085A300DA2092 /* UILabel+Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Font.m"; sourceTree = "<group>"; };
+		6825E4941DD085A300DA2092 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		6825E4951DD085A300DA2092 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		6825E4971DD085A300DA2092 /* AddCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityController.h; sourceTree = "<group>"; };
+		6825E4981DD085A300DA2092 /* AddCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCityController.m; sourceTree = "<group>"; };
+		6825E4991DD085A300DA2092 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		6825E49A1DD085A300DA2092 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		6825E49B1DD085A300DA2092 /* SettingCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCityController.h; sourceTree = "<group>"; };
+		6825E49C1DD085A300DA2092 /* SettingCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCityController.m; sourceTree = "<group>"; };
+		6825E49E1DD085A300DA2092 /* ConstDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstDefine.h; sourceTree = "<group>"; };
+		6825E49F1DD085A300DA2092 /* ConstDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstDefine.m; sourceTree = "<group>"; };
+		6825E4A01DD085A300DA2092 /* UIAssistDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAssistDefine.h; sourceTree = "<group>"; };
+		6825E4A21DD085A300DA2092 /* CityWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityWeatherData.h; sourceTree = "<group>"; };
+		6825E4A31DD085A300DA2092 /* CityWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityWeatherData.m; sourceTree = "<group>"; };
+		6825E4A41DD085A300DA2092 /* DailyWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyWeatherData.h; sourceTree = "<group>"; };
+		6825E4A51DD085A300DA2092 /* DailyWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyWeatherData.m; sourceTree = "<group>"; };
+		6825E4A61DD085A300DA2092 /* HourlyWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HourlyWeatherData.h; sourceTree = "<group>"; };
+		6825E4A71DD085A300DA2092 /* HourlyWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HourlyWeatherData.m; sourceTree = "<group>"; };
+		6825E4A81DD085A300DA2092 /* NowWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowWeatherData.h; sourceTree = "<group>"; };
+		6825E4A91DD085A300DA2092 /* NowWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowWeatherData.m; sourceTree = "<group>"; };
+		6825E4AB1DD085A300DA2092 /* SRHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRHTTPSessionManager.h; sourceTree = "<group>"; };
+		6825E4AC1DD085A300DA2092 /* SRHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRHTTPSessionManager.m; sourceTree = "<group>"; };
+		6825E4AD1DD085A300DA2092 /* SRLocationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRLocationTool.h; sourceTree = "<group>"; };
+		6825E4AE1DD085A300DA2092 /* SRLocationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRLocationTool.m; sourceTree = "<group>"; };
+		6825E4AF1DD085A300DA2092 /* SRUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRUserDefaults.h; sourceTree = "<group>"; };
+		6825E4B01DD085A300DA2092 /* SRUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRUserDefaults.m; sourceTree = "<group>"; };
+		6825E4B11DD085A300DA2092 /* SRWeatherAssist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWeatherAssist.h; sourceTree = "<group>"; };
+		6825E4B21DD085A300DA2092 /* SRWeatherAssist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWeatherAssist.m; sourceTree = "<group>"; };
+		6825E4B31DD085A300DA2092 /* SRWeatherCityTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWeatherCityTool.h; sourceTree = "<group>"; };
+		6825E4B41DD085A300DA2092 /* SRWeatherCityTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWeatherCityTool.m; sourceTree = "<group>"; };
+		6825E4B51DD085A300DA2092 /* SRWeatherDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWeatherDataTool.h; sourceTree = "<group>"; };
+		6825E4B61DD085A300DA2092 /* SRWeatherDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWeatherDataTool.m; sourceTree = "<group>"; };
+		6825E4B81DD085A300DA2092 /* WeatherDetailInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDetailInfoView.h; sourceTree = "<group>"; };
+		6825E4B91DD085A300DA2092 /* WeatherDetailInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDetailInfoView.m; sourceTree = "<group>"; };
+		6825E4BA1DD085A300DA2092 /* WeatherGeneralInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherGeneralInfoView.h; sourceTree = "<group>"; };
+		6825E4BB1DD085A300DA2092 /* WeatherGeneralInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherGeneralInfoView.m; sourceTree = "<group>"; };
+		6825E4BC1DD085A300DA2092 /* WeatherLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherLineChart.h; sourceTree = "<group>"; };
+		6825E4BD1DD085A300DA2092 /* WeatherLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherLineChart.m; sourceTree = "<group>"; };
+		6825E4BE1DD085A300DA2092 /* WeatherToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherToolBar.h; sourceTree = "<group>"; };
+		6825E4BF1DD085A300DA2092 /* WeatherToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherToolBar.m; sourceTree = "<group>"; };
 		68C19B081DBE2DFF0004EBFE /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		68C19B091DBE2DFF0004EBFE /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		68C19B0A1DBE2DFF0004EBFE /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -180,8 +231,6 @@
 		68D95E391D8EAF670099F5C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68D95ED71D8EB3100099F5C8 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		68D95FC91D8EB67E0099F5C8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		68DD11481DCCAD2000706435 /* SRWeatherCityTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWeatherCityTool.h; sourceTree = "<group>"; };
-		68DD11491DCCAD2000706435 /* SRWeatherCityTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWeatherCityTool.m; sourceTree = "<group>"; };
 		6E373ABB1D91989D00B44177 /* background_cloudy.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_cloudy.jpeg; sourceTree = "<group>"; };
 		6E373ABC1D91989D00B44177 /* background_rainy.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_rainy.jpeg; sourceTree = "<group>"; };
 		6E373ABD1D91989D00B44177 /* background_snowy.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_snowy.jpeg; sourceTree = "<group>"; };
@@ -213,79 +262,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		680A5B101D916D4000C141E7 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				680A5B2F1D916D7300C141E7 /* MainViewController.h */,
-				680A5B301D916D7300C141E7 /* MainViewController.m */,
-				680A5B271D916D7300C141E7 /* SettingCityController.h */,
-				680A5B281D916D7300C141E7 /* SettingCityController.m */,
-				680A5B291D916D7300C141E7 /* AddCityController.h */,
-				680A5B2A1D916D7300C141E7 /* AddCityController.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		680A5B111D916D4000C141E7 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				680A5B1C1D916D4F00C141E7 /* WeatherToolBar.h */,
-				680A5B1D1D916D4F00C141E7 /* WeatherToolBar.m */,
-				680A5B181D916D4F00C141E7 /* WeatherGeneralInfoView.h */,
-				680A5B191D916D4F00C141E7 /* WeatherGeneralInfoView.m */,
-				680A5B161D916D4F00C141E7 /* WeatherDetailInfoView.h */,
-				680A5B171D916D4F00C141E7 /* WeatherDetailInfoView.m */,
-				680A5B1A1D916D4F00C141E7 /* WeatherLineChart.h */,
-				680A5B1B1D916D4F00C141E7 /* WeatherLineChart.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		680A5B361D916D9600C141E7 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				680A5B391D916D9600C141E7 /* Foundation+Log.m */,
-				680A5B3C1D916D9600C141E7 /* NSString+Extension.h */,
-				680A5B3D1D916D9600C141E7 /* NSString+Extension.m */,
-				680A5B3A1D916D9600C141E7 /* NSAttributedString+Extension.h */,
-				680A5B3B1D916D9600C141E7 /* NSAttributedString+Extension.m */,
-				680A5B3E1D916D9600C141E7 /* UIApplication+Extension.h */,
-				680A5B3F1D916D9600C141E7 /* UIApplication+Extension.m */,
-				680A5B401D916D9600C141E7 /* UILabel+Font.h */,
-				680A5B411D916D9600C141E7 /* UILabel+Font.m */,
-				680A5B421D916D9600C141E7 /* UIView+Frame.h */,
-				680A5B431D916D9600C141E7 /* UIView+Frame.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		680A5B441D916D9600C141E7 /* Defines */ = {
-			isa = PBXGroup;
-			children = (
-				680A5B451D916D9600C141E7 /* ConstDefine.h */,
-				680A5B461D916D9600C141E7 /* ConstDefine.m */,
-				680A5B471D916D9600C141E7 /* UIAssistDefine.h */,
-			);
-			path = Defines;
-			sourceTree = "<group>";
-		};
-		680A5B481D916D9600C141E7 /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				680A5B491D916D9600C141E7 /* SRHTTPSessionManager.h */,
-				680A5B4A1D916D9600C141E7 /* SRHTTPSessionManager.m */,
-				680A5B4B1D916D9600C141E7 /* SRLocationTool.h */,
-				680A5B4C1D916D9600C141E7 /* SRLocationTool.m */,
-				680A5B4D1D916D9600C141E7 /* SRUserDefaults.h */,
-				680A5B4E1D916D9600C141E7 /* SRUserDefaults.m */,
-				680A5B4F1D916D9600C141E7 /* SRWeatherDataTool.h */,
-				680A5B501D916D9600C141E7 /* SRWeatherDataTool.m */,
-				68DD11481DCCAD2000706435 /* SRWeatherCityTool.h */,
-				68DD11491DCCAD2000706435 /* SRWeatherCityTool.m */,
-			);
-			path = Tools;
-			sourceTree = "<group>";
-		};
 		680A5B5D1D916DC900C141E7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,9 +276,143 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		6825E4451DD06CD300DA2092 /* MJExtension */ = {
+			isa = PBXGroup;
+			children = (
+				6825E4471DD06CD300DA2092 /* MJExtension.h */,
+				6825E4481DD06CD300DA2092 /* MJExtensionConst.h */,
+				6825E4491DD06CD300DA2092 /* MJExtensionConst.m */,
+				6825E44A1DD06CD300DA2092 /* MJFoundation.h */,
+				6825E44B1DD06CD300DA2092 /* MJFoundation.m */,
+				6825E44C1DD06CD300DA2092 /* MJProperty.h */,
+				6825E44D1DD06CD300DA2092 /* MJProperty.m */,
+				6825E44E1DD06CD300DA2092 /* MJPropertyKey.h */,
+				6825E44F1DD06CD300DA2092 /* MJPropertyKey.m */,
+				6825E4501DD06CD300DA2092 /* MJPropertyType.h */,
+				6825E4511DD06CD300DA2092 /* MJPropertyType.m */,
+				6825E4521DD06CD300DA2092 /* NSObject+MJClass.h */,
+				6825E4531DD06CD300DA2092 /* NSObject+MJClass.m */,
+				6825E4541DD06CD300DA2092 /* NSObject+MJCoding.h */,
+				6825E4551DD06CD300DA2092 /* NSObject+MJCoding.m */,
+				6825E4561DD06CD300DA2092 /* NSObject+MJKeyValue.h */,
+				6825E4571DD06CD300DA2092 /* NSObject+MJKeyValue.m */,
+				6825E4581DD06CD300DA2092 /* NSObject+MJProperty.h */,
+				6825E4591DD06CD300DA2092 /* NSObject+MJProperty.m */,
+				6825E45A1DD06CD300DA2092 /* NSString+MJExtension.h */,
+				6825E45B1DD06CD300DA2092 /* NSString+MJExtension.m */,
+			);
+			path = MJExtension;
+			sourceTree = "<group>";
+		};
+		6825E4871DD085A300DA2092 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6825E4961DD085A300DA2092 /* Controllers */,
+				6825E4B71DD085A300DA2092 /* Views */,
+				6825E4A11DD085A300DA2092 /* Models */,
+				6825E4AA1DD085A300DA2092 /* Tools */,
+				6825E4881DD085A300DA2092 /* Category */,
+				6825E49D1DD085A300DA2092 /* Defines */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6825E4881DD085A300DA2092 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				6825E4891DD085A300DA2092 /* Foundation+Log.m */,
+				6825E48A1DD085A300DA2092 /* NSAttributedString+Extension.h */,
+				6825E48B1DD085A300DA2092 /* NSAttributedString+Extension.m */,
+				6825E48C1DD085A300DA2092 /* NSDate+Extension.h */,
+				6825E48D1DD085A300DA2092 /* NSDate+Extension.m */,
+				6825E48E1DD085A300DA2092 /* NSString+Extension.h */,
+				6825E48F1DD085A300DA2092 /* NSString+Extension.m */,
+				6825E4901DD085A300DA2092 /* UIApplication+Extension.h */,
+				6825E4911DD085A300DA2092 /* UIApplication+Extension.m */,
+				6825E4921DD085A300DA2092 /* UILabel+Font.h */,
+				6825E4931DD085A300DA2092 /* UILabel+Font.m */,
+				6825E4941DD085A300DA2092 /* UIView+Frame.h */,
+				6825E4951DD085A300DA2092 /* UIView+Frame.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		6825E4961DD085A300DA2092 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6825E4991DD085A300DA2092 /* MainViewController.h */,
+				6825E49A1DD085A300DA2092 /* MainViewController.m */,
+				6825E49B1DD085A300DA2092 /* SettingCityController.h */,
+				6825E49C1DD085A300DA2092 /* SettingCityController.m */,
+				6825E4971DD085A300DA2092 /* AddCityController.h */,
+				6825E4981DD085A300DA2092 /* AddCityController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6825E49D1DD085A300DA2092 /* Defines */ = {
+			isa = PBXGroup;
+			children = (
+				6825E49E1DD085A300DA2092 /* ConstDefine.h */,
+				6825E49F1DD085A300DA2092 /* ConstDefine.m */,
+				6825E4A01DD085A300DA2092 /* UIAssistDefine.h */,
+			);
+			path = Defines;
+			sourceTree = "<group>";
+		};
+		6825E4A11DD085A300DA2092 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6825E4A21DD085A300DA2092 /* CityWeatherData.h */,
+				6825E4A31DD085A300DA2092 /* CityWeatherData.m */,
+				6825E4A41DD085A300DA2092 /* DailyWeatherData.h */,
+				6825E4A51DD085A300DA2092 /* DailyWeatherData.m */,
+				6825E4A61DD085A300DA2092 /* HourlyWeatherData.h */,
+				6825E4A71DD085A300DA2092 /* HourlyWeatherData.m */,
+				6825E4A81DD085A300DA2092 /* NowWeatherData.h */,
+				6825E4A91DD085A300DA2092 /* NowWeatherData.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6825E4AA1DD085A300DA2092 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				6825E4AB1DD085A300DA2092 /* SRHTTPSessionManager.h */,
+				6825E4AC1DD085A300DA2092 /* SRHTTPSessionManager.m */,
+				6825E4AD1DD085A300DA2092 /* SRLocationTool.h */,
+				6825E4AE1DD085A300DA2092 /* SRLocationTool.m */,
+				6825E4AF1DD085A300DA2092 /* SRUserDefaults.h */,
+				6825E4B01DD085A300DA2092 /* SRUserDefaults.m */,
+				6825E4B11DD085A300DA2092 /* SRWeatherAssist.h */,
+				6825E4B21DD085A300DA2092 /* SRWeatherAssist.m */,
+				6825E4B31DD085A300DA2092 /* SRWeatherCityTool.h */,
+				6825E4B41DD085A300DA2092 /* SRWeatherCityTool.m */,
+				6825E4B51DD085A300DA2092 /* SRWeatherDataTool.h */,
+				6825E4B61DD085A300DA2092 /* SRWeatherDataTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		6825E4B71DD085A300DA2092 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6825E4BE1DD085A300DA2092 /* WeatherToolBar.h */,
+				6825E4BF1DD085A300DA2092 /* WeatherToolBar.m */,
+				6825E4BA1DD085A300DA2092 /* WeatherGeneralInfoView.h */,
+				6825E4BB1DD085A300DA2092 /* WeatherGeneralInfoView.m */,
+				6825E4B81DD085A300DA2092 /* WeatherDetailInfoView.h */,
+				6825E4B91DD085A300DA2092 /* WeatherDetailInfoView.m */,
+				6825E4BC1DD085A300DA2092 /* WeatherLineChart.h */,
+				6825E4BD1DD085A300DA2092 /* WeatherLineChart.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		68C19B031DBE2DFF0004EBFE /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				6825E4451DD06CD300DA2092 /* MJExtension */,
 				68C19B071DBE2DFF0004EBFE /* AFNetWorking */,
 				68C19B1B1DBE2DFF0004EBFE /* MBProgressHUD */,
 				68C19B211DBE2DFF0004EBFE /* PinYinSearchLib */,
@@ -399,11 +509,7 @@
 		68D95E111D8EAF670099F5C8 /* SRClimate */ = {
 			isa = PBXGroup;
 			children = (
-				680A5B101D916D4000C141E7 /* Controllers */,
-				680A5B111D916D4000C141E7 /* Views */,
-				680A5B361D916D9600C141E7 /* Category */,
-				680A5B441D916D9600C141E7 /* Defines */,
-				680A5B481D916D9600C141E7 /* Tools */,
+				6825E4871DD085A300DA2092 /* Classes */,
 				68D95E121D8EAF670099F5C8 /* Supporting Files */,
 				68D95E131D8EAF670099F5C8 /* main.m */,
 				68D95E151D8EAF670099F5C8 /* AppDelegate.h */,
@@ -582,48 +688,64 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6825E4D71DD085A300DA2092 /* WeatherLineChart.m in Sources */,
 				68C19B4C1DBE2DFF0004EBFE /* PinyinHelper.m in Sources */,
 				68C19B411DBE2DFF0004EBFE /* MBProgressHUD+SR.m in Sources */,
 				68C19B3E1DBE2DFF0004EBFE /* AFURLRequestSerialization.m in Sources */,
-				680A5B521D916D9600C141E7 /* Foundation+Log.m in Sources */,
-				680A5B321D916D7300C141E7 /* AddCityController.m in Sources */,
-				680A5B5A1D916D9600C141E7 /* SRLocationTool.m in Sources */,
-				680A5B241D916D4F00C141E7 /* WeatherLineChart.m in Sources */,
+				6825E4C11DD085A300DA2092 /* NSAttributedString+Extension.m in Sources */,
+				6825E4601DD06CD300DA2092 /* MJPropertyKey.m in Sources */,
 				68C19B3D1DBE2DFF0004EBFE /* AFURLConnectionOperation.m in Sources */,
+				6825E4611DD06CD300DA2092 /* MJPropertyType.m in Sources */,
 				68D95E171D8EAF670099F5C8 /* AppDelegate.m in Sources */,
-				680A5B551D916D9600C141E7 /* UIApplication+Extension.m in Sources */,
+				6825E4C61DD085A300DA2092 /* UIView+Frame.m in Sources */,
+				6825E4D31DD085A300DA2092 /* SRWeatherCityTool.m in Sources */,
+				6825E4CE1DD085A300DA2092 /* NowWeatherData.m in Sources */,
+				6825E4C21DD085A300DA2092 /* NSDate+Extension.m in Sources */,
+				6825E4CA1DD085A300DA2092 /* ConstDefine.m in Sources */,
 				68C19B461DBE2DFF0004EBFE /* ChineseToPinyinResource.m in Sources */,
-				680A5B531D916D9600C141E7 /* NSAttributedString+Extension.m in Sources */,
-				680A5B541D916D9600C141E7 /* NSString+Extension.m in Sources */,
-				680A5B251D916D4F00C141E7 /* WeatherToolBar.m in Sources */,
+				6825E4C91DD085A300DA2092 /* SettingCityController.m in Sources */,
+				6825E4651DD06CD300DA2092 /* NSObject+MJProperty.m in Sources */,
+				6825E4D61DD085A300DA2092 /* WeatherGeneralInfoView.m in Sources */,
+				6825E45F1DD06CD300DA2092 /* MJProperty.m in Sources */,
+				6825E4D21DD085A300DA2092 /* SRWeatherAssist.m in Sources */,
 				68C19B3B1DBE2DFF0004EBFE /* AFNetworkReachabilityManager.m in Sources */,
+				6825E4C51DD085A300DA2092 /* UILabel+Font.m in Sources */,
 				68C19B401DBE2DFF0004EBFE /* AFURLSessionManager.m in Sources */,
-				680A5B221D916D4F00C141E7 /* WeatherDetailInfoView.m in Sources */,
-				680A5B231D916D4F00C141E7 /* WeatherGeneralInfoView.m in Sources */,
+				6825E4CF1DD085A300DA2092 /* SRHTTPSessionManager.m in Sources */,
 				68C19B481DBE2DFF0004EBFE /* NSString+PinYin4Cocoa.m in Sources */,
-				680A5B561D916D9600C141E7 /* UILabel+Font.m in Sources */,
 				68C19B4E1DBE2DFF0004EBFE /* ZYPinYinSearch.m in Sources */,
 				68D95E141D8EAF670099F5C8 /* main.m in Sources */,
+				6825E4CD1DD085A300DA2092 /* HourlyWeatherData.m in Sources */,
+				6825E4D81DD085A300DA2092 /* WeatherToolBar.m in Sources */,
 				68C19B491DBE2DFF0004EBFE /* pinyin.c in Sources */,
+				6825E45E1DD06CD300DA2092 /* MJFoundation.m in Sources */,
 				68C19B4A1DBE2DFF0004EBFE /* PinyinFormatter.m in Sources */,
-				68DD114A1DCCAD2000706435 /* SRWeatherCityTool.m in Sources */,
-				680A5B571D916D9600C141E7 /* UIView+Frame.m in Sources */,
-				680A5B5C1D916D9600C141E7 /* SRWeatherDataTool.m in Sources */,
-				680A5B5B1D916D9600C141E7 /* SRUserDefaults.m in Sources */,
+				6825E4D01DD085A300DA2092 /* SRLocationTool.m in Sources */,
+				6825E4631DD06CD300DA2092 /* NSObject+MJCoding.m in Sources */,
+				6825E4661DD06CD300DA2092 /* NSString+MJExtension.m in Sources */,
 				68C19B3C1DBE2DFF0004EBFE /* AFSecurityPolicy.m in Sources */,
+				6825E4C81DD085A300DA2092 /* MainViewController.m in Sources */,
 				68C19B4B1DBE2DFF0004EBFE /* PinYinForObjc.m in Sources */,
+				6825E4D11DD085A300DA2092 /* SRUserDefaults.m in Sources */,
 				68C19B391DBE2DFF0004EBFE /* AFHTTPRequestOperationManager.m in Sources */,
+				6825E4CB1DD085A300DA2092 /* CityWeatherData.m in Sources */,
+				6825E4C01DD085A300DA2092 /* Foundation+Log.m in Sources */,
 				68C19B431DBE2DFF0004EBFE /* MBProgressHUD.m in Sources */,
+				6825E45D1DD06CD300DA2092 /* MJExtensionConst.m in Sources */,
+				6825E4D41DD085A300DA2092 /* SRWeatherDataTool.m in Sources */,
+				6825E4C41DD085A300DA2092 /* UIApplication+Extension.m in Sources */,
+				6825E4C31DD085A300DA2092 /* NSString+Extension.m in Sources */,
+				6825E4641DD06CD300DA2092 /* NSObject+MJKeyValue.m in Sources */,
 				68C19B451DBE2DFF0004EBFE /* ChineseStringTool.m in Sources */,
+				6825E4CC1DD085A300DA2092 /* DailyWeatherData.m in Sources */,
 				68C19B471DBE2DFF0004EBFE /* HanyuPinyinOutputFormat.m in Sources */,
 				68C19B3A1DBE2DFF0004EBFE /* AFHTTPSessionManager.m in Sources */,
-				680A5B581D916D9600C141E7 /* ConstDefine.m in Sources */,
-				680A5B351D916D7300C141E7 /* MainViewController.m in Sources */,
 				68C19B381DBE2DFF0004EBFE /* AFHTTPRequestOperation.m in Sources */,
+				6825E4C71DD085A300DA2092 /* AddCityController.m in Sources */,
+				6825E4D51DD085A300DA2092 /* WeatherDetailInfoView.m in Sources */,
 				68C19B441DBE2DFF0004EBFE /* ChineseString.m in Sources */,
-				680A5B311D916D7300C141E7 /* SettingCityController.m in Sources */,
+				6825E4621DD06CD300DA2092 /* NSObject+MJClass.m in Sources */,
 				68C19B3F1DBE2DFF0004EBFE /* AFURLResponseSerialization.m in Sources */,
-				680A5B591D916D9600C141E7 /* SRHTTPSessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
