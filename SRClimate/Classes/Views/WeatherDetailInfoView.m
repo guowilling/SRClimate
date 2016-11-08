@@ -16,7 +16,7 @@
 #import "NSDate+Extension.h"
 #import "SRWeatherAssist.h"
 
-#define kMargin 20
+#define kMargin SCREEN_ADJUST(20)
 
 @interface WeatherDetailInfoView ()
 
@@ -311,52 +311,69 @@
     [super layoutSubviews];
     
     _hourlyWeatherDetailContainer.frame = CGRectMake(kMargin, 0, SCREEN_WIDTH - kMargin*2, kHourlyWeatherInfoViewH);
+    
     _hourlyLabel.frame = CGRectMake(0, 0, self.hourlyWeatherDetailContainer.sr_width, kWeatherDetailItemWH);
+    
     _hourlyLine.frame = CGRectMake(0, CGRectGetMaxY(_hourlyLabel.frame), self.hourlyWeatherDetailContainer.sr_width, 0.5);
+    
     _hourlyScrollView.frame = CGRectMake(0, CGRectGetMaxY(_hourlyLine.frame), self.hourlyWeatherDetailContainer.sr_width, kHourlyWeatherInfoViewH - kWeatherDetailItemWH);
+  
     CGFloat itemWidth = _hourlyScrollView.sr_width / 5;
     _hourlyScrollView.contentInset = UIEdgeInsetsMake(0, -itemWidth * 0.25, 0, 0);
     for (NSInteger i = 0; i < self.hourlyItemContainers.count; i++) {
         UIView *itemContainer = self.hourlyItemContainers[i];
         itemContainer.frame = CGRectMake(itemWidth * i, 0, itemWidth, _hourlyScrollView.sr_height);
     }
+    
     for (NSInteger i = 0; i < self.hourlyTimeLabels.count; i++) {
         UILabel *timeLabel = self.hourlyTimeLabels[i];
         timeLabel.frame = CGRectMake(0, 0, itemWidth, kWeatherDetailItemWH);
     }
+    
     for (NSInteger i = 0; i < self.hourlyConditionIcons.count; i++) {
         UIImageView *conditionIcon = self.hourlyConditionIcons[i];
         conditionIcon.frame = CGRectMake(0, kWeatherDetailItemWH, itemWidth, kWeatherDetailItemWH);
     }
+    
     for (NSInteger i = 0; i < self.hourlyTemperatureLabels.count; i++) {
         UILabel *temperatureLabel = self.hourlyTemperatureLabels[i];
         temperatureLabel.frame = CGRectMake(0, kWeatherDetailItemWH * 2, itemWidth, kWeatherDetailItemWH);
     }
+    
     self.hourlyScrollView.contentSize = CGSizeMake(itemWidth + itemWidth * self.hourlyForecastDics.count, 0);
     
     _dailyWeatherDetailContainer.frame = CGRectMake(kMargin, self.hourlyWeatherDetailContainer.sr_height, SCREEN_WIDTH - kMargin*2, kDailyWeatherInfoViewH);
+ 
     _dailyLabel.frame = CGRectMake(0, 0, _dailyWeatherDetailContainer.sr_width, kWeatherDetailItemWH);
+  
     _dailyLine.frame = CGRectMake(0, CGRectGetMaxY(_dailyLabel.frame), _dailyWeatherDetailContainer.sr_width, 0.5);
+  
     _dailyScrollView.frame = CGRectMake(0, CGRectGetMaxY(_dailyLine.frame), _dailyWeatherDetailContainer.sr_width, kDailyWeatherInfoViewH - kWeatherDetailItemWH);
+ 
     _dailyScrollView.contentInset = UIEdgeInsetsMake(0, -itemWidth * 0.25, 0, 0);
     for (NSInteger i = 0; i < self.dailyItemContainers.count; i++) {
         UIView *itemContainer = self.dailyItemContainers[i];
         itemContainer.frame = CGRectMake(itemWidth * i, 0, itemWidth, kWeatherDetailItemWH * 3);
     }
+  
     for (NSInteger i = 0; i < self.dailyDateLabels.count; i++) {
         UILabel *dateLabel = self.dailyDateLabels[i];
         dateLabel.frame = CGRectMake(0, 0, itemWidth, kWeatherDetailItemWH);
     }
+  
     for (NSInteger i = 0; i < self.dailyConditionIcons.count; i++) {
         UIImageView *conditionIcon = self.dailyConditionIcons[i];
         conditionIcon.frame = CGRectMake(0, kWeatherDetailItemWH, itemWidth, kWeatherDetailItemWH);
     }
+  
     for (NSInteger i = 0; i < self.dailyConditionLabels.count; i++) {
         UILabel *conditionLabel = self.dailyConditionLabels[i];
         conditionLabel.frame = CGRectMake(0, kWeatherDetailItemWH * 2, itemWidth, kWeatherDetailItemWH);
     }
     _dailyScrollView.contentSize = CGSizeMake(itemWidth * self.dailyForecastDics.count, 0);
+  
     _chartMax.frame = CGRectMake(0, 3 * kWeatherDetailItemWH + 10, self.dailyWeatherDetailContainer.sr_width * 1.5, KWeatherLineChartHeight);
+  
     _chartMin.frame = CGRectMake(0, 3 * kWeatherDetailItemWH + KWeatherLineChartHeight, self.dailyWeatherDetailContainer.sr_width * 1.5, KWeatherLineChartHeight);
 }
 

@@ -77,16 +77,21 @@
 
     NSString *temperature       = self.temperatureLabel.attributedText.string;
     CGSize size                 = [temperature sizeWithFont:[UIFont fontWithName:@"GillSans-Light" size:75 / 375.0 * SCREEN_WIDTH]];
-    self.temperatureLabel.frame = CGRectMake(10, 20, size.width, kWeatherGeneralItemWH * 2);
+    self.temperatureLabel.frame = CGRectMake(SCREEN_ADJUST(10), SCREEN_ADJUST(20), size.width, kWeatherGeneralItemWH * 2);
+    
     self.conditionIcon.frame    = CGRectMake(CGRectGetMaxX(_temperatureLabel.frame), _temperatureLabel.sr_y,
                                              kWeatherGeneralItemWH, kWeatherGeneralItemWH);
+    
     self.conditionLabel.frame   = CGRectMake(CGRectGetMaxX(_conditionIcon.frame), _conditionIcon.sr_y,
                                              kWeatherGeneralItemWH, kWeatherGeneralItemWH);
-    self.PMIcon.frame           = CGRectMake(_conditionIcon.sr_x + 5, CGRectGetMaxY(_conditionIcon.frame) - 10,
+    
+    self.PMIcon.frame           = CGRectMake(_conditionIcon.sr_x + SCREEN_ADJUST(5), CGRectGetMaxY(_conditionIcon.frame) - SCREEN_ADJUST(10),
                                              kWeatherGeneralItemWH, kWeatherGeneralItemWH);
-    self.PMLabel.frame          = CGRectMake(CGRectGetMaxX(_PMIcon.frame) + 5, _PMIcon.sr_y,
+    
+    self.PMLabel.frame          = CGRectMake(CGRectGetMaxX(_PMIcon.frame) + SCREEN_ADJUST(5), _PMIcon.sr_y,
                                              [_PMLabel.text sizeWithFont:_PMLabel.font].width, kWeatherGeneralItemWH);
-    self.indicatorIcon.frame    = CGRectMake(_temperatureLabel.sr_x, CGRectGetMaxY(_PMIcon.frame), kWeatherGeneralItemWH, 39);
+    
+    self.indicatorIcon.frame    = CGRectMake(_temperatureLabel.sr_x, CGRectGetMaxY(_PMIcon.frame), kWeatherGeneralItemWH, SCREEN_ADJUST(40));
 }
 
 - (void)updateWeatherInfoWithNowWeatherInfo:(NowWeatherData *)nowWeatherInfo cityWeatherInfo:(CityWeatherData *)cityWeatherInfo {

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define kWeatherDetailItemWH      39
-#define KWeatherLineChartHeight   75
+#define kWeatherDetailItemWH      SCREEN_ADJUST(40)
+#define KWeatherLineChartHeight   SCREEN_ADJUST(75)
 #define kHourlyWeatherInfoViewH kWeatherDetailItemWH * 4
 #define kDailyWeatherInfoViewH  kWeatherDetailItemWH * 4 + KWeatherLineChartHeight * 2
 

@@ -13,11 +13,11 @@
 #import "SRWeatherDataTool.h"
 #import "SRWeatherCityTool.h"
 
-static const CGFloat    hotCitiesHeaderLabelH  = 44;
-static const CGFloat    HotCitiesViewInset     = 20;
-static const CGFloat    HotCityItemHMargin     = 10;
-static const CGFloat    HotCityItemVMargin     = 20;
-static const NSInteger  HotCitiesViewMaxColumn = 4;
+#define hotCitiesHeaderLabelH   SCREEN_ADJUST(44)
+#define HotCitiesViewInset      SCREEN_ADJUST(20)
+#define HotCityItemHMargin      SCREEN_ADJUST(10)
+#define HotCityItemVMargin      SCREEN_ADJUST(20)
+#define HotCitiesViewMaxColumn  4
 
 @interface AddCityController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -138,7 +138,8 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
 
 - (void)setupTableView {
     
-    UITableView *tableView   = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStyleGrouped];
+    UITableView *tableView   = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64)
+                                                            style:UITableViewStyleGrouped];
     tableView.dataSource     = self;
     tableView.delegate       = self;
     tableView.contentInset   = UIEdgeInsetsMake(10, 0, 0, 0);
@@ -211,7 +212,9 @@ static const NSInteger  HotCitiesViewMaxColumn = 4;
         _hotCitiesContanier.hidden = YES;
         _searchCitiesTableView.hidden = NO;
         [_searchCities removeAllObjects];
-        [_searchCities addObjectsFromArray:[ZYPinYinSearch searchWithOriginalArray:_allCities searchText:searchText searchByPropertyName:@"name"]];
+        [_searchCities addObjectsFromArray:[ZYPinYinSearch searchWithOriginalArray:_allCities
+                                                                        searchText:searchText
+                                                              searchByPropertyName:@"name"]];
     } else {
         _hotCitiesContanier.hidden = NO;
         _searchCitiesTableView.hidden = YES;

@@ -2,7 +2,7 @@
 #import "WeatherLineChart.h"
 #import <math.h>
 
-#define kMargin 25
+#define kMargin SCREEN_ADJUST(25)
 
 @interface WeatherLineChart ()
 
@@ -85,7 +85,6 @@
         if (i==0) {
             [linePath moveToPoint:point];
         } else {
-            //[linePath addLineToPoint:point];
             CGFloat preValue = [self.data[i - 1] floatValue];
             CGPoint prePoint = [self pointOfValue:preValue index:i - 1];
             CGFloat x = prePoint.x + fabs(prePoint.x - point.x) * 0.5;
@@ -117,7 +116,6 @@
         [roundPath addArcWithCenter:roundPoint radius:3 startAngle:0 endAngle:M_PI * 2 clockwise:YES];
         CAShapeLayer *layer = [[CAShapeLayer alloc] init];
         layer.path = roundPath.CGPath;
-        //layer.fillColor = self.lineColor.CGColor;
         layer.fillColor = [UIColor whiteColor].CGColor;
         [self.layer addSublayer:layer];
         

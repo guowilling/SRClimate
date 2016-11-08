@@ -16,13 +16,13 @@
 
 @property (nonatomic, strong) NSMutableArray *cityLabels;
 
-@property (nonatomic, assign) NSInteger      currentIndex;
+@property (nonatomic, assign) NSInteger       currentIndex;
 
-@property (nonatomic, weak) UIButton *commonCityBtn;
-@property (nonatomic, weak) UIButton *searchCityBtn;
+@property (nonatomic, weak) UIButton  *commonCityBtn;
+@property (nonatomic, weak) UIButton  *searchCityBtn;
 
-@property (nonatomic, weak) UIButton *cityBtn;
-@property (nonatomic, weak) UILabel  *cityLabel;
+@property (nonatomic, weak) UIButton  *cityBtn;
+@property (nonatomic, weak) UILabel   *cityLabel;
 
 @end
 
@@ -155,7 +155,7 @@
     
     [super layoutSubviews];
     
-    CGFloat margin = 20;
+    CGFloat margin = SCREEN_ADJUST(20);
     
     self.commonCityBtn.frame = CGRectMake(0, 0, kButtomItemWH, kButtomItemWH);
     self.searchCityBtn.frame = CGRectMake(SCREEN_WIDTH - kButtomItemWH, 0, kButtomItemWH, kButtomItemWH);

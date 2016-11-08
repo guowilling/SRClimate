@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define kButtomItemWH     49
-#define kButtomContainerH 49
+#define kButtomItemWH     SCREEN_ADJUST(49)
+#define kButtomContainerH kButtomItemWH
 
 @protocol WeatherToolBarDelegate <NSObject>
 

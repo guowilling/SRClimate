@@ -10,7 +10,7 @@
 
 @class NowWeatherData, CityWeatherData;
 
-#define kWeatherGeneralItemWH 49
+#define kWeatherGeneralItemWH SCREEN_ADJUST(49)
 
 @interface WeatherGeneralInfoView : UIView
 

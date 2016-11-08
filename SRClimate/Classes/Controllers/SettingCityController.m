@@ -46,14 +46,10 @@
     
     [self setupTableView];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(locationServicesDisabled)
-                                                 name:SRLocationServicesDisabled
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(locationServicesAuthorizationStatusDenied)
-                                                 name:SRLocationServicesAuthorizationStatusDenied
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationServicesDisabled)
+                                                 name:SRLocationServicesDisabled object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationServicesAuthorizationStatusDenied)
+                                                 name:SRLocationServicesAuthorizationStatusDenied object:nil];
 }
 
 #pragma mark - Init setting
@@ -63,7 +59,7 @@
     _tableView                = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.dataSource     = self;
     _tableView.delegate       = self;
-    _tableView.rowHeight      = 54;
+    _tableView.rowHeight      = SCREEN_ADJUST(50);
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
 }
@@ -130,10 +126,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section == 0) {
-        if ([SRLocationTool sharedInstance].isAutoLocation) {
-            if ([SRLocationTool sharedInstance].currentLocationCity) {
-                return 2;
-            }
+        if ([SRLocationTool sharedInstance].isAutoLocation && [SRLocationTool sharedInstance].currentLocationCity) {
+            return 2;
         }
         return 1;
     }
@@ -165,7 +159,7 @@
             cell.textLabel.font = [UIFont systemFontOfSize:SCREEN_ADJUST(15)];
             cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"new_location_dark"]];
         }
-        UIView *divider= [[UIView alloc] initWithFrame:CGRectMake(0, 54 - 1, SCREEN_WIDTH, 1)];
+        UIView *divider= [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_ADJUST(50) - 1, SCREEN_WIDTH, 1)];
         divider.backgroundColor = COLOR_DIVIDERLIN;
         [cell addSubview:divider];
     } else {
@@ -184,7 +178,7 @@
             }
             cell.textLabel.text = self.commonCities[indexPath.row - 1];
         }
-        UIView *divider= [[UIView alloc] initWithFrame:CGRectMake(0, 54 - 1, SCREEN_WIDTH, 1)];
+        UIView *divider= [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_ADJUST(50) - 1, SCREEN_WIDTH, 1)];
         divider.backgroundColor = COLOR_DIVIDERLIN;
         [cell addSubview:divider];
     }
@@ -210,7 +204,7 @@
         NSString *city = self.commonCities[indexPath.row - 1];
         [self.commonCities removeObjectAtIndex:indexPath.row - 1];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
+        
         if ([self.delegate respondsToSelector:@selector(settingCityControllerDidDeleteCommonCity:)]) {
             [self.delegate settingCityControllerDidDeleteCommonCity:city];
         }
@@ -289,9 +283,11 @@
 - (void)showAlertController:(NSString *)message {
     
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style: UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        self.autoLocationSwitch.on = NO;
-    }];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定"
+                                                     style:UIAlertActionStyleDestructive
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                       self.autoLocationSwitch.on = NO;
+                                                   }];
     [alertC addAction:alertA];
     [self presentViewController:alertC animated:YES completion:nil];
 }

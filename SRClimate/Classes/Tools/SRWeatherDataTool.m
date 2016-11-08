@@ -55,13 +55,17 @@
                                   success(responseObjectM);
                               }
                           } else {
-                              SRLog(@"status: %@", status);
-                              if (failure) {
-                                  failure(nil);
+                              if (cachedWeatherDatas[cityid]) {
+                                  if (failure) {
+                                      failure(nil);
+                                  }
+                              } else {
+                                  if (failure) {
+                                      failure([NSError errorWithDomain:@"网络异常" code:0 userInfo:nil]);
+                                  }
                               }
                           }
                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                          SRLog(@"error: %@", error);
                           if (cachedWeatherDatas[cityid]) {
                               if (failure) {
                                   failure(nil);
