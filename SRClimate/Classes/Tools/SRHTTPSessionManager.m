@@ -19,7 +19,7 @@
         self.responseSerializer = [AFJSONResponseSerializer serializer];
         self.requestSerializer.timeoutInterval = 15.0;
         self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", @"text/html", nil];
-        [self.requestSerializer setValue:@"c6900d83e40cc69a52c8ca446c1b3176" forHTTPHeaderField:@"apikey"];
+        [self.requestSerializer setValue:@"8cc61d268857436a140755d055bb4d57" forHTTPHeaderField:@"apikey"];
     }
     return self;
 }

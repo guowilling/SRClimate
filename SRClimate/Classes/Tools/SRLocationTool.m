@@ -11,11 +11,11 @@
 #import "SRWeatherDataTool.h"
 #import "SRWeatherCityTool.h"
 
-#define YXWeatherAutoLocation              @"weatherAutoLocation"
-#define YXWeatherCurrentLocationCity       @"weatherCurrentLocationCity"
-#define YXWeatherCurrentLocationState      @"weatherCurrentLocationState"
-#define YXWeatherCurrentLocationLongitude  @"weatherCurrentLocationLongitude"
-#define YXWeatherCurrentLocationLatitude   @"weatherCurrentLocationLatitude"
+#define SRWeatherAutoLocation              @"weatherAutoLocation"
+#define SRWeatherCurrentLocationCity       @"weatherCurrentLocationCity"
+#define SRWeatherCurrentLocationState      @"weatherCurrentLocationState"
+#define SRWeatherCurrentLocationLongitude  @"weatherCurrentLocationLongitude"
+#define SRWeatherCurrentLocationLatitude   @"weatherCurrentLocationLatitude"
 
 static SRLocationTool *instance;
 
@@ -205,7 +205,7 @@ static SRLocationTool *instance;
 - (BOOL)isAutoLocation {
     
     if (!_autoLocation) {
-        _autoLocation = [SRUserDefaults boolForKey:YXWeatherAutoLocation];
+        _autoLocation = [SRUserDefaults boolForKey:SRWeatherAutoLocation];
     }
     return _autoLocation;
 }
@@ -214,13 +214,13 @@ static SRLocationTool *instance;
     
     _autoLocation = autoLocation;
     
-    [SRUserDefaults setBool:autoLocation forKey:YXWeatherAutoLocation];
+    [SRUserDefaults setBool:autoLocation forKey:SRWeatherAutoLocation];
 }
 
 - (NSString *)currentLocationCity {
     
     if (!_currentLocationCity) {
-        _currentLocationCity = [SRUserDefaults objectForKey:YXWeatherCurrentLocationCity];
+        _currentLocationCity = [SRUserDefaults objectForKey:SRWeatherCurrentLocationCity];
     }
     return _currentLocationCity;
 }
@@ -229,13 +229,13 @@ static SRLocationTool *instance;
     
     _currentLocationCity = locationCity;
     
-    [SRUserDefaults setObject:locationCity forKey:YXWeatherCurrentLocationCity];
+    [SRUserDefaults setObject:locationCity forKey:SRWeatherCurrentLocationCity];
 }
 
 - (NSString *)currentLocationState {
     
     if (!_currentLocationState) {
-        _currentLocationState = [SRUserDefaults objectForKey:YXWeatherCurrentLocationState];
+        _currentLocationState = [SRUserDefaults objectForKey:SRWeatherCurrentLocationState];
     }
     return _currentLocationState;
 }
@@ -244,13 +244,13 @@ static SRLocationTool *instance;
     
     _currentLocationState = currentLocationState;
     
-    [SRUserDefaults setObject:currentLocationState forKey:YXWeatherCurrentLocationState];
+    [SRUserDefaults setObject:currentLocationState forKey:SRWeatherCurrentLocationState];
 }
 
 - (NSNumber *)currentLocationLongitude {
     
     if (!_currentLocationLongitude) {
-        _currentLocationLongitude = [SRUserDefaults objectForKey:YXWeatherCurrentLocationLongitude];
+        _currentLocationLongitude = [SRUserDefaults objectForKey:SRWeatherCurrentLocationLongitude];
     }
     return _currentLocationLongitude;
 }
@@ -259,13 +259,13 @@ static SRLocationTool *instance;
     
     _currentLocationLongitude = currentLocationLongitude;
     
-    [SRUserDefaults setObject:currentLocationLongitude forKey:YXWeatherCurrentLocationLongitude];
+    [SRUserDefaults setObject:currentLocationLongitude forKey:SRWeatherCurrentLocationLongitude];
 }
 
 - (NSNumber *)currentLocationLatitude {
     
     if (!_currentLocationLatitude) {
-        _currentLocationLatitude = [SRUserDefaults objectForKey:YXWeatherCurrentLocationLatitude];
+        _currentLocationLatitude = [SRUserDefaults objectForKey:SRWeatherCurrentLocationLatitude];
     }
     return _currentLocationLatitude;
 }
@@ -274,7 +274,7 @@ static SRLocationTool *instance;
     
     _currentLocationLatitude = currentLocationLatitude;
     
-    [SRUserDefaults setObject:currentLocationLatitude forKey:YXWeatherCurrentLocationLatitude];
+    [SRUserDefaults setObject:currentLocationLatitude forKey:SRWeatherCurrentLocationLatitude];
 }
 
 @end

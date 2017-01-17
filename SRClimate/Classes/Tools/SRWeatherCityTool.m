@@ -9,11 +9,9 @@
 #import "SRWeatherCityTool.h"
 
 static NSString * const kCommonCitiesFileName   = @"commonCities.plist";
-
 static NSString * const kHotCitiesFileName      = @"hotCities.plist";
 static NSString * const kAllCitiesFileName      = @"allCities.plist";
 static NSString * const kAllCitiesDicsFileName  = @"allCitiesDics.plist";
-
 
 @implementation SRWeatherCityTool
 
