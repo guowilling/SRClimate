@@ -18,7 +18,7 @@
 - (NSInteger)maxValue {
     
     if (_maxValue == 0) {
-        for (int i=0; i<self.data.count; i++) {
+        for (int i = 0; i < self.data.count; i++) {
             NSInteger value = [self.data[i] integerValue];
             if (_maxValue < value ) {
                 _maxValue = value;
@@ -32,7 +32,7 @@
     
     if (_minValue == 0) {
         _minValue = [self.data[0] integerValue];
-        for (int i=1; i<self.data.count; i++) {
+        for (int i = 1; i < self.data.count; i++) {
             NSInteger value = [self.data[i] integerValue];
             if (_minValue > value ) {
                 _minValue = value;
@@ -79,10 +79,10 @@
 - (void)drawRect:(CGRect)rect {
     
     UIBezierPath *linePath = [UIBezierPath bezierPath];
-    for (int i=0; i < self.data.count; i++) {
+    for (int i = 0; i < self.data.count; i++) {
         CGFloat value = [self.data[i] floatValue];
         CGPoint point = [self pointOfValue:value index:i];
-        if (i==0) {
+        if (i == 0) {
             [linePath moveToPoint:point];
         } else {
             CGFloat preValue = [self.data[i - 1] floatValue];
@@ -105,11 +105,11 @@
     pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
     pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
     pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    pathAnimation.duration = 2.0;
+    pathAnimation.duration = self.data.count * 0.3;
     pathAnimation.removedOnCompletion = YES;
     [_shapeLayer addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
     
-    for (int i=0; i < self.data.count; i++) {
+    for (int i = 0; i < self.data.count; i++) {
         CGFloat value = [self.data[i] floatValue];
         CGPoint roundPoint = [self pointOfValue:value index:i];
         UIBezierPath *roundPath = [UIBezierPath bezierPath];

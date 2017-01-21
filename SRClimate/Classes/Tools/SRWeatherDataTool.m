@@ -37,8 +37,9 @@
     }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"key"] = @"d6c40a9f213e42d1a411d709f24721cd";
     params[@"cityid"] = cityid;
-    [SRHTTPSessionManager GET:@"http://apis.baidu.com/heweather/weather/free"
+    [SRHTTPSessionManager GET:@"https://free-api.heweather.com/x3/weather"
                    parameters:params
                       success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                           // NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
