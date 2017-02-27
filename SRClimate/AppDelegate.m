@@ -10,14 +10,14 @@
 #import "MainViewController.h"
 
 /**
- * If you have any question, please issue or contact me.
- * QQ: 396658379
- * Email: guowilling@qq.com
+ *  If you have any question, submit an issue or contact me.
+ *  QQ: 1990991510
+ *  Email: guowilling@qq.com
  *
- * If you like it, please star it, thanks a lot.
- * Github: https://github.com/guowilling/SRClimate
+ *  If you like it, please star it, thanks a lot.
+ *  Github: https://github.com/guowilling/SRClimate
  *
- * Have Fun.
+ *  Have Fun.
  */
 
 @interface AppDelegate ()

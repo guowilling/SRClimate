@@ -3,7 +3,8 @@
 ## Features
 
 * Locate the current location of the device, display the current city weather information.
-* You can also add common cities.
+* Support to add common cities.
+* Continuous optimization.
 
 ## Show Pictures
 
@@ -24,6 +25,6 @@
 > 第一版, 很多地方待优化.   
 > The first edition, many places to be optimized.
 
-**If you have any question, please issue or contact me.**   
+**If you have any question, submit an issue or contact me.**   
 **If this repo helps you, please give it a star.**  
 **Have Fun.**
