@@ -218,9 +218,9 @@
 		68C19B351DBE2DFF0004EBFE /* ZYPinYinSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPinYinSearch.h; sourceTree = "<group>"; };
 		68C19B361DBE2DFF0004EBFE /* ZYPinYinSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPinYinSearch.m; sourceTree = "<group>"; };
 		68D95E0F1D8EAF670099F5C8 /* SRClimate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SRClimate.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		68D95E131D8EAF670099F5C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		68D95E151D8EAF670099F5C8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		68D95E161D8EAF670099F5C8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		68D95E131D8EAF670099F5C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
+		68D95E151D8EAF670099F5C8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
+		68D95E161D8EAF670099F5C8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
 		68D95E1E1D8EAF670099F5C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68D95E231D8EAF670099F5C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68D95E281D8EAF670099F5C8 /* SRClimateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SRClimateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -307,6 +307,9 @@
 		6825E4871DD085A300DA2092 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				68D95E131D8EAF670099F5C8 /* main.m */,
+				68D95E151D8EAF670099F5C8 /* AppDelegate.h */,
+				68D95E161D8EAF670099F5C8 /* AppDelegate.m */,
 				6825E4961DD085A300DA2092 /* Controllers */,
 				6825E4B71DD085A300DA2092 /* Views */,
 				6825E4A11DD085A300DA2092 /* Models */,
@@ -518,13 +521,10 @@
 		68D95E121D8EAF670099F5C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				68D95E131D8EAF670099F5C8 /* main.m */,
-				68D95E151D8EAF670099F5C8 /* AppDelegate.h */,
-				68D95E161D8EAF670099F5C8 /* AppDelegate.m */,
-				68D95E1E1D8EAF670099F5C8 /* Assets.xcassets */,
-				68D95E231D8EAF670099F5C8 /* Info.plist */,
 				68C19B031DBE2DFF0004EBFE /* Libraries */,
 				680A5B5D1D916DC900C141E7 /* Resource */,
+				68D95E1E1D8EAF670099F5C8 /* Assets.xcassets */,
+				68D95E231D8EAF670099F5C8 /* Info.plist */,
 				68D95ED71D8EB3100099F5C8 /* PrefixHeader.pch */,
 				68D95FC91D8EB67E0099F5C8 /* Launch Screen.storyboard */,
 			);
