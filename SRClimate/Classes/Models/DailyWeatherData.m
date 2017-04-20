@@ -15,9 +15,7 @@
     return @{@"tmpMax": @"tmp.max",
              @"tmpMin": @"tmp.min",
              @"code": @"cond.code_d",
-             @"txt": @"cond.txt_d"
-             };
+             @"txt": @"cond.txt_d"};
 }
-
 
 @end

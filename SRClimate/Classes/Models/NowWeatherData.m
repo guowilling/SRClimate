@@ -14,8 +14,7 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
     
     return @{@"code": @"cond.code",
-             @"txt": @"cond.txt"
-             };
+             @"txt": @"cond.txt"};
 }
 
 @end

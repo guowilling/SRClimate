@@ -24,19 +24,21 @@
 @property (nonatomic, weak  ) UILabel      *hourlyLabel;
 @property (nonatomic, weak  ) UIView       *hourlyLine;
 @property (nonatomic, weak  ) UIScrollView *hourlyScrollView;
-@property (nonatomic, strong) NSArray      *hourlyItemContainers;
-@property (nonatomic, strong) NSArray      *hourlyTimeLabels;
-@property (nonatomic, strong) NSArray      *hourlyConditionIcons;
-@property (nonatomic, strong) NSArray      *hourlyTemperatureLabels;
+
+@property (nonatomic, strong) NSArray *hourlyItemContainers;
+@property (nonatomic, strong) NSArray *hourlyTimeLabels;
+@property (nonatomic, strong) NSArray *hourlyConditionIcons;
+@property (nonatomic, strong) NSArray *hourlyTemperatureLabels;
 
 @property (nonatomic, weak  ) UIView       *dailyWeatherDetailContainer;
 @property (nonatomic, weak  ) UILabel      *dailyLabel;
 @property (nonatomic, weak  ) UIView       *dailyLine;
 @property (nonatomic, weak  ) UIScrollView *dailyScrollView;
-@property (nonatomic, strong) NSArray      *dailyItemContainers;
-@property (nonatomic, strong) NSArray      *dailyDateLabels;
-@property (nonatomic, strong) NSArray      *dailyConditionIcons;
-@property (nonatomic, strong) NSArray      *dailyConditionLabels;
+
+@property (nonatomic, strong) NSArray *dailyItemContainers;
+@property (nonatomic, strong) NSArray *dailyDateLabels;
+@property (nonatomic, strong) NSArray *dailyConditionIcons;
+@property (nonatomic, strong) NSArray *dailyConditionLabels;
 
 @property (nonatomic, strong) NSArray          *drawXPoints;
 @property (nonatomic, weak  ) WeatherLineChart *chartMax;

@@ -1,6 +1,4 @@
 
-// 处理字典和数组中中文输出问题
-
 #import <Foundation/Foundation.h>
 
 @implementation NSDictionary (Log)

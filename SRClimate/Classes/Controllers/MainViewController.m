@@ -26,7 +26,6 @@
 #define kWeatherGeneralW  SCREEN_WIDTH - SCREEN_ADJUST(20)
 #define kWeatherGeneralY  SCREEN_HEIGHT - kWeatherGeneralH - SCREEN_ADJUST(150)
 
-
 @interface MainViewController () <UIScrollViewDelegate, SettingCityControllerDelegate, WeatherToolBarDelegate, SRLocationToolDelegate, AddCityControllerDelegate>
 
 @property (nonatomic, copy) NSDictionary   *weatherData;
@@ -501,16 +500,17 @@
         return;
     }
     
-    if (scrollView == self.weatherDetailInfoView) {
-        if (scrollView.contentOffset.y < 0) {
-            CGFloat contentOffsetY = -scrollView.contentOffset.y;
-            CGFloat alpha = 1 - (CGFloat)contentOffsetY / 75;
-            CGFloat scale = 1 - (CGFloat)contentOffsetY / 300;
-            self.weatherDetailInfoView.alpha = alpha;
-            self.weatherDetailInfoView.transform = CGAffineTransformMakeScale(scale, scale);
-            if (contentOffsetY >= 75) {
-                [self swipeGeneralInfoViewDown];
-            }
+    if (scrollView != self.weatherDetailInfoView) {
+        return;
+    }
+    if (scrollView.contentOffset.y < 0) {
+        CGFloat contentOffsetY = -scrollView.contentOffset.y;
+        CGFloat alpha = 1 - (CGFloat)contentOffsetY / 75;
+        CGFloat scale = 1 - (CGFloat)contentOffsetY / 300;
+        self.weatherDetailInfoView.alpha = alpha;
+        self.weatherDetailInfoView.transform = CGAffineTransformMakeScale(scale, scale);
+        if (contentOffsetY >= 75) {
+            [self swipeGeneralInfoViewDown];
         }
     }
 }
@@ -638,8 +638,7 @@
         self.weatherGeneralInfoView.hidden = YES;
         self.weatherDetailInfoView.hidden = YES;
     } else {
-        [MBProgressHUD sr_showErrorWithMessage:@"网络错误更新天气信息失败"
-                                        onView:self.view];
+        [MBProgressHUD sr_showErrorWithMessage:@"网络错误更新天气信息失败" onView:self.view];
     }
 }
 
