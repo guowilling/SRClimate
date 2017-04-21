@@ -423,7 +423,7 @@
     WeatherLineChart *chartMax = [[WeatherLineChart alloc] init];
     [[self.dailyWeatherDetailContainer viewWithTag:55] addSubview:chartMax];
     chartMax.drawXPoints = self.drawXPoints;
-    chartMax.data = self.maxTemperatures;
+    chartMax.datas = self.maxTemperatures;
     chartMax.valuePosition = ValuePositionUP;
     chartMax.lineColor = COLOR_RGBA(255, 106, 106, 1.0);
     chartMax.backgroundColor = [UIColor clearColor];
@@ -434,7 +434,7 @@
     WeatherLineChart *chartMin = [[WeatherLineChart alloc] init];
     [[self.dailyWeatherDetailContainer viewWithTag:55] addSubview:chartMin];
     chartMin.drawXPoints = self.drawXPoints;
-    chartMin.data = self.minTemperatures;
+    chartMin.datas = self.minTemperatures;
     chartMin.valuePosition = ValuePositionDown;
     chartMin.lineColor = COLOR_RGBA(75, 222, 255, 1.0);
     chartMin.backgroundColor = [UIColor clearColor];

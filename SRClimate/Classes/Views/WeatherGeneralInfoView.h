@@ -14,12 +14,15 @@
 
 @interface WeatherGeneralInfoView : UIView
 
-@property (nonatomic, weak) UILabel      *temperatureLabel;
-@property (nonatomic, weak) UIImageView  *conditionIcon;
-@property (nonatomic, weak) UILabel      *conditionLabel;
-@property (nonatomic, weak) UIImageView  *indicatorIcon;
-@property (nonatomic, weak) UIImageView  *PMIcon;
-@property (nonatomic, weak) UILabel      *PMLabel;
+@property (nonatomic, weak) UILabel *temperatureLabel;
+
+@property (nonatomic, weak) UIImageView *conditionIcon;
+@property (nonatomic, weak) UILabel     *conditionLabel
+;
+@property (nonatomic, weak) UIImageView *indicatorIcon;
+
+@property (nonatomic, weak) UIImageView *PMIcon;
+@property (nonatomic, weak) UILabel     *PMLabel;
 
 - (void)updateWeatherInfoWithNowWeatherInfo:(NowWeatherData *)nowWeatherInfo cityWeatherInfo:(CityWeatherData *)cityWeatherInfo;
     

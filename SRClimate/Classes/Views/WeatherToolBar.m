@@ -11,18 +11,18 @@
 
 @interface WeatherToolBar () <UIScrollViewDelegate>
 
-@property (nonatomic, strong) NSString  *locationCity;
-@property (nonatomic, strong) NSArray   *commonCities;
+@property (nonatomic, strong) NSString *locationCity;
+@property (nonatomic, strong) NSArray  *commonCities;
 
 @property (nonatomic, strong) NSMutableArray *cityLabels;
 
-@property (nonatomic, assign) NSInteger       currentIndex;
+@property (nonatomic, assign) NSInteger currentIndex;
 
-@property (nonatomic, weak) UIButton  *commonCityBtn;
-@property (nonatomic, weak) UIButton  *searchCityBtn;
+@property (nonatomic, weak) UIButton *commonCityBtn;
+@property (nonatomic, weak) UIButton *searchCityBtn;
 
-@property (nonatomic, weak) UIButton  *cityBtn;
-@property (nonatomic, weak) UILabel   *cityLabel;
+@property (nonatomic, weak) UIButton *cityBtn;
+@property (nonatomic, weak) UILabel  *cityLabel;
 
 @end
 

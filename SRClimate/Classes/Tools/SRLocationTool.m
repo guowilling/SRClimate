@@ -28,11 +28,11 @@ static SRLocationTool *instance;
 
 @implementation SRLocationTool
 
-@synthesize autoLocation              = _autoLocation;
-@synthesize currentLocationCity       = _currentLocationCity;
-@synthesize currentLocationState      = _currentLocationState;
-@synthesize currentLocationLongitude  = _currentLocationLongitude;
-@synthesize currentLocationLatitude   = _currentLocationLatitude;
+@synthesize autoLocation             = _autoLocation;
+@synthesize currentLocationCity      = _currentLocationCity;
+@synthesize currentLocationState     = _currentLocationState;
+@synthesize currentLocationLongitude = _currentLocationLongitude;
+@synthesize currentLocationLatitude  = _currentLocationLatitude;
 
 + (instancetype)sharedInstance {
     
@@ -74,31 +74,30 @@ static SRLocationTool *instance;
             [self.delegate locationToolLocationServicesDisabled];
         }
         return;
-    } else {
-        switch ([CLLocationManager authorizationStatus]) {
-            case kCLAuthorizationStatusNotDetermined:
-                [self.locationManager requestWhenInUseAuthorization];
-                break;
-                
-            case kCLAuthorizationStatusRestricted:
-            case kCLAuthorizationStatusDenied:
-                [SRLocationTool sharedInstance].autoLocation = NO;
-                if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesAuthorizationStatusDenied)]) {
-                    [self.delegate locationToolLocationServicesAuthorizationStatusDenied];
-                }
-                break;
-                
-            case kCLAuthorizationStatusAuthorizedAlways:
-            case kCLAuthorizationStatusAuthorizedWhenInUse:
-                if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesAuthorizationStatusAuthorized)]) {
-                    [self.delegate locationToolLocationServicesAuthorizationStatusAuthorized];
-                }
-                if ([SRLocationTool sharedInstance].isAutoLocation) {
-                    [[SRLocationTool sharedInstance] resetLocation];
-                    [self.locationManager startUpdatingLocation];
-                }
-                break;
-        }
+    }
+    switch ([CLLocationManager authorizationStatus]) {
+        case kCLAuthorizationStatusNotDetermined:
+            [self.locationManager requestWhenInUseAuthorization];
+            break;
+            
+        case kCLAuthorizationStatusRestricted:
+        case kCLAuthorizationStatusDenied:
+            [SRLocationTool sharedInstance].autoLocation = NO;
+            if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesAuthorizationStatusDenied)]) {
+                [self.delegate locationToolLocationServicesAuthorizationStatusDenied];
+            }
+            break;
+            
+        case kCLAuthorizationStatusAuthorizedAlways:
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesAuthorizationStatusAuthorized)]) {
+                [self.delegate locationToolLocationServicesAuthorizationStatusAuthorized];
+            }
+            if ([SRLocationTool sharedInstance].isAutoLocation) {
+                [[SRLocationTool sharedInstance] resetLocation];
+                [self.locationManager startUpdatingLocation];
+            }
+            break;
     }
 }
 
@@ -108,37 +107,33 @@ static SRLocationTool *instance;
     
     SRLog(@"LocationManager didChangeAuthorizationStatus %zd", status);
     
-    if ([CLLocationManager locationServicesEnabled]) {
-        switch (status) {
-            case kCLAuthorizationStatusNotDetermined:
-            case kCLAuthorizationStatusRestricted:
-            {
-                break;
-            }
-            case kCLAuthorizationStatusDenied: {
-                [SRLocationTool sharedInstance].autoLocation = NO;
-                [SRLocationTool sharedInstance].currentLocationCity = nil;
-                if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesAuthorizationStatusDenied)]) {
-                    [self.delegate locationToolLocationServicesAuthorizationStatusDenied];
-                }
-                break;
-            }
-            case kCLAuthorizationStatusAuthorizedAlways: {
-                
-                break;
-            }
-            case kCLAuthorizationStatusAuthorizedWhenInUse: {
-                [SRLocationTool sharedInstance].autoLocation = YES;
-                [self.locationManager startUpdatingLocation];
-                if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesLocating)]) {
-                    [self.delegate locationToolLocationServicesLocating];
-                }
-                break;
-            }
-        }
-    }  else {
+    if (![CLLocationManager locationServicesEnabled]) {
         if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesDisabled)]) {
             [self.delegate locationToolLocationServicesDisabled];
+        }
+        return;
+    }
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+        case kCLAuthorizationStatusRestricted:
+            break;
+        case kCLAuthorizationStatusDenied: {
+            [SRLocationTool sharedInstance].autoLocation = NO;
+            [SRLocationTool sharedInstance].currentLocationCity = nil;
+            if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesAuthorizationStatusDenied)]) {
+                [self.delegate locationToolLocationServicesAuthorizationStatusDenied];
+            }
+            break;
+        }
+        case kCLAuthorizationStatusAuthorizedAlways:
+            break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse: {
+            [SRLocationTool sharedInstance].autoLocation = YES;
+            [self.locationManager startUpdatingLocation];
+            if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesLocating)]) {
+                [self.delegate locationToolLocationServicesLocating];
+            }
+            break;
         }
     }
 }

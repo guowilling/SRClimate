@@ -16,9 +16,9 @@
 
 @property (nonatomic, strong) NSMutableArray *commonCities;
 
-@property (nonatomic, weak  ) UISwitch       *autoLocationSwitch;
+@property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) UITableView    *tableView;
+@property (nonatomic, weak) UISwitch *autoLocationSwitch;
 
 @end
 

@@ -33,8 +33,8 @@
 @property (nonatomic, weak) UIImageView    *backgroundImageView;
 @property (nonatomic, weak) WeatherToolBar *weatherToolBar;
 
-@property (nonatomic, strong) NSMutableArray       *commonCities;
-@property (nonatomic, strong) NSMutableDictionary  *cachedWeatherDatas;
+@property (nonatomic, strong) NSMutableArray      *commonCities;
+@property (nonatomic, strong) NSMutableDictionary *cachedWeatherDatas;
 
 @property (nonatomic, strong) WeatherGeneralInfoView *weatherGeneralInfoView;
 @property (nonatomic, strong) WeatherDetailInfoView  *weatherDetailInfoView;

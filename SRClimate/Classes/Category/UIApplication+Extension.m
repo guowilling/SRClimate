@@ -10,33 +10,33 @@
 
 @implementation UIApplication (Extension)
 
-- (NSURL *)documentsURL
-{
+- (NSURL *)documentsURL {
+    
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (NSString *)documentsPath
-{
+- (NSString *)documentsPath {
+    
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 }
 
-- (NSURL *)cachesURL
-{
+- (NSURL *)cachesURL {
+    
     return [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (NSString *)cachesPath
-{
+- (NSString *)cachesPath {
+    
     return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
 }
 
-- (NSURL *)libraryURL
-{
+- (NSURL *)libraryURL {
+    
     return [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (NSString *)libraryPath
-{
+- (NSString *)libraryPath {
+    
     return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
 }
 

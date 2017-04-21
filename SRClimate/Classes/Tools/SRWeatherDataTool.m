@@ -9,7 +9,6 @@
 #import "SRWeatherDataTool.h"
 #import "SRLocationTool.h"
 #import "SRUserDefaults.h"
-#import "SRHttpSessionManager.h"
 
 #define kDataCacheInterval 3600
 

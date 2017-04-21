@@ -4,9 +4,8 @@
 
 * Locate the current location of the device, display the current city weather information.
 * Support to add common cities.
-* Continuous optimization.
 
-## Show Pictures
+## Screenshots
 
 ![image](./show1.jpg)
 ![image](./show2.jpg)
