@@ -1,5 +1,7 @@
 # SRClimate
 
+A concise style weather forecasting project.
+
 ## Features
 
 * Locate the current location of the device, display the current city weather information.
@@ -7,8 +9,10 @@
 
 ## Screenshots
 
-![image](./show1.jpg)
-![image](./show2.jpg)
+![image](./screenshot1.png)
+![image](./screenshot2.png)
+
+## Updates
 
 ### 2017.01.22
 > 好吧, 之前使用的是百度 API 提供的和风天气, 今天在和风天气官网上发现免费版 API 还是可以用的, 但是只有三天的天气预报了... 
