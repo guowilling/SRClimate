@@ -2,11 +2,6 @@
 
 A concise style weather forecasting project.
 
-## Features
-
-* Locate the current location of the device, display the current city weather information.
-* Support to add common cities.
-
 ## Screenshots
 
 ![image](./screenshot1.png)
