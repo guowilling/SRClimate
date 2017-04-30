@@ -4,8 +4,7 @@ A concise style weather forecasting project.
 
 ## Screenshots
 
-![image](./screenshot1.png)
-![image](./screenshot2.png)
+![image](./screenshots1.png) ![image](./screenshots2.png)
 
 ## Updates
 
