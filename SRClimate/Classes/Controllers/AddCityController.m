@@ -66,9 +66,7 @@
     
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                          target:self
-                                                                                          action:@selector(dismissAction)];
+    self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(dismissAction)];
     
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.placeholder = @"请输入城市名";
@@ -111,8 +109,8 @@
         [hotCityItem setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         
         hotCityItem.frame = CGRectMake(HotCitiesViewInset + i % HotCitiesViewMaxColumn * (hotCityItemW + HotCityItemHMargin),
-                                  HotCitiesViewInset + i / HotCitiesViewMaxColumn * (hotCityItemH + HotCityItemVMargin),
-                                  hotCityItemW, hotCityItemH);
+                                       HotCitiesViewInset + i / HotCitiesViewMaxColumn * (hotCityItemH + HotCityItemVMargin),
+                                       hotCityItemW, hotCityItemH);
         hotCityItem.titleLabel.font = [UIFont systemFontOfSize:SCREEN_ADJUST(15)];
         hotCityItem.tag = i;
         hotCityItem.layer.cornerRadius = hotCityItem.sr_height * 0.5;
@@ -131,7 +129,7 @@
     if ([self.delegate respondsToSelector:@selector(addCityControllerDidAddCity:)]) {
         [self.delegate addCityControllerDidAddCity:city];
     }
-
+    
     [self.navigationItem.titleView resignFirstResponder];
     [self dismissAction];
 }

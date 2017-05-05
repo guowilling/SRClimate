@@ -1,6 +1,6 @@
 # SRClimate
 
-A concise style weather forecasting project.
+A concise style weather forecasting project. Locate the current location of the device, display the current city weather information and support to add common cities.
 
 ## Screenshots
 

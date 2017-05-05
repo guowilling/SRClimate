@@ -65,12 +65,10 @@
 }
 
 - (void)setupNavBar {
-
+    
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     
-    self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                           target:self
-                                                                                           action:@selector(dismissAction)];
+    self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(dismissAction)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
                                                                                            target:self
                                                                                            action:@selector(editAction)];
@@ -109,7 +107,7 @@
     } else {
         [SRLocationTool sharedInstance].autoLocation = NO;
         [SRLocationTool sharedInstance].currentLocationCity = nil;
-    
+        
         if ([self.delegate respondsToSelector:@selector(settingCityControllerDidCloseAutoLocation)]) {
             [self.delegate settingCityControllerDidCloseAutoLocation];
         }

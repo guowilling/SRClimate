@@ -50,12 +50,16 @@
     
     [self addSubview:({
         UIButton *commonCityBtn = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        commonCityBtn.tintColor = [UIColor whiteColor];
+        commonCityBtn.showsTouchWhenHighlighted = YES;
         [commonCityBtn addTarget:self action:@selector(commonCityBtnAction) forControlEvents:UIControlEventTouchUpInside];
         _commonCityBtn = commonCityBtn;
     })];
     
     [self addSubview:({
         UIButton *searchCityBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        searchCityBtn.tintColor = [UIColor whiteColor];
+        searchCityBtn.showsTouchWhenHighlighted = YES;
         [searchCityBtn addTarget:self action:@selector(searchCityBtnAction) forControlEvents:UIControlEventTouchUpInside];
         _searchCityBtn = searchCityBtn;
     })];
