@@ -2,7 +2,7 @@
 //  WeatherMainViewController.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/4/15.
+//  Created by https://github.com/guowilling on 16/4/15.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -13,25 +13,25 @@
 #import "WeatherToolBar.h"
 #import "WeatherGeneralInfoView.h"
 #import "WeatherDetailInfoView.h"
+#import "NowWeatherData.h"
+#import "CityWeatherData.h"
 #import "SRUserDefaults.h"
 #import "SRLocationTool.h"
 #import "SRWeatherDataTool.h"
 #import "SRWeatherCityTool.h"
-#import "MJExtension.h"
-#import "NowWeatherData.h"
-#import "CityWeatherData.h"
 #import "SRWeatherAssist.h"
+#import "MJExtension.h"
 
-#define kWeatherGeneralH  SCREEN_ADJUST(150)
-#define kWeatherGeneralW  SCREEN_WIDTH - SCREEN_ADJUST(20)
-#define kWeatherGeneralY  SCREEN_HEIGHT - kWeatherGeneralH - SCREEN_ADJUST(150)
+#define kWeatherGeneralH SCREEN_ADJUST(150)
+#define kWeatherGeneralW SCREEN_WIDTH - SCREEN_ADJUST(20)
+#define kWeatherGeneralY SCREEN_HEIGHT - kWeatherGeneralH - SCREEN_ADJUST(150)
 
 @interface MainViewController () <UIScrollViewDelegate, SettingCityControllerDelegate, WeatherToolBarDelegate, SRLocationToolDelegate, AddCityControllerDelegate>
 
-@property (nonatomic, copy) NSDictionary   *weatherData;
+@property (nonatomic, copy  ) NSDictionary *weatherData;
 
-@property (nonatomic, weak) UIImageView    *backgroundImageView;
-@property (nonatomic, weak) WeatherToolBar *weatherToolBar;
+@property (nonatomic, weak  ) UIImageView    *backgroundImageView;
+@property (nonatomic, weak  ) WeatherToolBar *weatherToolBar;
 
 @property (nonatomic, strong) NSMutableArray      *commonCities;
 @property (nonatomic, strong) NSMutableDictionary *cachedWeatherDatas;
@@ -53,10 +53,9 @@
 
 @implementation MainViewController
 
-#pragma mark - Lazy load
+#pragma mark - Lazy Load
 
 - (NSArray *)commonCities {
-    
     if (!_commonCities) {
         _commonCities = [NSMutableArray arrayWithArray:[SRWeatherCityTool commonCities]];
     }
@@ -64,7 +63,6 @@
 }
 
 - (NSMutableDictionary *)cachedWeatherDatas {
-    
     if (!_cachedWeatherDatas) {
         _cachedWeatherDatas = [NSMutableDictionary dictionaryWithDictionary:[SRWeatherDataTool cachedWeatherDatas]];
     }
@@ -72,7 +70,6 @@
 }
 
 - (UISwipeGestureRecognizer *)swipeUP {
-    
     if (!_swipeUp) {
         _swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGeneralInfoViewUP)];
         _swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
@@ -81,7 +78,6 @@
 }
 
 - (UISwipeGestureRecognizer *)swipeDown {
-    
     if (!_swipeDown) {
         _swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGeneralInfoViewDown)];
         _swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
@@ -90,7 +86,6 @@
 }
 
 - (UISwipeGestureRecognizer *)swipeLeft {
-    
     if (!_swipeLeft) {
         _swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGeneralInfoViewLeft)];
         _swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
@@ -99,7 +94,6 @@
 }
 
 - (UISwipeGestureRecognizer *)swipeRight {
-    
     if (!_swipeRight) {
         _swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGeneralInfoViewRight)];
         _swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
@@ -108,7 +102,6 @@
 }
 
 - (UIView *)errorTipsView {
-    
     if (!_errorTipsView) {
         _errorTipsView = [[UIView alloc] init];
         CGFloat frameX = SCREEN_ADJUST(40);
@@ -148,10 +141,9 @@
     return _errorTipsView;
 }
 
-#pragma mark - Life circle
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     [self setupBackgroundImageView];
@@ -166,7 +158,6 @@
 }
 
 - (void)beginLocation {
-    
     [SRLocationTool sharedInstance].delegate = self;
     
     if ([SRUserDefaults boolForKey:kHasRequestLocationAuthorization]) {
@@ -192,7 +183,6 @@
 #pragma mark - Setup UI
 
 - (void)setupBackgroundImageView {
-    
     [self.view addSubview:({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.frame = self.view.bounds;
@@ -201,7 +191,6 @@
 }
 
 - (void)setupWeatherToolBar {
-    
     [self.view addSubview:({
         WeatherToolBar *weatherToolBar = nil;
         if ([SRLocationTool sharedInstance].isAutoLocation && [SRLocationTool sharedInstance].currentLocationCity) {
@@ -217,7 +206,6 @@
 }
 
 - (void)setupWeatherGeneralInfoView {
-    
     [self.view addSubview:({
         WeatherGeneralInfoView *weatherGeneralInfoView = [[WeatherGeneralInfoView alloc] init];
         weatherGeneralInfoView.frame = CGRectMake(SCREEN_ADJUST(20), kWeatherGeneralY, kWeatherGeneralW, kWeatherGeneralH);
@@ -230,7 +218,6 @@
 }
 
 - (void)setupWeatherDetailInfoView {
-    
     [self.view addSubview:({
         CGFloat weatherDetailInfoViewY     = kWeatherGeneralH + SCREEN_ADJUST(20);
         CGFloat weatherDetailInfoViewH     = SCREEN_HEIGHT - weatherDetailInfoViewY - kButtomContainerH;
@@ -246,10 +233,9 @@
     })];
 }
 
-#pragma mark - Monitor method
+#pragma mark - Monitor Methods
 
 - (void)swipeGeneralInfoViewUP {
-
     self.showDetailWeather = YES;
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -270,7 +256,6 @@
 }
 
 - (void)swipeGeneralInfoViewDown {
-    
     if (!self.isShowDetailWeather) {
         return;
     }
@@ -292,7 +277,6 @@
 }
 
 - (void)swipeGeneralInfoViewLeft {
-    
     if (self.weatherToolBar.cityPageControl.currentPage == self.weatherToolBar.cityPageControl.numberOfPages - 1) {
         return;
     }
@@ -324,7 +308,6 @@
 }
 
 - (void)swipeGeneralInfoViewRight {
-    
     if (self.weatherToolBar.cityPageControl.currentPage == 0) {
         return;
     }
@@ -355,10 +338,9 @@
     [self loadWeatherDataWithIndex:self.weatherToolBar.cityPageControl.currentPage];
 }
 
-#pragma mark - Tool method
+#pragma mark - Tool Methods
 
 - (void)updateContent:(NSDictionary *)weatherData {
-    
     self.errorTipsView.hidden = YES;
     self.weatherGeneralInfoView.hidden = NO;
     self.weatherDetailInfoView.hidden = NO;
@@ -368,7 +350,6 @@
 }
 
 - (void)updateWeatherGeneralInfoView:(NSDictionary *)weatherData {
-    
     NSDictionary *nowWeatherInfo = weatherData[@"HeWeather data service 3.0"][0][@"now"];
     NSDictionary *cityWeatherInfo = weatherData[@"HeWeather data service 3.0"][0][@"aqi"][@"city"];
     if (!nowWeatherInfo || !cityWeatherInfo) {
@@ -387,19 +368,16 @@
 }
 
 - (void)updateWeatherDetailInfoView:(NSDictionary *)weatherData {
-    
     [_weatherDetailInfoView setWeatherData:weatherData];
 }
 
 #pragma mark - SettingCityControllerDelegate
 
 - (void)settingCityControllerDidOpenAutoLocation {
-    
     [[SRLocationTool sharedInstance] beginLocation];
 }
 
 - (void)settingCityControllerDidCloseAutoLocation {
-    
     if (_settingCityC) {
         [_settingCityC reloadCommonCityTableViewIsInsert:NO];
     }
@@ -408,7 +386,6 @@
 }
 
 - (void)settingCityControllerDidSelectCity:(NSString *)city isLocationCity:(BOOL)isLocationCity {
-    
     if (self.isShowDetailWeather) {
         [self swipeGeneralInfoViewDown];
     }
@@ -437,7 +414,6 @@
 }
 
 - (void)settingCityControllerDidDeleteCommonCity:(NSString *)city {
-    
     [self.commonCities removeObject:city];
     [SRWeatherCityTool saveCommonCities:[self.commonCities copy]];
     
@@ -445,7 +421,6 @@
 }
 
 - (void)settingCityControllerDidReorderCommonCity {
-    
     self.commonCities = [NSMutableArray arrayWithArray:[SRWeatherCityTool commonCities]];
     
     [self reloadWeatherData];
@@ -454,7 +429,6 @@
 #pragma mark - SearchCityControllerDelegate
 
 - (void)addCityControllerDidAddCity:(NSString *)city {
-    
     if (![self.commonCities containsObject:city]) {
         if (self.commonCities.count == 12) {
             [MBProgressHUD sr_showInfoWithMessage:@"最多只能添加12个常用城市" onView:self.view];
@@ -472,7 +446,6 @@
 #pragma mark - WeatherToolBarDelegate
 
 - (void)weatherToolBarDidClickCommonCityBtnAction {
-    
     _settingCityC = [[SettingCityController alloc] init];
     _settingCityC.delegate = self;
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:_settingCityC];
@@ -480,7 +453,6 @@
 }
 
 - (void)weatherToolBarDidClickSearchCityBtnAction {
-    
     AddCityController *addCityC = [[AddCityController alloc] init];
     addCityC.delegate = self;
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:addCityC];
@@ -488,18 +460,15 @@
 }
 
 - (void)weatherToolBarDidScrollToIndex:(NSInteger)index {
-    
     [self loadWeatherDataWithIndex:index];
 }
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
     if (!self.isShowDetailWeather) {
         return;
     }
-    
     if (scrollView != self.weatherDetailInfoView) {
         return;
     }
@@ -518,7 +487,6 @@
 #pragma mark - LocationToolDelegate
 
 - (void)locationToolLocationServicesDisabled {
-    
     [_settingCityC reloadCommonCityTableViewIsInsert:NO];
     
     [MBProgressHUD sr_showInfoWithMessage:@"请打开定位服务" onView:self.view];
@@ -529,7 +497,6 @@
 - (void)locationToolLocationServicesAuthorizationStatusDidChange { }
 
 - (void)locationToolLocationServicesAuthorizationStatusDenied {
-    
     [_settingCityC reloadCommonCityTableViewIsInsert:NO];
     
     [MBProgressHUD sr_showInfoWithMessage:@"请打开定位服务\n设置->隐私->定位服务->SRClimate" onView:self.view];
@@ -538,7 +505,6 @@
 }
 
 - (void)locationToolLocationServicesAuthorizationStatusAuthorized {
-    
     if ([SRLocationTool sharedInstance].isAutoLocation) {
         NSString *locationCity = [SRLocationTool sharedInstance].currentLocationCity;
         NSString *cityid = [SRWeatherCityTool cityidOfCityname:locationCity];
@@ -553,12 +519,10 @@
 }
 
 - (void)locationToolLocationServicesLocating {
-    
     [MBProgressHUD sr_showIndeterminateWithMessage:@"正在定位..."];
 }
 
 - (void)locationToolLocationSuccess {
-    
     if ([SRLocationTool sharedInstance].isAutoLocation) {
         [_settingCityC reloadCommonCityTableViewIsInsert:YES];
     }
@@ -572,7 +536,6 @@
 }
 
 - (void)locationToolLocationFailed {
-    
     if (![SRLocationTool sharedInstance].isAutoLocation) {
         [_settingCityC reloadCommonCityTableViewIsInsert:NO];
     }
@@ -584,12 +547,10 @@
 #pragma mark - Load Weatehr Data
 
 - (void)loadWeatherDataOfCommonCity {
-    
     [self loadWeatherDataOfCity:[SRWeatherCityTool defaultCity] cityid:[SRWeatherCityTool defaultCityid]];
 }
 
 - (void)reloadWeatherData {
-    
     NSString *city = nil;
     if ([SRLocationTool sharedInstance].isAutoLocation && [SRLocationTool sharedInstance].currentLocationCity) {
         city = [SRLocationTool sharedInstance].currentLocationCity;
@@ -607,7 +568,6 @@
 }
 
 - (void)loadWeatherDataWithIndex:(NSInteger)index {
-    
     NSString *city = nil;
     if ([SRLocationTool sharedInstance].isAutoLocation && [SRLocationTool sharedInstance].currentLocationCity) {
         if (index == 0) {
@@ -622,7 +582,6 @@
 }
 
 - (void)loadWeatherDataOfCity:(NSString *)city cityid:(NSString *)cityid {
-    
     [SRWeatherDataTool loadWeatherDataCity:city cityid:cityid success:^(NSDictionary *weatherData) {
         [self setWeatherData:weatherData];
         [self updateContent:self.weatherData];
@@ -632,7 +591,6 @@
 }
 
 - (void)handleFailure:(NSError *)error {
-    
     if (error) {
         self.errorTipsView.hidden = NO;
         self.weatherGeneralInfoView.hidden = YES;

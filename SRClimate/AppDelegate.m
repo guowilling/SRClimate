@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/9/18.
+//  Created by https://github.com/guowilling on 16/9/18.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -16,12 +16,10 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     application.statusBarHidden = NO;
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    MainViewController *mainVC = [[MainViewController alloc] init];
-    self.window.rootViewController = mainVC;
+    self.window.rootViewController = [[MainViewController alloc] init];
     [self.window makeKeyAndVisible];
     
     return YES;

@@ -2,7 +2,7 @@
 //  UIApplication+Extension.h
 //  SRClimate
 //
-//  Created by 郭伟林 on 15/12/29.
+//  Created by https://github.com/guowilling on 15/12/29.
 //  Copyright © 2015年 SR. All rights reserved.
 //
 

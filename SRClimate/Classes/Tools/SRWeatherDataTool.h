@@ -2,7 +2,7 @@
 //  WeatherDataTool.h
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/7/11.
+//  Created by https://github.com/guowilling on 16/7/11.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 

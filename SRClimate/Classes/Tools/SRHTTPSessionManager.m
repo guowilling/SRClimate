@@ -4,7 +4,6 @@
 @implementation SRHTTPSessionManager
 
 + (SRHTTPSessionManager *)sharedManager {
-    
     static SRHTTPSessionManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -14,7 +13,6 @@
 }
 
 - (instancetype)initWithBaseURL:(NSURL *)url {
-    
     if (self = [super initWithBaseURL:url]) {
         self.responseSerializer = [AFJSONResponseSerializer serializer];
         self.requestSerializer.timeoutInterval = 15.0;

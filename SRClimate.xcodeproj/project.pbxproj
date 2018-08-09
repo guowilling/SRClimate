@@ -71,31 +71,12 @@
 		68D95E141D8EAF670099F5C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D95E131D8EAF670099F5C8 /* main.m */; };
 		68D95E171D8EAF670099F5C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D95E161D8EAF670099F5C8 /* AppDelegate.m */; };
 		68D95E1F1D8EAF670099F5C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68D95E1E1D8EAF670099F5C8 /* Assets.xcassets */; };
-		68D95E2D1D8EAF670099F5C8 /* SRClimateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D95E2C1D8EAF670099F5C8 /* SRClimateTests.m */; };
-		68D95E381D8EAF670099F5C8 /* SRClimateUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D95E371D8EAF670099F5C8 /* SRClimateUITests.m */; };
 		68D95FCA1D8EB67E0099F5C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68D95FC91D8EB67E0099F5C8 /* LaunchScreen.storyboard */; };
 		6E373ABF1D91989D00B44177 /* background_cloudy.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6E373ABB1D91989D00B44177 /* background_cloudy.jpeg */; };
 		6E373AC01D91989D00B44177 /* background_rainy.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6E373ABC1D91989D00B44177 /* background_rainy.jpeg */; };
 		6E373AC11D91989D00B44177 /* background_snowy.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6E373ABD1D91989D00B44177 /* background_snowy.jpeg */; };
 		6E373AC21D91989D00B44177 /* background_sunny.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6E373ABE1D91989D00B44177 /* background_sunny.jpeg */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		68D95E291D8EAF670099F5C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 68D95E071D8EAF660099F5C8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 68D95E0E1D8EAF660099F5C8;
-			remoteInfo = SRClimate;
-		};
-		68D95E341D8EAF670099F5C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 68D95E071D8EAF660099F5C8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 68D95E0E1D8EAF660099F5C8;
-			remoteInfo = SRClimate;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		680A5B5E1D916DC900C141E7 /* allCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = allCities.plist; sourceTree = "<group>"; };
@@ -223,12 +204,6 @@
 		68D95E161D8EAF670099F5C8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
 		68D95E1E1D8EAF670099F5C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68D95E231D8EAF670099F5C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		68D95E281D8EAF670099F5C8 /* SRClimateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SRClimateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		68D95E2C1D8EAF670099F5C8 /* SRClimateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SRClimateTests.m; sourceTree = "<group>"; };
-		68D95E2E1D8EAF670099F5C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		68D95E331D8EAF670099F5C8 /* SRClimateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SRClimateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		68D95E371D8EAF670099F5C8 /* SRClimateUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SRClimateUITests.m; sourceTree = "<group>"; };
-		68D95E391D8EAF670099F5C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68D95ED71D8EB3100099F5C8 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		68D95FC91D8EB67E0099F5C8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E373ABB1D91989D00B44177 /* background_cloudy.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_cloudy.jpeg; sourceTree = "<group>"; };
@@ -239,20 +214,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		68D95E0C1D8EAF660099F5C8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68D95E251D8EAF670099F5C8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68D95E301D8EAF670099F5C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,8 +454,6 @@
 			isa = PBXGroup;
 			children = (
 				68D95E111D8EAF670099F5C8 /* SRClimate */,
-				68D95E2B1D8EAF670099F5C8 /* SRClimateTests */,
-				68D95E361D8EAF670099F5C8 /* SRClimateUITests */,
 				68D95E101D8EAF670099F5C8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -503,8 +462,6 @@
 			isa = PBXGroup;
 			children = (
 				68D95E0F1D8EAF670099F5C8 /* SRClimate.app */,
-				68D95E281D8EAF670099F5C8 /* SRClimateTests.xctest */,
-				68D95E331D8EAF670099F5C8 /* SRClimateUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -531,24 +488,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		68D95E2B1D8EAF670099F5C8 /* SRClimateTests */ = {
-			isa = PBXGroup;
-			children = (
-				68D95E2C1D8EAF670099F5C8 /* SRClimateTests.m */,
-				68D95E2E1D8EAF670099F5C8 /* Info.plist */,
-			);
-			path = SRClimateTests;
-			sourceTree = "<group>";
-		};
-		68D95E361D8EAF670099F5C8 /* SRClimateUITests */ = {
-			isa = PBXGroup;
-			children = (
-				68D95E371D8EAF670099F5C8 /* SRClimateUITests.m */,
-				68D95E391D8EAF670099F5C8 /* Info.plist */,
-			);
-			path = SRClimateUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -569,63 +508,19 @@
 			productReference = 68D95E0F1D8EAF670099F5C8 /* SRClimate.app */;
 			productType = "com.apple.product-type.application";
 		};
-		68D95E271D8EAF670099F5C8 /* SRClimateTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 68D95E3F1D8EAF670099F5C8 /* Build configuration list for PBXNativeTarget "SRClimateTests" */;
-			buildPhases = (
-				68D95E241D8EAF670099F5C8 /* Sources */,
-				68D95E251D8EAF670099F5C8 /* Frameworks */,
-				68D95E261D8EAF670099F5C8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				68D95E2A1D8EAF670099F5C8 /* PBXTargetDependency */,
-			);
-			name = SRClimateTests;
-			productName = SRClimateTests;
-			productReference = 68D95E281D8EAF670099F5C8 /* SRClimateTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		68D95E321D8EAF670099F5C8 /* SRClimateUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 68D95E421D8EAF670099F5C8 /* Build configuration list for PBXNativeTarget "SRClimateUITests" */;
-			buildPhases = (
-				68D95E2F1D8EAF670099F5C8 /* Sources */,
-				68D95E301D8EAF670099F5C8 /* Frameworks */,
-				68D95E311D8EAF670099F5C8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				68D95E351D8EAF670099F5C8 /* PBXTargetDependency */,
-			);
-			name = SRClimateUITests;
-			productName = SRClimateUITests;
-			productReference = 68D95E331D8EAF670099F5C8 /* SRClimateUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		68D95E071D8EAF660099F5C8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = SR;
 				TargetAttributes = {
 					68D95E0E1D8EAF660099F5C8 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = Y4FK8UXDXW;
+						DevelopmentTeam = L8C6M6B8E9;
 						ProvisioningStyle = Manual;
-					};
-					68D95E271D8EAF670099F5C8 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = 68D95E0E1D8EAF660099F5C8;
-					};
-					68D95E321D8EAF670099F5C8 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = 68D95E0E1D8EAF660099F5C8;
 					};
 				};
 			};
@@ -643,8 +538,6 @@
 			projectRoot = "";
 			targets = (
 				68D95E0E1D8EAF660099F5C8 /* SRClimate */,
-				68D95E271D8EAF670099F5C8 /* SRClimateTests */,
-				68D95E321D8EAF670099F5C8 /* SRClimateUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -665,20 +558,6 @@
 				68C19B421DBE2DFF0004EBFE /* MBProgressHUD.bundle in Resources */,
 				6E373AC21D91989D00B44177 /* background_sunny.jpeg in Resources */,
 				68D95FCA1D8EB67E0099F5C8 /* LaunchScreen.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68D95E261D8EAF670099F5C8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68D95E311D8EAF670099F5C8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,36 +629,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		68D95E241D8EAF670099F5C8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				68D95E2D1D8EAF670099F5C8 /* SRClimateTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68D95E2F1D8EAF670099F5C8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				68D95E381D8EAF670099F5C8 /* SRClimateUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		68D95E2A1D8EAF670099F5C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 68D95E0E1D8EAF660099F5C8 /* SRClimate */;
-			targetProxy = 68D95E291D8EAF670099F5C8 /* PBXContainerItemProxy */;
-		};
-		68D95E351D8EAF670099F5C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 68D95E0E1D8EAF660099F5C8 /* SRClimate */;
-			targetProxy = 68D95E341D8EAF670099F5C8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		68D95E3A1D8EAF670099F5C8 /* Debug */ = {
@@ -791,14 +641,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -837,14 +695,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -872,15 +738,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y4FK8UXDXW;
+				DEVELOPMENT_TEAM = L8C6M6B8E9;
 				GCC_PREFIX_HEADER = SRClimate/PrefixHeader.pch;
 				INFOPLIST_FILE = SRClimate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.willing.climate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "683ffa8c-45a8-48bf-a7ea-bf16c623fd85";
-				PROVISIONING_PROFILE_SPECIFIER = PPForAll;
+				PROVISIONING_PROFILE = "41eaf476-bb76-4cb9-b2e9-b856cc3e9d97";
+				PROVISIONING_PROFILE_SPECIFIER = "PP For All";
 			};
 			name = Debug;
 		};
@@ -888,61 +754,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y4FK8UXDXW;
+				DEVELOPMENT_TEAM = L8C6M6B8E9;
 				GCC_PREFIX_HEADER = SRClimate/PrefixHeader.pch;
 				INFOPLIST_FILE = SRClimate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.willing.climate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "683ffa8c-45a8-48bf-a7ea-bf16c623fd85";
-				PROVISIONING_PROFILE_SPECIFIER = PPForAll;
-			};
-			name = Release;
-		};
-		68D95E401D8EAF670099F5C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = SRClimateTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willing.SRClimateTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SRClimate.app/SRClimate";
-			};
-			name = Debug;
-		};
-		68D95E411D8EAF670099F5C8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = SRClimateTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willing.SRClimateTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SRClimate.app/SRClimate";
-			};
-			name = Release;
-		};
-		68D95E431D8EAF670099F5C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = SRClimateUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willing.SRClimateUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = SRClimate;
-			};
-			name = Debug;
-		};
-		68D95E441D8EAF670099F5C8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = SRClimateUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willing.SRClimateUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = SRClimate;
+				PROVISIONING_PROFILE = "41eaf476-bb76-4cb9-b2e9-b856cc3e9d97";
+				PROVISIONING_PROFILE_SPECIFIER = "PP For All";
 			};
 			name = Release;
 		};
@@ -963,24 +783,6 @@
 			buildConfigurations = (
 				68D95E3D1D8EAF670099F5C8 /* Debug */,
 				68D95E3E1D8EAF670099F5C8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		68D95E3F1D8EAF670099F5C8 /* Build configuration list for PBXNativeTarget "SRClimateTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				68D95E401D8EAF670099F5C8 /* Debug */,
-				68D95E411D8EAF670099F5C8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		68D95E421D8EAF670099F5C8 /* Build configuration list for PBXNativeTarget "SRClimateUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				68D95E431D8EAF670099F5C8 /* Debug */,
-				68D95E441D8EAF670099F5C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

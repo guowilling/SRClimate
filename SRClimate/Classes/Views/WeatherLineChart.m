@@ -16,7 +16,6 @@
 @implementation WeatherLineChart
 
 - (NSInteger)maxValue {
-    
     if (_maxValue == 0) {
         for (int i = 0; i < self.datas.count; i++) {
             NSInteger value = [self.datas[i] integerValue];
@@ -29,7 +28,6 @@
 }
 
 - (NSInteger)minValue {
-    
     if (_minValue == 0) {
         _minValue = [self.datas[0] integerValue];
         for (int i = 1; i < self.datas.count; i++) {
@@ -43,7 +41,6 @@
 }
 
 - (CGFloat)averageHeight {
-    
     if (_averageHeight == 0) {
         if (self.maxValue != self.minValue) {
             if (self.valuePosition == ValuePositionUP) {
@@ -57,7 +54,6 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
         
@@ -67,7 +63,6 @@
 }
 
 - (void)setupLineShapeLayer {
-    
     _shapeLayer = [CAShapeLayer layer];
     _shapeLayer.lineWidth = 2;
     _shapeLayer.lineCap = kCALineCapRound;
@@ -77,7 +72,6 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    
     UIBezierPath *linePath = [UIBezierPath bezierPath];
     for (int i = 0; i < self.datas.count; i++) {
         CGFloat value = [self.datas[i] floatValue];
@@ -141,7 +135,6 @@
 }
 
 - (CGPoint)pointOfValue:(NSInteger)value index:(NSInteger)index {
-    
     CGFloat pointHeight;
     pointHeight = self.frame.size.height - (value - self.minValue) * self.averageHeight;
     if (value == self.minValue) {
@@ -156,7 +149,6 @@
 }
 
 - (void)setLineColor:(UIColor *)lineColor {
-    
     _lineColor = lineColor;
     
     _shapeLayer.strokeColor = lineColor.CGColor;

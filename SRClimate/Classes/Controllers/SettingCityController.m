@@ -2,7 +2,7 @@
 //  CommonCityController.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/4/15.
+//  Created by https://github.com/guowilling on 16/4/15.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -24,20 +24,18 @@
 
 @implementation SettingCityController
 
-#pragma mark - Lazy load
+#pragma mark - Lazy Load
 
 - (NSMutableArray *)commonCities {
-    
     if (!_commonCities) {
         _commonCities = [NSMutableArray arrayWithArray:[SRWeatherCityTool commonCities]];
     }
     return _commonCities;
 }
 
-#pragma mark - Life circle
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     self.view.backgroundColor = COLOR_BACKGROUND_GRAY;
@@ -52,10 +50,9 @@
                                                  name:SRLocationServicesAuthorizationStatusDenied object:nil];
 }
 
-#pragma mark - Init setting
+#pragma mark - Setup UI
 
 - (void)setupTableView {
-    
     _tableView                = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.dataSource     = self;
     _tableView.delegate       = self;
@@ -65,7 +62,6 @@
 }
 
 - (void)setupNavBar {
-    
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     
     self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(dismissAction)];
@@ -74,15 +70,13 @@
                                                                                            action:@selector(editAction)];
 }
 
-#pragma mark - Monitor method
+#pragma mark - Monitor Methods
 
 - (void)dismissAction {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)editAction {
-    
     if (self.commonCities.count == 0) {
         return;
     }
@@ -97,7 +91,6 @@
 }
 
 - (void)switchViewAction:(UISwitch *)sender {
-    
     if (sender.isOn) {
         [SRLocationTool sharedInstance].autoLocation = YES;
         
@@ -117,12 +110,10 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     if (section == 0) {
         if ([SRLocationTool sharedInstance].isAutoLocation && [SRLocationTool sharedInstance].currentLocationCity) {
             return 2;
@@ -133,7 +124,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UITableViewCell *cell;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
@@ -184,7 +174,6 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (indexPath.section == 0 || indexPath.row == 0) {
         return NO;
     }
@@ -192,12 +181,10 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     return UITableViewCellEditingStyleDelete;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSString *city = self.commonCities[indexPath.row - 1];
         [self.commonCities removeObjectAtIndex:indexPath.row - 1];
@@ -215,7 +202,6 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (indexPath.section == 0) {
         return NO;
     }
@@ -223,7 +209,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    
     NSString *city = self.commonCities[fromIndexPath.row - 1];
     [self.commonCities removeObject:city];
     
@@ -243,20 +228,25 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 0.1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     if (section == 1) {
         return 0.1;
     }
     return 10;
 }
 
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [UIView new];
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (indexPath.row == 0) {
         return;
     }
@@ -276,10 +266,9 @@
     [self dismissAction];
 }
 
-#pragma mark - Public method
+#pragma mark - Public Methods
 
 - (void)showAlertController:(NSString *)message {
-    
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定"
                                                      style:UIAlertActionStyleDestructive
@@ -291,17 +280,14 @@
 }
 
 - (void)locationServicesDisabled {
-    
     [self showAlertController:@"请打开系统定位服务"];
 }
 
 - (void)locationServicesAuthorizationStatusDenied {
-    
     [self showAlertController:@"请允许APP使用定位功能\n设置->隐私->定位服务->幻视"];
 }
 
 - (void)reloadCommonCityTableViewIsInsert:(BOOL)isInsert {
-    
     if (isInsert) {
         [self insertTableViewRowForLocationCity];
     } else {
@@ -310,7 +296,6 @@
 }
 
 - (void)insertTableViewRowForLocationCity {
-    
     NSInteger rows = [self.tableView numberOfRowsInSection:0];
     if (rows == 1) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
@@ -319,7 +304,6 @@
 }
 
 - (void)deleteTableViewRowForLocationCity {
-    
     NSInteger rows = [self.tableView numberOfRowsInSection:0];
     if (rows == 2) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];

@@ -2,7 +2,7 @@
 //  WeatherDetailView.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/5/6.
+//  Created by https://github.com/guowilling on 16/5/6.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -54,7 +54,6 @@
 @implementation WeatherDetailInfoView
 
 - (NSArray *)drawXPoints {
-    
     if (!_drawXPoints) {
         NSMutableArray *points = [NSMutableArray array];
         CGFloat width = (SCREEN_WIDTH - kMargin * 2) / 5;
@@ -68,17 +67,14 @@
 }
 
 - (NSArray *)hourlyForecastDics {
-    
     return [HourlyWeatherData mj_objectArrayWithKeyValuesArray:_weatherData[@"HeWeather data service 3.0"][0][@"hourly_forecast"]];
 }
 
 - (NSArray *)dailyForecastDics {
-    
     return [DailyWeatherData mj_objectArrayWithKeyValuesArray:_weatherData[@"HeWeather data service 3.0"][0][@"daily_forecast"]];
 }
 
 - (NSArray *)maxTemperatures {
-    
     NSMutableArray *tempArrayM = [NSMutableArray array];
     for (NSInteger i = 0; i < self.dailyForecastDics.count; i++) {
         NSString *tmp = [NSString stringWithFormat:@"%@˚",[self.dailyForecastDics[i] tmpMax]];
@@ -89,7 +85,6 @@
 }
 
 - (NSArray *)minTemperatures {
-    
     NSMutableArray *tempArrayM = [NSMutableArray array];
     for (NSInteger i = 0; i < self.dailyForecastDics.count; i++) {
         NSString *tmp = [NSString stringWithFormat:@"%@˚",[self.dailyForecastDics[i] tmpMin]];
@@ -100,7 +95,6 @@
 }
 
 - (void)setWeatherData:(NSDictionary *)weatherData {
-    
     if (_weatherData == nil) {
         _weatherData = weatherData;
         [self setupHourlyWeatherInfoView];
@@ -120,7 +114,6 @@
 }
 
 - (void)setupHourlyWeatherInfoView {
-    
     if (!_hourlyWeatherDetailContainer) {
         UIView *hourlyWeatherDetailContainer = [[UIView alloc] init];
         [self addSubview:hourlyWeatherDetailContainer];
@@ -134,7 +127,6 @@
     label.textAlignment = NSTextAlignmentLeft;
     [self.hourlyWeatherDetailContainer addSubview:label];
     _hourlyLabel = label;
-    //_hourlyLabel.backgroundColor = COLOR_RANDOM;
     
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
@@ -146,7 +138,6 @@
     hourlyScrollView.alwaysBounceHorizontal = YES;
     [self.hourlyWeatherDetailContainer addSubview:hourlyScrollView];
     _hourlyScrollView = hourlyScrollView;
-    //_hourlyScrollView.backgroundColor = COLOR_RANDOM;
     
     NSMutableArray *tempItemContainers = [NSMutableArray array];
     NSMutableArray *tempTimeLabels = [NSMutableArray array];
@@ -156,7 +147,6 @@
     UIView *itemContainer = [[UIView alloc] init];
     [hourlyScrollView addSubview:itemContainer];
     [tempItemContainers addObject:itemContainer];
-    //itemContainer.backgroundColor = COLOR_RANDOM;
     
     UILabel *timeLabel = [[UILabel alloc] init];
     timeLabel.textColor = [UIColor whiteColor];
@@ -165,13 +155,11 @@
     timeLabel.attributedText = [NSAttributedString attributedStringWithString:@"现在"];
     [itemContainer addSubview:timeLabel];
     [tempTimeLabels addObject:timeLabel];
-    //timeLabel.backgroundColor = COLOR_RANDOM;
     
     UIImageView *conditionIcon = [[UIImageView alloc] init];
     conditionIcon.contentMode = UIViewContentModeCenter;
     [itemContainer addSubview:conditionIcon];
     [tempConditionIcons addObject:conditionIcon];
-    //conditionIcon.backgroundColor = COLOR_RANDOM;
     
     UILabel *temperatureLabel = [[UILabel alloc] init];
     temperatureLabel.textColor = [UIColor whiteColor];
@@ -179,13 +167,11 @@
     temperatureLabel.textAlignment = NSTextAlignmentCenter;
     [itemContainer addSubview:temperatureLabel];
     [tempTemperatureLabels addObject:temperatureLabel];
-    //temperatureLabel.backgroundColor = COLOR_RANDOM;
     
     for (NSInteger i = 0; i < self.hourlyForecastDics.count; i++) {
         UIView *itemContainer = [[UIView alloc] init];
         [hourlyScrollView addSubview:itemContainer];
         [tempItemContainers addObject:itemContainer];
-        //itemContainer.backgroundColor = COLOR_RANDOM;
         
         UILabel *timeLabel = [[UILabel alloc] init];
         timeLabel.textColor = [UIColor whiteColor];
@@ -197,13 +183,11 @@
         timeLabel.attributedText = [NSAttributedString attributedStringWithString:parts[1]];
         [itemContainer addSubview:timeLabel];
         [tempTimeLabels addObject:timeLabel];
-        //timeLabel.backgroundColor = COLOR_RANDOM;
         
         UIImageView *conditionIcon = [[UIImageView alloc] init];
         conditionIcon.contentMode = UIViewContentModeCenter;
         [itemContainer addSubview:conditionIcon];
         [tempConditionIcons addObject:conditionIcon];
-        //conditionIcon.backgroundColor = COLOR_RANDOM;
         
         UILabel *temperatureLabel = [[UILabel alloc] init];
         temperatureLabel.textColor = [UIColor whiteColor];
@@ -211,7 +195,6 @@
         temperatureLabel.textAlignment = NSTextAlignmentCenter;
         [itemContainer addSubview:temperatureLabel];
         [tempTemperatureLabels addObject:temperatureLabel];
-        //temperatureLabel.backgroundColor = COLOR_RANDOM;
     }
     self.hourlyItemContainers = [tempItemContainers copy];
     self.hourlyTimeLabels = [tempTimeLabels copy];
@@ -220,11 +203,9 @@
 }
 
 - (void)setupDailyWeatherInfoView {
-    
     UIView *dailyWeatherDetailContainer = [[UIView alloc] init];
     [self addSubview:dailyWeatherDetailContainer];
     _dailyWeatherDetailContainer = dailyWeatherDetailContainer;
-    //_dailyWeatherDetailContainer.backgroundColor = COLOR_RANDOM;
     
     UILabel *label = [[UILabel alloc] init];
     label.attributedText = [NSAttributedString attributedStringWithString:@"一周天气"];
@@ -233,7 +214,6 @@
     label.textAlignment = NSTextAlignmentLeft;
     [dailyWeatherDetailContainer addSubview:label];
     _dailyLabel = label;
-    //_dailyLabel.backgroundColor = COLOR_RANDOM;
     
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
@@ -246,7 +226,6 @@
     dailyScrollView.alwaysBounceHorizontal = YES;
     [dailyWeatherDetailContainer addSubview:dailyScrollView];
     _dailyScrollView = dailyScrollView;
-    //_dailyScrollView.backgroundColor = COLOR_RANDOM;
     
     NSMutableArray *tempItemContainers = [NSMutableArray array];
     NSMutableArray *tempDateLabels = [NSMutableArray array];
@@ -256,7 +235,6 @@
         UIView *itemContainer = [[UIView alloc] init];
         [dailyScrollView addSubview:itemContainer];
         [tempItemContainers addObject:itemContainer];
-        //itemContainer.backgroundColor = COLOR_RANDOM;
         
         UILabel *dateLabel = [[UILabel alloc] init];
         dateLabel.textAlignment = NSTextAlignmentCenter;
@@ -264,7 +242,6 @@
         dateLabel.textColor = [UIColor whiteColor];
         dateLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:SCREEN_ADJUST(17)];
         dateLabel.numberOfLines = 0;
-        //dateLabel.backgroundColor = COLOR_RANDOM;
 
         DailyWeatherData *dailyData = self.dailyForecastDics[i];
         NSString *dateString = dailyData.date;
@@ -284,13 +261,11 @@
         dateLabel.attributedText = [NSAttributedString attributedStringWithString:text];
         [itemContainer addSubview:dateLabel];
         [tempDateLabels addObject:dateLabel];
-        //dateLabel.backgroundColor = COLOR_RANDOM;
         
         UIImageView *conditionIcon = [[UIImageView alloc] init];
         conditionIcon.contentMode = UIViewContentModeCenter;
         [itemContainer addSubview:conditionIcon];
         [tempConditionIcons addObject:conditionIcon];
-        //conditionIcon.backgroundColor = COLOR_RANDOM;
         
         UILabel *conditionLabel = [[UILabel alloc] init];
         conditionLabel.textAlignment = NSTextAlignmentCenter;
@@ -300,7 +275,6 @@
         conditionLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:SCREEN_ADJUST(17)];
         [itemContainer addSubview:conditionLabel];
         [tempConditionLabels addObject:conditionLabel];
-        //conditionLabel.backgroundColor = COLOR_RANDOM;
     }
     self.dailyItemContainers  = [tempItemContainers  copy];
     self.dailyDateLabels      = [tempDateLabels      copy];
@@ -309,7 +283,6 @@
 }
 
 - (void)layoutSubviews {
-    
     [super layoutSubviews];
     
     _hourlyWeatherDetailContainer.frame = CGRectMake(kMargin, 0, SCREEN_WIDTH - kMargin*2, kHourlyWeatherInfoViewH);
@@ -380,7 +353,6 @@
 }
 
 - (void)updateWeatherInfo {
-    
     NowWeatherData *nowData = [NowWeatherData mj_objectWithKeyValues:_weatherData[@"HeWeather data service 3.0"][0][@"now"]];
     
     for (NSInteger i = 0; i < self.hourlyTemperatureLabels.count; i++) {
@@ -418,7 +390,6 @@
 }
 
 - (void)setupWeatherLineChart {
-    
     [self.chartMax removeFromSuperview];
     WeatherLineChart *chartMax = [[WeatherLineChart alloc] init];
     [[self.dailyWeatherDetailContainer viewWithTag:55] addSubview:chartMax];
@@ -428,7 +399,6 @@
     chartMax.lineColor = COLOR_RGBA(255, 106, 106, 1.0);
     chartMax.backgroundColor = [UIColor clearColor];
     self.chartMax = chartMax;
-    //chartMax.backgroundColor = COLOR_RANDOM;
     
     [self.chartMin removeFromSuperview];
     WeatherLineChart *chartMin = [[WeatherLineChart alloc] init];
@@ -439,7 +409,6 @@
     chartMin.lineColor = COLOR_RGBA(75, 222, 255, 1.0);
     chartMin.backgroundColor = [UIColor clearColor];
     self.chartMin = chartMin;
-    //chartMin.backgroundColor = COLOR_RANDOM;
     
     [self setNeedsLayout];
     [self layoutIfNeeded];

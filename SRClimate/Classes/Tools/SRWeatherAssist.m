@@ -2,7 +2,7 @@
 //  SRWeatherAssist.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/11/7.
+//  Created by https://github.com/guowilling on 16/11/7.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -11,7 +11,6 @@
 @implementation SRWeatherAssist
 
 + (NSString *)getBackgroundImageNameWithWeatherCode:(NSInteger)weatherCode {
-    
     NSString *imageName;
     switch (weatherCode) {
         case 100:
@@ -65,7 +64,6 @@
 }
 
 + (NSString *)getWeatherIconNameWithWeatherCode:(NSInteger)weatherCode {
-    
     NSString *weatherIconName = nil;
     switch (weatherCode) {
         case 100:

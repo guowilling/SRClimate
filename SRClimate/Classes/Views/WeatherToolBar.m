@@ -2,7 +2,7 @@
 //  WeatherToolBar.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/5/6.
+//  Created by https://github.com/guowilling on 16/5/6.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -29,7 +29,6 @@
 @implementation WeatherToolBar
 
 - (NSMutableArray *)cityLabels {
-    
     if (!_cityLabels) {
         _cityLabels = [NSMutableArray array];
     }
@@ -37,7 +36,6 @@
 }
 
 - (instancetype)initWithLocationCity:(NSString *)locationCity commonCities:(NSArray *)commonCities {
-    
     if (self = [super init]) {
         _locationCity = locationCity;
         _commonCities = commonCities;
@@ -47,7 +45,6 @@
 }
 
 - (void)setupSubviews {
-    
     [self addSubview:({
         UIButton *commonCityBtn = [UIButton buttonWithType:UIButtonTypeInfoDark];
         commonCityBtn.tintColor = [UIColor whiteColor];
@@ -70,7 +67,6 @@
 }
 
 - (void)addCityScrollView {
-    
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     scrollView.delegate = self;
     scrollView.pagingEnabled = YES;
@@ -88,11 +84,9 @@
         }
     }
     [self addSubview:scrollView];
-    //_cityScrollView.backgroundColor = COLOR_RANDOM;
 }
 
 - (void)creatCityButtonWithLocationCity {
-    
     UIButton *cityBtn = [[UIButton alloc] init];
     
     NSAttributedString *attrString = [NSAttributedString attributedStringWithString:self.locationCity];
@@ -105,11 +99,9 @@
     cityBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     [self.cityScrollView addSubview:cityBtn];
     _cityBtn = cityBtn;
-    //_cityBtn.backgroundColor = COLOR_RANDOM;
 }
 
 - (void)creatCityLabelWithCityBeiJing {
-    
     UILabel *cityLabel = [[UILabel alloc] init];
     cityLabel.textColor = [UIColor whiteColor];
     cityLabel.attributedText = [NSAttributedString attributedStringWithString:@"北京"];
@@ -117,11 +109,9 @@
     cityLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:SCREEN_ADJUST(20)];
     [self.cityScrollView addSubview:cityLabel];
     _cityLabel = cityLabel;
-    //_cityLabel.backgroundColor = COLOR_RANDOM;
 }
 
 - (void)creatCityLabelWithCommonCities {
-    
     for (NSInteger i = 0; i < self.commonCities.count; i++) {
         UILabel *cityLabel = [[UILabel alloc] init];
         cityLabel.textColor = [UIColor whiteColor];
@@ -131,12 +121,10 @@
         cityLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:SCREEN_ADJUST(20)];
         [self.cityScrollView addSubview:cityLabel];
         [self.cityLabels addObject:cityLabel];
-        //cityLabel.backgroundColor = COLOR_RANDOM;
     }
 }
 
 - (void)addCityPageControl {
-    
     UIPageControl *pageControl = [[UIPageControl alloc] init];
     if (_locationCity) {
         pageControl.numberOfPages = _commonCities.count + 1;
@@ -152,11 +140,9 @@
     pageControl.hidesForSinglePage = YES;
     [self addSubview:pageControl];
     _cityPageControl = pageControl;
-    //_cityPageControl.backgroundColor = COLOR_RANDOM;
 }
 
 - (void)layoutSubviews {
-    
     [super layoutSubviews];
     
     CGFloat margin = SCREEN_ADJUST(20);
@@ -188,14 +174,12 @@
 }
 
 - (void)commonCityBtnAction {
-    
     if ([self.delegate respondsToSelector:@selector(weatherToolBarDidClickCommonCityBtnAction)]) {
         [self.delegate weatherToolBarDidClickCommonCityBtnAction];
     }
 }
 
 - (void)searchCityBtnAction {
-    
     if ([self.delegate respondsToSelector:@selector(weatherToolBarDidClickSearchCityBtnAction)]) {
         [self.delegate weatherToolBarDidClickSearchCityBtnAction];
     }
@@ -204,7 +188,6 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
     if (scrollView == self.cityScrollView) {
         self.cityPageControl.currentPage = scrollView.contentOffset.x / scrollView.sr_width;
         if (self.currentIndex != self.cityPageControl.currentPage) {
@@ -216,10 +199,9 @@
     }
 }
 
-#pragma mark - Public method
+#pragma mark - Public Methods
 
 - (void)updateWithCityname:(NSString *)cityname commonCities:(NSArray *)commonCities {
-    
     _locationCity = cityname;
     _commonCities = commonCities;
     [self.cityLabels removeAllObjects];
@@ -235,13 +217,11 @@
 }
 
 - (void)updateBackward {
-    
     self.cityPageControl.currentPage -= 1;
     [self.cityScrollView setContentOffset:CGPointMake(self.cityScrollView.sr_width * self.cityPageControl.currentPage, 0) animated:NO];
 }
 
 - (void)updateForward {
-    
     self.cityPageControl.currentPage += 1;
     [self.cityScrollView setContentOffset:CGPointMake(self.cityScrollView.sr_width * self.cityPageControl.currentPage, 0) animated:NO];
 }

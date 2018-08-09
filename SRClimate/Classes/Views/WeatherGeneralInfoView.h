@@ -2,7 +2,7 @@
 //  WeatherGeneralInfoView.h
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/5/6.
+//  Created by https://github.com/guowilling on 16/5/6.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -17,8 +17,8 @@
 @property (nonatomic, weak) UILabel *temperatureLabel;
 
 @property (nonatomic, weak) UIImageView *conditionIcon;
-@property (nonatomic, weak) UILabel     *conditionLabel
-;
+@property (nonatomic, weak) UILabel     *conditionLabel;
+
 @property (nonatomic, weak) UIImageView *indicatorIcon;
 
 @property (nonatomic, weak) UIImageView *PMIcon;

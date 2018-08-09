@@ -2,7 +2,7 @@
 //  SearchCityController.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/4/15.
+//  Created by https://github.com/guowilling on 16/4/15.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -13,11 +13,11 @@
 #import "SRWeatherDataTool.h"
 #import "SRWeatherCityTool.h"
 
-#define hotCitiesHeaderLabelH   SCREEN_ADJUST(44)
-#define HotCitiesViewInset      SCREEN_ADJUST(20)
-#define HotCityItemHMargin      SCREEN_ADJUST(10)
-#define HotCityItemVMargin      SCREEN_ADJUST(20)
-#define HotCitiesViewMaxColumn  4
+#define hotCitiesHeaderLabelH SCREEN_ADJUST(44)
+#define HotCitiesViewInset    SCREEN_ADJUST(20)
+#define HotCityItemHMargin    SCREEN_ADJUST(10)
+#define HotCityItemVMargin    SCREEN_ADJUST(20)
+#define HotCitiesViewMaxColumn 4
 
 @interface AddCityController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -33,10 +33,9 @@
 
 @implementation AddCityController
 
-#pragma mark - Life circle
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -52,18 +51,16 @@
     [self setupTableView];
 }
 
-#pragma mark - Init setting
-
 - (void)initData {
-    
     _hotCities    = [SRWeatherCityTool hotCities];
     _allCities    = [SRWeatherCityTool allCities];
     _searchCities = [NSMutableArray array];
     _commonCities = [NSMutableArray arrayWithArray:[SRWeatherCityTool commonCities]];
 }
 
+#pragma mark - Setup UI
+
 - (void)setupNavBar {
-    
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     
     self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(dismissAction)];
@@ -75,12 +72,10 @@
 }
 
 - (void)dismissAction {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)setupHotCitiesContanier {
-    
     _hotCitiesContanier = [[UIView alloc] init];
     _hotCitiesContanier.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:_hotCitiesContanier];
@@ -124,7 +119,6 @@
 }
 
 - (void)hotCityBtnAction:(UIButton *)sender {
-    
     NSString *city = self.hotCities[sender.tag];
     if ([self.delegate respondsToSelector:@selector(addCityControllerDidAddCity:)]) {
         [self.delegate addCityControllerDidAddCity:city];
@@ -135,7 +129,6 @@
 }
 
 - (void)setupTableView {
-    
     UITableView *tableView   = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64)
                                                             style:UITableViewStyleGrouped];
     tableView.dataSource     = self;
@@ -151,12 +144,10 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.searchCities.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString * const cellID = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
@@ -173,12 +164,14 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 0.1;
 }
 
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [UIView new];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     NSString *city = self.searchCities[indexPath.row];
     if ([self.delegate respondsToSelector:@selector(addCityControllerDidAddCity:)]) {
         [self.delegate addCityControllerDidAddCity:city];
@@ -191,7 +184,6 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    
     if ([self.navigationItem.titleView isFirstResponder]) {
         [self.navigationItem.titleView resignFirstResponder];
     }
@@ -200,12 +192,10 @@
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    
     [searchBar setShowsCancelButton:YES animated:YES];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    
     if (searchText.length > 0) {
         _hotCitiesContanier.hidden = YES;
         _searchCitiesTableView.hidden = NO;
@@ -221,12 +211,10 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
     [searchBar resignFirstResponder];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar setText:nil];

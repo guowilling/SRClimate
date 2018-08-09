@@ -2,7 +2,7 @@
 //  SRUserDefaults.h
 //  SRClimate
 //
-//  Created by 郭伟林 on 15/11/21.
+//  Created by https://github.com/guowilling on 15/11/21.
 //  Copyright © 2015年 SR. All rights reserved.
 //
 

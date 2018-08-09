@@ -2,7 +2,7 @@
 //  LocationTool.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/6/1.
+//  Created by https://github.com/guowilling on 16/6/1.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -11,11 +11,11 @@
 #import "SRWeatherDataTool.h"
 #import "SRWeatherCityTool.h"
 
-#define SRWeatherAutoLocation              @"weatherAutoLocation"
-#define SRWeatherCurrentLocationCity       @"weatherCurrentLocationCity"
-#define SRWeatherCurrentLocationState      @"weatherCurrentLocationState"
-#define SRWeatherCurrentLocationLongitude  @"weatherCurrentLocationLongitude"
-#define SRWeatherCurrentLocationLatitude   @"weatherCurrentLocationLatitude"
+#define SRWeatherAutoLocation             @"weatherAutoLocation"
+#define SRWeatherCurrentLocationCity      @"weatherCurrentLocationCity"
+#define SRWeatherCurrentLocationState     @"weatherCurrentLocationState"
+#define SRWeatherCurrentLocationLongitude @"weatherCurrentLocationLongitude"
+#define SRWeatherCurrentLocationLatitude  @"weatherCurrentLocationLatitude"
 
 static SRLocationTool *instance;
 
@@ -35,7 +35,6 @@ static SRLocationTool *instance;
 @synthesize currentLocationLatitude  = _currentLocationLatitude;
 
 + (instancetype)sharedInstance {
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @synchronized(self) {
@@ -45,7 +44,6 @@ static SRLocationTool *instance;
     return instance;
 }
 - (instancetype)init {
-    
     if (self = [super init]) {
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
@@ -56,7 +54,6 @@ static SRLocationTool *instance;
 }
 
 - (void)requestAuthorization {
-    
     if ([CLLocationManager locationServicesEnabled]) {
         [self.locationManager requestWhenInUseAuthorization];
     } else {
@@ -67,7 +64,6 @@ static SRLocationTool *instance;
 }
 
 - (void)beginLocation {
-    
     if (![CLLocationManager locationServicesEnabled]) {
         [SRLocationTool sharedInstance].autoLocation = NO;
         if ([self.delegate respondsToSelector:@selector(locationToolLocationServicesDisabled)]) {
@@ -104,7 +100,6 @@ static SRLocationTool *instance;
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    
     SRLog(@"LocationManager didChangeAuthorizationStatus %zd", status);
     
     if (![CLLocationManager locationServicesEnabled]) {
@@ -139,7 +134,6 @@ static SRLocationTool *instance;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    
     if (_location) {
         [self.locationManager stopUpdatingLocation];
         return;
@@ -149,7 +143,6 @@ static SRLocationTool *instance;
 }
 
 - (void)getAddress {
-    
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:_location
                    completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -193,12 +186,10 @@ static SRLocationTool *instance;
 }
 
 - (void)resetLocation {
-    
     _location = nil;
 }
 
 - (BOOL)isAutoLocation {
-    
     if (!_autoLocation) {
         _autoLocation = [SRUserDefaults boolForKey:SRWeatherAutoLocation];
     }
@@ -206,14 +197,12 @@ static SRLocationTool *instance;
 }
 
 - (void)setAutoLocation:(BOOL)autoLocation {
-    
     _autoLocation = autoLocation;
     
     [SRUserDefaults setBool:autoLocation forKey:SRWeatherAutoLocation];
 }
 
 - (NSString *)currentLocationCity {
-    
     if (!_currentLocationCity) {
         _currentLocationCity = [SRUserDefaults objectForKey:SRWeatherCurrentLocationCity];
     }
@@ -221,14 +210,12 @@ static SRLocationTool *instance;
 }
 
 - (void)setCurrentLocationCity:(NSString *)locationCity {
-    
     _currentLocationCity = locationCity;
     
     [SRUserDefaults setObject:locationCity forKey:SRWeatherCurrentLocationCity];
 }
 
 - (NSString *)currentLocationState {
-    
     if (!_currentLocationState) {
         _currentLocationState = [SRUserDefaults objectForKey:SRWeatherCurrentLocationState];
     }
@@ -236,14 +223,12 @@ static SRLocationTool *instance;
 }
 
 - (void)setCurrentLocationState:(NSString *)currentLocationState {
-    
     _currentLocationState = currentLocationState;
     
     [SRUserDefaults setObject:currentLocationState forKey:SRWeatherCurrentLocationState];
 }
 
 - (NSNumber *)currentLocationLongitude {
-    
     if (!_currentLocationLongitude) {
         _currentLocationLongitude = [SRUserDefaults objectForKey:SRWeatherCurrentLocationLongitude];
     }
@@ -251,14 +236,12 @@ static SRLocationTool *instance;
 }
 
 - (void)setCurrentLocationLongitude:(NSNumber *)currentLocationLongitude {
-    
     _currentLocationLongitude = currentLocationLongitude;
     
     [SRUserDefaults setObject:currentLocationLongitude forKey:SRWeatherCurrentLocationLongitude];
 }
 
 - (NSNumber *)currentLocationLatitude {
-    
     if (!_currentLocationLatitude) {
         _currentLocationLatitude = [SRUserDefaults objectForKey:SRWeatherCurrentLocationLatitude];
     }
@@ -266,7 +249,6 @@ static SRLocationTool *instance;
 }
 
 - (void)setCurrentLocationLatitude:(NSNumber *)currentLocationLatitude {
-    
     _currentLocationLatitude = currentLocationLatitude;
     
     [SRUserDefaults setObject:currentLocationLatitude forKey:SRWeatherCurrentLocationLatitude];

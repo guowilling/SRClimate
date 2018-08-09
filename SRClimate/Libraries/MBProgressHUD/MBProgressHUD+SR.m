@@ -2,7 +2,7 @@
 //  MBProgressHUD+SR.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/6/16.
+//  Created by https://github.com/guowilling on 16/6/16.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 

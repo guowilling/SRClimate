@@ -8,15 +8,14 @@
 
 #import "SRWeatherCityTool.h"
 
-static NSString * const kCommonCitiesFileName   = @"commonCities.plist";
-static NSString * const kHotCitiesFileName      = @"hotCities.plist";
-static NSString * const kAllCitiesFileName      = @"allCities.plist";
-static NSString * const kAllCitiesDicsFileName  = @"allCitiesDics.plist";
+static NSString * const kCommonCitiesFileName  = @"commonCities.plist";
+static NSString * const kHotCitiesFileName     = @"hotCities.plist";
+static NSString * const kAllCitiesFileName     = @"allCities.plist";
+static NSString * const kAllCitiesDicsFileName = @"allCitiesDics.plist";
 
 @implementation SRWeatherCityTool
 
 + (void)saveCommonCities:(NSArray *)commonCities {
-    
     NSString *filePath = [[[UIApplication sharedApplication] cachesPath] stringByAppendingPathComponent:kCommonCitiesFileName];
     [commonCities writeToFile:filePath atomically:YES];
 }
@@ -24,7 +23,6 @@ static NSString * const kAllCitiesDicsFileName  = @"allCitiesDics.plist";
 #pragma mark - Cities
 
 + (NSArray *)commonCities {
-    
     NSString *filePath = [[[UIApplication sharedApplication] cachesPath] stringByAppendingPathComponent:kCommonCitiesFileName];
     NSArray *commonCities = [NSArray arrayWithContentsOfFile:filePath];
     if (!commonCities) {
@@ -34,27 +32,23 @@ static NSString * const kAllCitiesDicsFileName  = @"allCitiesDics.plist";
 }
 
 + (NSArray *)hotCities {
-    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:kHotCitiesFileName ofType:nil];
     return [NSArray arrayWithContentsOfFile:filePath];
 }
 
 + (NSArray *)allCities {
-    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:kAllCitiesFileName ofType:nil];
     return [NSArray arrayWithContentsOfFile:filePath];
 }
 
 + (NSArray *)allCitiesDics {
-    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:kAllCitiesDicsFileName ofType:nil];
     return [NSArray arrayWithContentsOfFile:filePath];
 }
 
-#pragma mark - Tool method
+#pragma mark - Tool Methods
 
 + (NSString *)defaultCity {
-    
     NSArray *commonCities = [self commonCities];
     NSString *cityname;
     if (commonCities.count > 0) {
@@ -66,12 +60,10 @@ static NSString * const kAllCitiesDicsFileName  = @"allCitiesDics.plist";
 }
 
 + (NSString *)defaultCityid {
-    
     return [self cityidOfCityname:[self defaultCity]];
 }
 
 + (NSString *)cityidOfCityname:(NSString *)cityname {
-    
     NSArray *allCitiesDics = [self allCitiesDics];
     for (NSInteger i = 0; i < allCitiesDics.count; i++) {
         NSDictionary *cityDic = allCitiesDics[i];

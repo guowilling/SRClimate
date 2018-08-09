@@ -4,7 +4,6 @@
 @implementation NSDictionary (Log)
 
 - (NSString *)descriptionWithLocale:(id)locale {
-    
     NSMutableString *string = [NSMutableString string];
     [string appendString:@"{\n"];
     [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -25,7 +24,6 @@
 @implementation NSArray (Log)
 
 - (NSString *)descriptionWithLocale:(id)locale {
-    
     NSMutableString *string = [NSMutableString string];
     [string appendString:@"[\n"];
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

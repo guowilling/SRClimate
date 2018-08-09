@@ -2,7 +2,7 @@
 //  UILabel+Font.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/6/14.
+//  Created by https://github.com/guowilling on 16/6/14.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -13,7 +13,6 @@
 @implementation UILabel (Font)
 
 + (void)load {
-    
     [super load];
     
     Method oldImp = class_getInstanceMethod([self class], @selector(setFont:));
@@ -22,7 +21,6 @@
 }
 
 - (void)mySetFont:(UIFont *)font {
-    
     CGFloat fontSize = font.pointSize;
     if ([font.fontName isEqualToString:@"GillSans-Light"]) {
         [self mySetFont:[UIFont fontWithName:font.fontName size:fontSize]];

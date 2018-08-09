@@ -2,7 +2,7 @@
 //  NSAttributedString+Extension.m
 //  SRClimate
 //
-//  Created by 郭伟林 on 16/9/20.
+//  Created by https://github.com/guowilling on 16/9/20.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
@@ -11,7 +11,6 @@
 @implementation NSAttributedString (Extension)
 
 + (instancetype)attributedStringWithString:(NSString *)string {
-    
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:string];
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.75];
